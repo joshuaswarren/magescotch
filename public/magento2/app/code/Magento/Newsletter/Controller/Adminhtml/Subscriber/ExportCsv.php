@@ -1,0 +1,31 @@
+<?php
+/**
+ *
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+namespace Magento\Newsletter\Controller\Adminhtml\Subscriber;
+
+use Magento\Framework\App\ResponseInterface;
+use Magento\Framework\App\Filesystem\DirectoryList;
+
+class ExportCsv extends \Magento\Newsletter\Controller\Adminhtml\Subscriber
+{
+    /**
+     * Export subscribers grid to CSV format
+     *
+     * @return ResponseInterface
+     */
+    public function executeInternal()
+    {
+        $this->_view->loadLayout();
+        $fileName = 'subscribers.csv';
+        $content = $this->_view->getLayout()->getChildBlock('adminhtml.newslettrer.subscriber.grid', 'grid.export');
+
+        return $this->_fileFactory->create(
+            $fileName,
+            $content->getCsvFile($fileName),
+            DirectoryList::VAR_DIR
+        );
+    }
+}

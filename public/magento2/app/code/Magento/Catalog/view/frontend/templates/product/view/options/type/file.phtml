@@ -1,0 +1,67 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php $_option = $block->getOption(); ?>
+<?php $_fileInfo = $block->getFileInfo(); ?>
+<?php $_fileExists = $_fileInfo->hasData(); ?>
+<?php $_fileName = 'options_' . $_option->getId() . '_file'; ?>
+<?php $_fieldNameAction = $_fileName . '_action'; ?>
+<?php $_fieldValueAction = $_fileExists ? 'save_old' : 'save_new'; ?>
+<?php $_fileNamed = $_fileName . '_name'; ?>
+<?php $class = ($_option->getIsRequire()) ? ' required' : ''; ?>
+
+<div class="field file<?php /* @escapeNotVerified */ echo $class; ?>">
+    <label class="label" for="<?php /* @escapeNotVerified */ echo $_fileName; ?>" id="<?php /* @escapeNotVerified */ echo $_fileName; ?>-label">
+        <span><?php echo  $block->escapeHtml($_option->getTitle()) ?></span>
+        <?php /* @escapeNotVerified */ echo $block->getFormatedPrice() ?>
+    </label>
+    <?php if ($_fileExists): ?>
+    <div class="control">
+        <span class="<?php /* @escapeNotVerified */ echo $_fileNamed ?>"><?php /* @escapeNotVerified */ echo $_fileInfo->getTitle(); ?></span>
+        <a href="javascript:void(0)" class="label" id="change-<?php /* @escapeNotVerified */ echo $_fileName ?>" >
+            <?php /* @escapeNotVerified */ echo __('Change') ?>
+        </a>
+        <?php if (!$_option->getIsRequire()): ?>
+            <input type="checkbox" id="delete-<?php /* @escapeNotVerified */ echo $_fileName ?>" />
+            <span class="label"><?php /* @escapeNotVerified */ echo __('Delete') ?></span>
+        <?php endif; ?>
+    </div>
+    <?php endif; ?>
+    <div class="control" id="input-box-<?php /* @escapeNotVerified */ echo $_fileName ?>"
+             data-mage-init='{"priceOptionFile":{
+                "fileName":"<?php /* @escapeNotVerified */ echo $_fileName ?>",
+                "fileNamed":"<?php /* @escapeNotVerified */ echo $_fileNamed ?>",
+                "fieldNameAction":"<?php /* @escapeNotVerified */ echo $_fieldNameAction ?>",
+                "changeFileSelector":"#change-<?php /* @escapeNotVerified */ echo $_fileName ?>",
+                "deleteFileSelector":"#delete-<?php /* @escapeNotVerified */ echo $_fileName ?>"}
+             }'
+            <?php echo $_fileExists ? 'style="display:none"' : '' ?>>
+        <input type="file"
+               name="<?php /* @escapeNotVerified */ echo $_fileName; ?>"
+               id="<?php /* @escapeNotVerified */ echo $_fileName; ?>"
+               class="product-custom-option<?php echo $_option->getIsRequire() ? ' required' : '' ?>"
+               <?php echo $_fileExists ? 'disabled="disabled"' : '' ?> />
+        <input type="hidden" name="<?php /* @escapeNotVerified */ echo $_fieldNameAction; ?>" value="<?php /* @escapeNotVerified */ echo $_fieldValueAction; ?>" />
+        <?php if ($_option->getFileExtension()): ?>
+            <p class="note">
+                <?php /* @escapeNotVerified */ echo __('Compatible file extensions to upload')?>: <strong><?php /* @escapeNotVerified */ echo $_option->getFileExtension() ?></strong>
+            </p>
+        <?php endif; ?>
+        <?php if ($_option->getImageSizeX() > 0): ?>
+            <p class="note">
+                <?php /* @escapeNotVerified */ echo __('Maximum image width')?>: <strong><?php /* @escapeNotVerified */ echo $_option->getImageSizeX() ?> <?php /* @escapeNotVerified */ echo __('px.')?></strong>
+            </p>
+        <?php endif; ?>
+        <?php if ($_option->getImageSizeY() > 0): ?>
+            <p class="note">
+                <?php /* @escapeNotVerified */ echo __('Maximum image height')?>: <strong><?php /* @escapeNotVerified */ echo $_option->getImageSizeY() ?> <?php /* @escapeNotVerified */ echo __('px.')?></strong>
+            </p>
+        <?php endif; ?>
+    </div>
+</div>

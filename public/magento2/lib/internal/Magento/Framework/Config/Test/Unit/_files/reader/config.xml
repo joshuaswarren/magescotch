@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config>
+    <version>1.11.0.1</version>
+    <active>false</active>
+    <depends>
+        <module_one/>
+        <module_two/>
+    </depends>
+</config>

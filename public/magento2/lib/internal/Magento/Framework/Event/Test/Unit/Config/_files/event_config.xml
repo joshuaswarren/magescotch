@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="event_1">
+        <observer name="observer_1" instance="instance_1" />
+        <observer name="observer_5" instance="instance_5" disabled="false" shared="true" />
+    </event>
+    <event name="event_2">
+        <observer name="observer_2" instance="instance_2" disabled="true" shared="false" />
+    </event>
+</config>

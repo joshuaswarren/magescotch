@@ -1,0 +1,28 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * @var $block \Magento\UrlRewrite\Block\Edit
+ */
+?>
+<?php echo $block->getChildHtml() ?>
+
+<?php if ($block->getChildBlock('form')): ?>
+<script>
+require([
+    'jquery',
+    'mage/backend/form',
+    'mage/backend/validation'
+], function($){
+
+    $('#edit_form').form()
+        .validation({validationUrl: '<?php /* @escapeNotVerified */ echo $block->getValidationUrl() ?>'});
+
+});
+</script>
+<?php endif; ?>

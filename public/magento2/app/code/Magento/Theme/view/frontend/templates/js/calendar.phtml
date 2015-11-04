@@ -1,0 +1,58 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php
+/**
+ * Calendar localization script. Should be put into page header.
+ *
+ * @see \Magento\Framework\View\Element\Html\Calendar
+ */
+?>
+
+<script>
+require([
+    "jquery",
+    "jquery/ui"
+], function($){
+
+//<![CDATA[
+    $.extend(true, $, {
+        calendarConfig: {
+            dayNames: <?php /* @escapeNotVerified */ echo $days['wide']?>,
+            dayNamesMin: <?php /* @escapeNotVerified */ echo $days['abbreviated']?>,
+            monthNames: <?php /* @escapeNotVerified */ echo $months['wide']?>,
+            monthNamesShort: <?php /* @escapeNotVerified */ echo $months['abbreviated']?>,
+            infoTitle: "<?php /* @escapeNotVerified */ echo __('About the calendar');?>",
+            firstDay: <?php /* @escapeNotVerified */ echo $firstDay?>,
+            closeText: "<?php /* @escapeNotVerified */ echo __('Close');?>",
+            currentText: "<?php /* @escapeNotVerified */ echo __('Go Today'); ?>",
+            prevText: "<?php /* @escapeNotVerified */ echo __('Previous');?>",
+            nextText: "<?php /* @escapeNotVerified */ echo __('Next');?>",
+            weekHeader: "<?php /* @escapeNotVerified */ echo __('WK'); ?>",
+            timeText: "<?php /* @escapeNotVerified */ echo __('Time');?>",
+            hourText: "<?php /* @escapeNotVerified */ echo __('Hour');?>",
+            minuteText: "<?php /* @escapeNotVerified */ echo __('Minute');?>",
+            dateFormat: $.datepicker.RFC_2822,
+            showOn: "button",
+            showAnim: "",
+            changeMonth: true,
+            changeYear: true,
+            buttonImageOnly: null,
+            buttonImage: null,
+            showButtonPanel: true,
+            showWeek: true,
+            timeFormat: '',
+            showTime: false,
+            showHour: false,
+            showMinute: false
+        }
+    });
+
+    enUS = <?php /* @escapeNotVerified */ echo $enUS?>; // en_US locale reference
+//]]>
+
+});
+</script>

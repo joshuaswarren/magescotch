@@ -1,0 +1,24 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php $_source  = $block->getSource() ?>
+<?php $block->setPriceDataObject($_source) ?>
+
+<tr>
+    <td class="label">
+        <strong><big>
+        <?php if ($block->getGrandTotalTitle()): ?>
+            <?php /* @escapeNotVerified */ echo $block->getGrandTotalTitle() ?>
+        <?php else: ?>
+            <?php /* @escapeNotVerified */ echo __('Grand Total') ?>
+        <?php endif; ?>
+        </big></strong>
+    </td>
+    <td class="emph"><big><?php /* @escapeNotVerified */ echo $block->displayPriceAttribute('grand_total', true) ?></big></td>
+</tr>

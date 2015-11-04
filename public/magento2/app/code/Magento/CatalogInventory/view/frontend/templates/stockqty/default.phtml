@@ -1,0 +1,17 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * @var $block \Magento\CatalogInventory\Block\Stockqty\DefaultStockqty
+ */
+?>
+<?php if ($block->isMsgVisible()): ?>
+    <div class="availability only" title="<?php /* @escapeNotVerified */ echo __('Only %1 left', ($block->getStockQtyLeft())) ?>">
+        <?php /* @escapeNotVerified */ echo __('Only %1 left', "<strong>{$block->getStockQtyLeft()}</strong>") ?>
+    </div>
+<?php endif ?>

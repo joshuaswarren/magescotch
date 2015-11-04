@@ -1,0 +1,27 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<dl id="dl-<?php /* @escapeNotVerified */ echo $id ?>" class="accordion">
+<?php foreach ($sections as $sectionId => $section): ?>
+    <dt id="dt-<?php /* @escapeNotVerified */ echo $id ?>-<?php /* @escapeNotVerified */ echo $sectionId ?>">
+        <strong><?php /* @escapeNotVerified */ echo $section['title'] ?></strong>
+    </dt>
+    <dd id="dd-<?php /* @escapeNotVerified */ echo $id ?>-<?php /* @escapeNotVerified */ echo $section['id'] ?>" class="section-menu <?php echo !empty($section['active']) ? 'open' : '' ?>">
+        <ul>
+        <?php foreach ($section['children'] as $menuId => $menuItem): ?>
+            <li id="li-<?php /* @escapeNotVerified */ echo $id ?>-<?php /* @escapeNotVerified */ echo $sectionId ?>-<?php /* @escapeNotVerified */ echo $menuId ?>">
+                <a href="#" title="<?php /* @escapeNotVerified */ echo $menuItem['title'] ?>">
+                    <span><?php /* @escapeNotVerified */ echo $menuItem['label'] ?></span>
+                </a>
+            </li>
+        <?php endforeach ?>
+        </ul>
+    </dd>
+<?php endforeach ?>
+</dl>

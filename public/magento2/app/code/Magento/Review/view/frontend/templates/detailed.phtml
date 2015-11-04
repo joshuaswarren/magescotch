@@ -1,0 +1,30 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php if (!empty($collection) && $collection->getSize()): ?>
+    <div class="table-wrapper">
+        <table class="data table ratings review summary">
+            <caption class="table-caption"><?php /* @escapeNotVerified */ echo __('Ratings Review Summary'); ?></caption>
+            <tbody>
+            <?php foreach ($collection as $_rating): ?>
+                <?php if ($_rating->getSummary()): ?>
+                    <tr>
+                        <th class="label" scope="row"><?php echo __($block->escapeHtml($_rating->getRatingCode())) ?></th>
+                        <td class="value">
+                            <div class="rating box">
+                                <div class="rating" style="width:<?php /* @escapeNotVerified */ echo ceil($_rating->getSummary()) ?>%;"></div>
+                            </div>
+                        </td>
+                    </tr>
+                <?php endif; ?>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+<?php endif; ?>

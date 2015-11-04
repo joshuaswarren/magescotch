@@ -1,0 +1,54 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * @var $block \Magento\CatalogSearch\Block\Advanced\Result
+ */
+?>
+<?php if ($results = $block->getResultCount()): ?>
+    <div class="search found">
+        <?php if ($results == 1) : ?>
+            <?php /* @escapeNotVerified */ echo __('<strong>%1 item</strong> were found using the following search criteria', $results); ?>
+        <?php else: ?>
+            <?php /* @escapeNotVerified */ echo __('<strong>%1 items</strong> were found using the following search criteria', $results); ?>
+        <?php endif; ?>
+    </div>
+<?php else: ?>
+    <div class="message error">
+        <div>
+            <?php /* @escapeNotVerified */ echo __('We can\'t find any items matching these search criteria.');?> <a href="<?php /* @escapeNotVerified */ echo $block->getFormUrl(); ?>"><?php /* @escapeNotVerified */ echo __('Modify your search'); ?></a>
+        </div>
+    </div>
+<?php endif; ?>
+
+<?php $searchCriterias = $block->getSearchCriterias(); ?>
+<div class="search summary">
+    <?php foreach (['left', 'right'] as $side): ?>
+        <?php if (@$searchCriterias[$side]): ?>
+            <ul class="items">
+                <?php foreach ($searchCriterias[$side] as $criteria): ?>
+                    <li class="item"><strong><?php echo $block->escapeHtml(__($criteria['name'])); ?>:</strong> <?php echo $block->escapeHtml($criteria['value']); ?></li>
+                <?php endforeach; ?>
+            </ul>
+        <?php endif; ?>
+    <?php endforeach; ?>
+</div>
+<?php if ($block->getResultCount()): ?>
+    <div class="message notice">
+        <div>
+            <?php /* @escapeNotVerified */ echo __("Don't see what you're looking for?"); ?>
+            <a href="<?php /* @escapeNotVerified */ echo $block->getFormUrl(); ?>"><?php /* @escapeNotVerified */ echo __('Modify your search'); ?></a>
+        </div>
+    </div>
+<?php endif; ?>
+<?php if ($block->getResultCount()): ?>
+    <div class="search results"><?php echo $block->getProductListHtml() ?></div>
+<?php endif; ?>
+<?php $block->getSearchCriterias(); ?>

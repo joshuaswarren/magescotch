@@ -1,0 +1,23 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<div class="actions">
+    <?php  $_order = $block->getOrder() ?>
+    <?php if ($this->helper('Magento\Sales\Helper\Reorder')->canReorder($_order->getEntityId())) : ?>
+        <a class="action reorder" href="<?php /* @escapeNotVerified */ echo $block->getReorderUrl($_order) ?>">
+            <span><?php /* @escapeNotVerified */ echo __('Reorder') ?></span>
+        </a>
+    <?php endif ?>
+    <a class="action print"
+       href="<?php /* @escapeNotVerified */ echo $block->getPrintUrl($_order) ?>"
+       onclick="this.target='_blank';">
+        <span><?php /* @escapeNotVerified */ echo __('Print Order') ?></span>
+    </a>
+    <?php echo $block->getChildHtml(); ?>
+</div>

@@ -1,0 +1,20 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * @var $block \Magento\Theme\Block\Html\Title
+ */
+$titleId = ($block->getTitleId()) ? ' id="' . $block->getTitleId() . '"' : '';
+$titleClass = ($block->getTitleClass()) ? ' ' . $block->getTitleClass() : '';
+$title = $block->escapeHtml($block->getPageTitle());
+?>
+
+<div class="page-title-wrapper<?php /* @escapeNotVerified */ echo $titleClass; ?>">
+    <h1 class="page-title"<?php /* @escapeNotVerified */ echo $titleId?>><?php /* @escapeNotVerified */ echo $title ?></h1>
+    <?php echo $block->getChildHtml(); ?>
+</div>

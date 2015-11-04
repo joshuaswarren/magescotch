@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <job name="catalog_index_refresh_price" instance="Magento\Catalog\Cron\RefreshSpecialPrices" method="execute">
+            <schedule>0 * * * *</schedule>
+        </job>
+        <job name="catalog_product_flat_indexer_store_cleanup" instance="Magento\Catalog\Cron\DeleteAbandonedStoreFlatTables" method="execute">
+            <schedule>0 0 * * *</schedule>
+        </job>
+    </group>
+</config>

@@ -1,0 +1,26 @@
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<div
+    class="action-select-wrap"
+    data-bind="collapsible: {onTarget: true}"
+        data-role="toolbar-menu-item">
+    <button
+        class="action-select"
+        data-bind="i18n: 'Select Items'">
+        <span data-bind="i18n: 'Actions'"></span>
+    </button>
+    <ul
+        class="action-menu"
+        data-bind="css: {'_active': $collapsible.opened},
+                   foreach: actions">
+        <li data-bind="click: $parent.applyAction.bind($parent, type)">
+        <span
+            class="action-menu-item"
+            data-bind="text: label"></span>
+        </li>
+    </ul>
+</div>

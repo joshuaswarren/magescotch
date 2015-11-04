@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Authorization\Model\Role" shared="false" />
+    <type name="Magento\Authorization\Model\ResourceModel\Rules">
+        <arguments>
+            <argument name="rootResource" xsi:type="object">Magento\Framework\Acl\RootResource\Proxy</argument>
+            <argument name="aclCache" xsi:type="object">Magento\Framework\Acl\Cache\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\Acl\Builder">
+        <arguments>
+            <argument name="ruleLoader" xsi:type="object">Magento\Authorization\Model\Acl\Loader\Rule</argument>
+            <argument name="roleLoader" xsi:type="object">Magento\Authorization\Model\Acl\Loader\Role</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\Authorization\Policy\Acl">
+        <arguments>
+            <argument name="aclBuilder" xsi:type="object">Magento\Framework\Acl\Builder\Proxy</argument>
+        </arguments>
+    </type>
+</config>

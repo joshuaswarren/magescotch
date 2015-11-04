@@ -1,0 +1,27 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php
+/**
+ * Cookie settings initialization script
+ *
+ * @var $block \Magento\Framework\View\Element\Js\Cookie
+ */
+?>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "mage/cookies": {
+                "expires": null,
+                "path": "<?php /* @escapeNotVerified */ echo $block->getPath()?>",
+                "domain": "<?php /* @escapeNotVerified */ echo $block->getDomain()?>",
+                "secure": false,
+                "lifetime": "<?php /* @escapeNotVerified */ echo $block->getLifetime()?>"
+            }
+        }
+    }
+</script>

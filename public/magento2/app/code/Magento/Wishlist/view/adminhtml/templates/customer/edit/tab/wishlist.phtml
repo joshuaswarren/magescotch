@@ -1,0 +1,75 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * @var $block \Magento\Framework\View\Element\Template
+ */
+?>
+<script>
+    require([
+            "Magento_Ui/js/modal/confirm",
+            "prototype",
+            "Magento_Catalog/catalog/product/composite/configure"
+        ], function(confirm){
+
+//<!--
+            wishlistControl = {
+                reload: function (urlParams) {
+                    if (!urlParams) {
+                        urlParams = '';
+                    }
+                    var url = <?php /* @escapeNotVerified */ echo $block->getJsObjectName() ?>.url + '?ajax=true' + urlParams;
+                    new Ajax.Updater(
+                        <?php /* @escapeNotVerified */ echo $block->getJsObjectName() ?>.containerId,
+                        url,
+                        {
+                            parameters: {form_key: FORM_KEY},
+                            onComplete: <?php /* @escapeNotVerified */ echo $block->getJsObjectName() ?>.initGrid.bind(<?php /* @escapeNotVerified */ echo $block->getJsObjectName() ?>),
+                        evalScripts:true
+                }
+            );
+        },
+
+        configureItem: function (itemId) {
+        productConfigure.setOnLoadIFrameCallback('wishlist', this.cbOnLoadIframe.bind(this));
+        productConfigure.showItemConfiguration('wishlist', itemId);
+        return false;
+    },
+
+    cbOnLoadIframe: function (response) {
+        if (!response.ok) {
+            return;
+        }
+        this.reload();
+    },
+
+    removeItem: function (itemId) {
+        var self = this;
+
+        confirm({
+            content: '<?php /* @escapeNotVerified */ echo __('Are you sure you want to remove this item?') ?>',
+            actions: {
+                confirm: function () {
+                    self.reload('&delete=' + itemId);
+                }
+            }
+        });
+    }
+    }
+
+    productConfigure.addListType(
+        'wishlist',
+        {
+            urlFetch: '<?php /* @escapeNotVerified */ echo $block->getUrl('customer/wishlist_product_composite_wishlist/configure') ?>',
+            urlConfirm: '<?php /* @escapeNotVerified */ echo $block->getUrl('customer/wishlist_product_composite_wishlist/update') ?>'
+        }
+    );
+    //-->
+
+    });
+</script>

@@ -1,0 +1,19 @@
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<label class="data-grid-checkbox-cell-inner">
+    <input
+        class="admin__control-checkbox"
+        type="checkbox"
+        data-action="select-row"
+        data-bind="
+            staticChecked: $col.selected,
+            checkedValue: $row()[$col.indexField],
+            attr: {
+                id: 'check' + $row()[$col.indexField]
+            }">
+    <label data-bind="attr: {for: 'check' + $row()[$col.indexField]}"></label>
+</label>

@@ -1,0 +1,44 @@
+<?php
+/**
+ * Mail Template Factory
+ *
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+namespace Magento\Framework\Mail\Template;
+
+class Factory implements \Magento\Framework\Mail\Template\FactoryInterface
+{
+    /**
+     * @var \Magento\Framework\ObjectManagerInterface
+     */
+    protected $objectManager = null;
+
+    /**
+     * @var string
+     */
+    protected $instanceName = null;
+
+    /**
+     * @param \Magento\Framework\ObjectManagerInterface $objectManager
+     * @param string $instanceName
+     */
+    public function __construct(
+        \Magento\Framework\ObjectManagerInterface $objectManager,
+        $instanceName = 'Magento\Framework\Mail\TemplateInterface'
+    ) {
+        $this->objectManager = $objectManager;
+        $this->instanceName = $instanceName;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function get($identifier, $namespace = null)
+    {
+        return $this->objectManager->create(
+            $namespace ? $namespace : $this->instanceName,
+            ['data' => ['template_id' => $identifier]]
+        );
+    }
+}

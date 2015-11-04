@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <catalog>
+            <recently_products>
+                <scope>website</scope>
+                <viewed_count>5</viewed_count>
+                <compared_count>5</compared_count>
+            </recently_products>
+        </catalog>
+        <reports>
+            <dashboard>
+                <ytd_start>1,1</ytd_start>
+                <mtd_start>1</mtd_start>
+            </dashboard>
+        </reports>
+    </default>
+</config>

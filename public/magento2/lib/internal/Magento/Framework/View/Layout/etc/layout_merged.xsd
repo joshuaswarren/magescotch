@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:include schemaLocation="urn:magento:framework:View/Layout/etc/elements.xsd"/>
+
+    <xs:element name="layout">
+        <xs:annotation>
+            <xs:documentation>
+                Handle id must be unique.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="handle" minOccurs="1" maxOccurs="1"/>
+            </xs:sequence>
+        </xs:complexType>
+        <xs:key name="handleName">
+            <xs:selector xpath="handle"></xs:selector>
+            <xs:field xpath="@id"></xs:field>
+        </xs:key>
+    </xs:element>
+
+    <xs:element name="handle" type="handleType">
+        <xs:unique name="blockKey">
+            <xs:selector xpath=".//block"/>
+            <xs:field xpath="@name"/>
+        </xs:unique>
+        <xs:unique name="containerKey">
+            <xs:selector xpath=".//container"/>
+            <xs:field xpath="@name"/>
+        </xs:unique>
+        <xs:keyref name="blockReference" refer="blockKey">
+            <xs:selector xpath=".//referenceBlock"/>
+            <xs:field xpath="@name"/>
+        </xs:keyref>
+        <xs:keyref name="containerReference" refer="containerKey">
+            <xs:selector xpath=".//referenceContainer"/>
+            <xs:field xpath="@name"/>
+        </xs:keyref>
+    </xs:element>
+
+    <xs:complexType name="handleType">
+        <xs:annotation>
+            <xs:documentation>
+                Handle Type definition
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="layoutType">
+                <xs:attribute type="elementNameType" name="id" use="required"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+</xs:schema>

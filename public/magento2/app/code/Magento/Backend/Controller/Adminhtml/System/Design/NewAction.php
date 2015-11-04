@@ -1,0 +1,20 @@
+<?php
+/**
+ *
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+namespace Magento\Backend\Controller\Adminhtml\System\Design;
+
+class NewAction extends \Magento\Backend\Controller\Adminhtml\System\Design
+{
+    /**
+     * @return \Magento\Backend\Model\View\Result\Forward
+     */
+    public function executeInternal()
+    {
+        /** @var \Magento\Backend\Model\View\Result\Forward $resultForward */
+        $resultForward = $this->resultForwardFactory->create();
+        return $resultForward->forward('edit');
+    }
+}

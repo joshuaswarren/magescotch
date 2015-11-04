@@ -1,0 +1,34 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+
+<?php
+/** @var \Magento\Weee\Pricing\Render\Adjustment $block */
+
+$weeeSeparator = $openBrace = $closeBrace = '';
+$openBrace = '(';
+$closeBrace = ')';
+?>
+<?php if ($block->showInclDescr()): // incl. + weee ?>
+    <?php foreach ($block->getWeeeTaxAttributes() as $weeeTaxAttribute): ?>
+        <span class="weee"
+              data-price-type="weee"
+              data-label="<?php /* @escapeNotVerified */ echo $block->renderWeeeTaxAttributeName($weeeTaxAttribute); ?>"><?php /* @escapeNotVerified */ echo $block->renderWeeeTaxAttribute($weeeTaxAttribute); ?></span>
+    <?php endforeach; ?>
+<?php elseif ($block->showExclDescrIncl()): // excl. + weee + final ?>
+    <?php foreach ($block->getWeeeTaxAttributes() as $weeeTaxAttribute): ?>
+        <span class="weee"
+              data-price-type="weee"
+              data-label="<?php /* @escapeNotVerified */ echo $block->renderWeeeTaxAttributeName($weeeTaxAttribute); ?>"><?php /* @escapeNotVerified */ echo $block->renderWeeeTaxAttribute($weeeTaxAttribute); ?></span>
+    <?php endforeach; ?>
+    <span class="price-final_price"
+          data-price-type="weeePrice"
+          data-price-amount="<?php /* @escapeNotVerified */ echo $block->getRawFinalAmount(); ?>"
+          data-label="<?php /* @escapeNotVerified */ echo __('Final Price'); ?>"><?php /* @escapeNotVerified */ echo $block->getFinalAmount(); ?></span>
+<?php endif; ?>

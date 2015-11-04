@@ -1,0 +1,40 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * @var $block \Magento\Sales\Block\Adminhtml\Order\Create\Totals\Subtotal
+ * @see \Magento\Sales\Block\Adminhtml\Order\Create\Totals\Subtotal
+ */
+?>
+<?php if ($block->displayBoth()):?>
+<tr class="row-totals">
+    <td style="<?php /* @escapeNotVerified */ echo $block->getStyle() ?>" class="admin__total-mark" colspan="<?php /* @escapeNotVerified */ echo $block->getColspan(); ?>">
+        <?php /* @escapeNotVerified */ echo __('Subtotal (Excl. Tax)') ?>
+    </td>
+    <td style="<?php /* @escapeNotVerified */ echo $block->getStyle() ?>" class="admin__total-amount">
+        <?php /* @escapeNotVerified */ echo $block->formatPrice($block->getTotal()->getValueExclTax()) ?>
+    </td>
+</tr>
+<tr class="row-totals">
+    <td style="<?php /* @escapeNotVerified */ echo $block->getStyle() ?>" class="admin__total-mark" colspan="<?php /* @escapeNotVerified */ echo $block->getColspan(); ?>">
+        <?php /* @escapeNotVerified */ echo __('Subtotal (Incl. Tax)') ?>
+    </td>
+    <td style="<?php /* @escapeNotVerified */ echo $block->getStyle() ?>" class="admin__total-amount">
+        <?php /* @escapeNotVerified */ echo $block->formatPrice($block->getTotal()->getValueInclTax()) ?>
+    </td>
+</tr>
+<?php else : ?>
+<tr class="row-totals">
+    <td style="<?php /* @escapeNotVerified */ echo $block->getStyle() ?>" class="admin__total-mark" colspan="<?php /* @escapeNotVerified */ echo $block->getColspan(); ?>">
+        <?php /* @escapeNotVerified */ echo $block->getTotal()->getTitle() ?>
+    </td>
+    <td style="<?php /* @escapeNotVerified */ echo $block->getStyle() ?>" class="admin__total-amount">
+        <?php /* @escapeNotVerified */ echo $block->formatPrice($block->getTotal()->getValue()) ?>
+    </td>
+</tr>
+<?php endif;?>

@@ -8,6 +8,7 @@
 - Access Magento 2 at [http://192.168.33.10/magento2/](http://192.168.33.10/magento2/)
 - Access your own project at [http://192.168.33.10/dev/](http://192.168.33.10/dev/)
 - Use your favorite IDE to edit the files in public/magento, public/magento2 and public/dev
+- Access Mailcatcher at [http://192.168.33.10:1080/](http://192.168.33.10:1080/)
 
 ## Features
 ### System Stuff
