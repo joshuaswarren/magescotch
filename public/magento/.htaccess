@@ -1,3 +1,5 @@
+SetEnv MAGE_IS_DEVELOPER_MODE "true"
+
 ############################################
 ## uncomment these lines for CGI mode
 ## make sure to specify the correct cgi php binary file name
