@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-apt-get install ruby-sass
-apt-get install ruby-compass
+apt-get install -y ruby-sass
+apt-get install -y ruby-compass
 gem install compass
