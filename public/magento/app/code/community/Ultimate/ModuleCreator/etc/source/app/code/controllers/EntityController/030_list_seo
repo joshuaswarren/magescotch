@@ -1,0 +1,5 @@
+        if ($headBlock) {
+            $headBlock->setTitle(Mage::getStoreConfig('{{namespace}}_{{module}}/{{entity}}/meta_title'));
+            $headBlock->setKeywords(Mage::getStoreConfig('{{namespace}}_{{module}}/{{entity}}/meta_keywords'));
+            $headBlock->setDescription(Mage::getStoreConfig('{{namespace}}_{{module}}/{{entity}}/meta_description'));
+        }

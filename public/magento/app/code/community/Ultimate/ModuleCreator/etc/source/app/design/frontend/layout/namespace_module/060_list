@@ -1,0 +1,7 @@
+    <{{namespace}}_{{module}}_{{entity}}_index translate="label" module="{{namespace}}_{{module}}">
+        <label>{{EntitiesLabel}} list</label>
+        <update handle="page_{{listLayout}}" />
+{{referenceHead}}<reference name="content">
+            <block type="{{namespace}}_{{module}}/{{entity}}_list" name="{{entity}}_list" template="{{namespace}}_{{module}}/{{entity}}/list.phtml" />
+        </reference>
+    </{{namespace}}_{{module}}_{{entity}}_index>

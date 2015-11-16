@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+{{License}}
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <{{namespace}}_{{module}} translate="title" module="{{namespace}}_{{module}}">
+                                        <title>{{Module}}</title>
+                                    </{{namespace}}_{{module}}>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+{{menuAcl}}
+                </children>
+            </admin>
+        </resources>
+    </acl>
+    <menu>
+{{menuItemsXml}}
+    </menu>
+</config>

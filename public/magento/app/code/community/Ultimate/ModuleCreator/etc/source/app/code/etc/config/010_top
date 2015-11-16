@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+{{License}}
+<config>
+    <modules>
+        <{{Namespace}}_{{Module}}>
+            <version>{{version}}</version>
+        </{{Namespace}}_{{Module}}>
+    </modules>
+    <global>
+        <resources>
+            <{{namespace}}_{{module}}_setup>
+                <setup>
+                    <module>{{Namespace}}_{{Module}}</module>
+                    <class>{{Namespace}}_{{Module}}_Model_Resource_Setup</class>
+                </setup>
+            </{{namespace}}_{{module}}_setup>
+        </resources>
+        <blocks>
+            <{{namespace}}_{{module}}>
+                <class>{{Namespace}}_{{Module}}_Block</class>
+            </{{namespace}}_{{module}}>
+        </blocks>
+        <helpers>
+            <{{namespace}}_{{module}}>
+                <class>{{Namespace}}_{{Module}}_Helper</class>
+            </{{namespace}}_{{module}}>
+        </helpers>
+        <models>
+            <{{namespace}}_{{module}}>
+                <class>{{Namespace}}_{{Module}}_Model</class>
+                <resourceModel>{{namespace}}_{{module}}_resource</resourceModel>
+            </{{namespace}}_{{module}}>
+            <{{namespace}}_{{module}}_resource>
+                <class>{{Namespace}}_{{Module}}_Model_Resource</class>
+                <entities>

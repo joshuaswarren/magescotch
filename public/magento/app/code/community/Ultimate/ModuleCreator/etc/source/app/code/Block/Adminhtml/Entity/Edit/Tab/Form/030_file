@@ -1,0 +1,4 @@
+        $fieldset->addType(
+            'file',
+            Mage::getConfig()->getBlockClassName('{{namespace}}_{{module}}/adminhtml_{{entity}}_helper_file')
+        );

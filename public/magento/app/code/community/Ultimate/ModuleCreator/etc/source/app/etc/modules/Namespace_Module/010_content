@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+{{License}}
+<config>
+    <modules>
+        <{{Namespace}}_{{Module}}>
+            <active>true</active>
+            <codePool>{{codepool}}</codePool>
+            <depends>
+{{depends}}             </depends>
+        </{{Namespace}}_{{Module}}>
+    </modules>
+</config>

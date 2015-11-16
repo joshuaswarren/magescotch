@@ -1,0 +1,19 @@
+                    <{{entity}} translate="title" module="{{namespace}}_{{module}}">
+                        <title>{{EntityLabel}}</title>
+                        <sort_order>{{position}}</sort_order>
+                        <list translate="title" module="{{namespace}}_{{module}}">
+                            <title>List</title>
+                        </list>
+                        <info translate="title" module="{{namespace}}_{{module}}">
+                            <title>Info</title>
+                        </info>
+                        <add translate="title" module="{{namespace}}_{{module}}">
+                            <title>Add</title>
+                        </add>
+                        <update translate="title" module="{{namespace}}_{{module}}">
+                            <title>Update</title>
+                        </update>
+                        <remove translate="title" module="{{namespace}}_{{module}}">
+                            <title>Remove</title>
+                        </remove>
+{{entityAdditionalApiAcl}}</{{entity}}>{{subEntitiesAcl}}

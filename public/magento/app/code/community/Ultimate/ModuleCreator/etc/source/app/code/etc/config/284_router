@@ -1,0 +1,9 @@
+        <routers>
+            <{{namespace}}_{{module}}>
+                <use>standard</use>
+                <args>
+                    <module>{{Namespace}}_{{Module}}</module>
+                    <frontName>{{frontKey}}</frontName>
+                </args>
+            </{{namespace}}_{{module}}>
+        </routers>

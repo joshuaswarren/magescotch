@@ -1,0 +1,10 @@
+<?php
+{{License}}
+/**
+ * {{EntityLabel}} admin widget chooser
+ *
+ * @category    {{Namespace}}
+ * @package     {{Namespace}}_{{Module}}
+ * {{qwertyuiopp}}
+ */
+

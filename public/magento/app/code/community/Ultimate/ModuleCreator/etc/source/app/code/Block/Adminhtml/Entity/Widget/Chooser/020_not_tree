@@ -1,0 +1,84 @@
+class {{Namespace}}_{{Module}}_Block_Adminhtml_{{Entity}}_Widget_Chooser extends Mage_Adminhtml_Block_Widget_Grid
+{
+    /**
+     * Block construction, prepare grid params
+     *
+     * @access public
+     * @param array $arguments Object data
+     * @return void
+     * {{qwertyuiop}}
+     */
+    public function __construct($arguments=array())
+    {
+        parent::__construct($arguments);
+        $this->setDefaultSort('entity_id');
+        $this->setDefaultDir('ASC');
+        $this->setUseAjax(true);
+        $this->setDefaultFilter(array('chooser_status' => '1'));
+    }
+
+    /**
+     * Prepare chooser element HTML
+     *
+     * @access public
+     * @param Varien_Data_Form_Element_Abstract $element Form Element
+     * @return Varien_Data_Form_Element_Abstract
+     * {{qwertyuiop}}
+     */
+    public function prepareElementHtml(Varien_Data_Form_Element_Abstract $element)
+    {
+        $uniqId = Mage::helper('core')->uniqHash($element->getId());
+        $sourceUrl = $this->getUrl(
+            '*/{{module}}_{{entity}}_widget/chooser',
+            array('uniq_id' => $uniqId)
+        );
+        $chooser = $this->getLayout()->createBlock('widget/adminhtml_widget_chooser')
+            ->setElement($element)
+            ->setTranslationHelper($this->getTranslationHelper())
+            ->setConfig($this->getConfig())
+            ->setFieldsetId($this->getFieldsetId())
+            ->setSourceUrl($sourceUrl)
+            ->setUniqId($uniqId);
+        if ($element->getValue()) {
+            ${{entity}} = Mage::getModel('{{namespace}}_{{module}}/{{entity}}')->load($element->getValue());
+            if (${{entity}}->getId()) {
+                $chooser->setLabel(${{entity}}->get{{EntityNameMagicCode}}());
+            }
+        }
+        $element->setData('after_element_html', $chooser->toHtml());
+        return $element;
+    }
+
+    /**
+     * Grid Row JS Callback
+     *
+     * @access public
+     * @return string
+     * {{qwertyuiop}}
+     */
+    public function getRowClickCallback()
+    {
+        $chooserJsObject = $this->getId();
+        $js = '
+            function (grid, event) {
+                var trElement = Event.findElement(event, "tr");
+                var {{entity}}Id = trElement.down("td").innerHTML.replace(/^\s+|\s+$/g,"");
+                var {{entity}}Title = trElement.down("td").next().innerHTML;
+                '.$chooserJsObject.'.setElementValue({{entity}}Id);
+                '.$chooserJsObject.'.setElementLabel({{entity}}Title);
+                '.$chooserJsObject.'.close();
+            }
+        ';
+        return $js;
+    }
+
+    /**
+     * Prepare a static blocks collection
+     *
+     * @access protected
+     * @return {{Namespace}}_{{Module}}_Block_Adminhtml_{{Entity}}_Widget_Chooser
+     * {{qwertyuiop}}
+     */
+    protected function _prepareCollection()
+    {
+        $collection = Mage::getModel('{{namespace}}_{{module}}/{{entity}}')->getCollection();

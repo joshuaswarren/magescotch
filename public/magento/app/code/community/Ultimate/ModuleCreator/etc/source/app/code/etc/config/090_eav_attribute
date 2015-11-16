@@ -1,0 +1,3 @@
+                    <eav_attribute>
+                        <table>{{namespace}}_{{module}}_eav_attribute</table>
+                    </eav_attribute>

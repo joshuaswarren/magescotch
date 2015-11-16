@@ -1,0 +1,6 @@
+            </resources_function_prefix>
+        </v2>
+        <acl>
+            <resources>
+                <{{namespace}}_{{module}} translate="title" module="{{namespace}}_{{module}}">
+                    <title>{{Module}}</title>

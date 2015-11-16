@@ -1,0 +1,4 @@
+                <action method="addFeed" ifconfig="{{namespace}}_{{module}}/{{entity}}/rss" translate="label" module="{{namespace}}_{{module}}">
+                    <label>{{EntitiesLabel}}</label>
+                    <url helper="{{namespace}}_{{module}}/{{entity}}/getRssUrl" />
+                </action>

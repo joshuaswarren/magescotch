@@ -1,0 +1,44 @@
+    /**
+     * construct
+     *
+     * @access protected
+     * @return void
+     * {{qwertyuiop}}
+     */
+    protected function _construct()
+    {
+        // Define module dependent translate
+        $this->setUsedModuleName('{{Namespace}}_{{Module}}');
+    }
+
+    /**
+     * {{entitiesLabel}} in the catalog page
+     *
+     * @access public
+     * @return void
+     * {{qwertyuiop}}
+     */
+    public function {{entities}}Action()
+    {
+        $this->_initProduct();
+        $this->loadLayout();
+        $this->getLayout()->getBlock('product.edit.tab.{{entity}}')
+            ->setProduct{{Entities}}($this->getRequest()->getPost('product_{{entities}}', null));
+        $this->renderLayout();
+    }
+
+    /**
+     * {{entitiesLabel}} grid in the catalog page
+     *
+     * @access public
+     * @return void
+     * {{qwertyuiop}}
+     */
+    public function {{entities}}GridAction()
+    {
+        $this->_initProduct();
+        $this->loadLayout();
+        $this->getLayout()->getBlock('product.edit.tab.{{entity}}')
+            ->setProduct{{Entities}}($this->getRequest()->getPost('product_{{entities}}', null));
+        $this->renderLayout();
+    }

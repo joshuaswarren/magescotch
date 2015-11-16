@@ -1,0 +1,4 @@
+        $fieldset->addType(
+            'editor',
+            Mage::getConfig()->getBlockClassName('{{namespace}}_{{module}}/adminhtml_helper_wysiwyg')
+        );

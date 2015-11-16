@@ -1,0 +1,37 @@
+<?php
+{{License}}
+/**
+ * {{EntityLabel}} comments admin grid block
+ *
+ * @category    {{Namespace}}
+ * @package     {{Namespace}}_{{Module}}
+ * {{qwertyuiopp}}
+ */
+class {{Namespace}}_{{Module}}_Block_Adminhtml_{{Entity}}_Comment_Grid extends Mage_Adminhtml_Block_Widget_Grid
+{
+    /**
+     * constructor
+     *
+     * @access public
+     * {{qwertyuiop}}
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->setId('{{entity}}CommentGrid');
+        $this->setDefaultSort('ct_comment_id');
+        $this->setDefaultDir('DESC');
+        $this->setSaveParametersInSession(true);
+        $this->setUseAjax(true);
+    }
+
+    /**
+     * prepare collection
+     *
+     * @access protected
+     * @return {{Namespace}}_{{Module}}_Block_Adminhtml_{{Entity}}_Comment_Grid
+     * {{qwertyuiop}}
+     */
+    protected function _prepareCollection()
+    {
+        $collection = Mage::getResourceModel('{{namespace}}_{{module}}/{{entity}}_comment_{{entity}}_collection');

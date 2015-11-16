@@ -1,0 +1,7 @@
+    <{{namespace}}_{{module}}_{{entity}}_view translate="label" module="{{namespace}}_{{module}}">
+        <label>{{EntityLabel}} view page</label>
+        <update handle="page_{{viewLayout}}" />
+{{referenceHead}}<reference name="content">
+            <block type="{{namespace}}_{{module}}/{{entity}}_view" name="{{entity}}_view" template="{{namespace}}_{{module}}/{{entity}}/view.phtml" />
+{{EntityViewRelationLayout}}</reference>
+    </{{namespace}}_{{module}}_{{entity}}_view>
