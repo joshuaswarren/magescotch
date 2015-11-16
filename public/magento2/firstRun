@@ -1,0 +1,3 @@
+#!/bin/bash
+cd /var/www/public/magento2/   
+COMPOSER_PROCESS_TIMEOUT=2000 composer install
