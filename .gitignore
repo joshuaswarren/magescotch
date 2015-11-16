@@ -1,0 +1,4 @@
+public/magento/var/cache
+public/magento/var/session
+.vagrant
+.idea

@@ -10,6 +10,17 @@
 - Use your favorite IDE to edit the files in public/magento, public/magento2 and public/dev
 - Access Mailcatcher at [http://192.168.33.10:1080/](http://192.168.33.10:1080/)
 
+## Credentials
+### Databases
+
+Username: dev
+Password: dev
+Databases: magento, magento2, dev
+
+### Admin accounts
+- Magento 1: http://192.168.33.10/magento/admin_dev/ username: admin password: 64-solution-DISH-into-64
+- Magento 2: http://192.168.33.10/magento2/admin_dev/ username: admin password: 64-solution-DISH-into-64
+
 ## Features
 ### System Stuff
 - Ubuntu 14.04 LTS (Trusty Tahr)
@@ -28,8 +39,8 @@
 - Z-Ray
 
 ### Magento Stuff
-- Magento 1 ([http://192.168.33.10/magento/](http://192.168.33.10/magento/))
-- Magento 2 ([http://192.168.33.10/magento2/](http://192.168.33.10/magento2/))
+- Magento 1 ([http://192.168.33.10/magento/](http://192.168.33.10/magento/)) - files in public/magento
+- Magento 2 ([http://192.168.33.10/magento2/](http://192.168.33.10/magento2/)) - files in public/magento2
 - Project directory - [http://192.168.33.10/dev/](http://192.168.33.10/dev/) and public/dev
 
 ### Database Stuff
