@@ -2,3 +2,4 @@
 
 apt-get install ruby-sass
 apt-get install ruby-compass
+gem install compass
