@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Backend\Controller\Adminhtml\BackendApp;
@@ -39,7 +39,7 @@ class Redirect extends AbstractAction
     /**
      * @return \Magento\Framework\Controller\ResultInterface
      */
-    public function executeInternal()
+    public function execute()
     {
         $resultRedirect = $this->resultRedirectFactory->create();
         if ($this->getRequest()->getParam('app')) {

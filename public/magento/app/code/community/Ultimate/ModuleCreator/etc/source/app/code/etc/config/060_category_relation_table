@@ -1,3 +1,0 @@
-                    <{{entity}}_category>
-                        <table>{{namespace}}_{{module}}_{{entity}}_category</table>
-                    </{{entity}}_category>

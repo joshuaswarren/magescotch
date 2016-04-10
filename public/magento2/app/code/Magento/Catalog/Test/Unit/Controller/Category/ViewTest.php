@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Catalog\Test\Unit\Controller\Category;
@@ -107,7 +107,7 @@ class ViewTest extends \PHPUnit_Framework_TestCase
     /**
      * Set up instances and mock objects
      */
-    public function setUp()
+    protected function setUp()
     {
         $this->request = $this->getMock('Magento\Framework\App\RequestInterface');
         $this->response = $this->getMock('Magento\Framework\App\ResponseInterface');
@@ -197,6 +197,6 @@ class ViewTest extends \PHPUnit_Framework_TestCase
 
         $this->catalogDesign->expects($this->any())->method('getDesignSettings')->will($this->returnValue($settings));
 
-        $this->action->executeInternal();
+        $this->action->execute();
     }
 }

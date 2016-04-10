@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Checkout\Test\Unit\Controller\Sidebar;
@@ -113,7 +113,7 @@ class RemoveItemTest extends \PHPUnit_Framework_TestCase
             ->with('json encoded')
             ->willReturn('json represented');
 
-        $this->assertEquals('json represented', $this->removeItem->executeInternal());
+        $this->assertEquals('json represented', $this->removeItem->execute());
     }
 
     public function testExecuteWithLocalizedException()
@@ -153,7 +153,7 @@ class RemoveItemTest extends \PHPUnit_Framework_TestCase
             ->with('json encoded')
             ->willReturn('json represented');
 
-        $this->assertEquals('json represented', $this->removeItem->executeInternal());
+        $this->assertEquals('json represented', $this->removeItem->execute());
     }
 
     public function testExecuteWithException()
@@ -200,6 +200,6 @@ class RemoveItemTest extends \PHPUnit_Framework_TestCase
             ->with('json encoded')
             ->willReturn('json represented');
 
-        $this->assertEquals('json represented', $this->removeItem->executeInternal());
+        $this->assertEquals('json represented', $this->removeItem->execute());
     }
 }

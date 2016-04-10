@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Framework\App\Test\Unit\Action;
@@ -62,7 +62,7 @@ class ForwardTest extends \PHPUnit_Framework_TestCase
     public function testDispatch()
     {
         $this->request->expects($this->once())->method('setDispatched')->with(false);
-        $this->actionAbstract->execute($this->request);
+        $this->actionAbstract->dispatch($this->request);
     }
 
     /**

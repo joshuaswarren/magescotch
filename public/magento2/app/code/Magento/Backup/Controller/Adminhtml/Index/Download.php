@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Backup\Controller\Adminhtml\Index;
@@ -49,7 +49,7 @@ class Download extends \Magento\Backup\Controller\Adminhtml\Index
      *
      * @return void|\Magento\Backend\App\Action
      */
-    public function executeInternal()
+    public function execute()
     {
         /* @var $backup \Magento\Backup\Model\Backup */
         $backup = $this->_backupModelFactory->create(

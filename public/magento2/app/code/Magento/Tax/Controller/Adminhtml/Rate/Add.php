@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Tax\Controller\Adminhtml\Rate;
@@ -15,7 +15,7 @@ class Add extends \Magento\Tax\Controller\Adminhtml\Rate
      *
      * @return \Magento\Backend\Model\View\Result\Page
      */
-    public function executeInternal()
+    public function execute()
     {
         $this->_coreRegistry->register(
             RegistryConstants::CURRENT_TAX_RATE_FORM_DATA,

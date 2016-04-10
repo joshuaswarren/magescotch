@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Cms\Controller\Index;
@@ -32,7 +32,7 @@ class Index extends \Magento\Framework\App\Action\Action
      * @return \Magento\Framework\Controller\Result\Forward
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function executeInternal($coreRoute = null)
+    public function execute($coreRoute = null)
     {
         $pageId = $this->_objectManager->get(
             'Magento\Framework\App\Config\ScopeConfigInterface'

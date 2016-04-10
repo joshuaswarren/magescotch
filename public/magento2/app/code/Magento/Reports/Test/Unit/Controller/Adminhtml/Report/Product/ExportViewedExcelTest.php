@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -91,6 +91,6 @@ class ExportViewedExcelTest extends \Magento\Reports\Test\Unit\Controller\Adminh
             ->method('create')
             ->with($fileName, $content, \Magento\Framework\App\Filesystem\DirectoryList::VAR_DIR);
 
-        $this->exportViewedExcel->executeInternal();
+        $this->exportViewedExcel->execute();
     }
 }

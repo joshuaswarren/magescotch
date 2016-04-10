@@ -2,15 +2,15 @@
 return array (
   'backend' => 
   array (
-    'frontName' => 'admin_dev',
+    'frontName' => 'adminpanel',
   ),
   'install' => 
   array (
-    'date' => 'Wed, 04 Nov 2015 02:30:24 +0000',
+    'date' => 'Sun, 10 Apr 2016 00:44:54 +0000',
   ),
   'crypt' => 
   array (
-    'key' => 'ffcfcccc730f9d1d1f1a067e467e0a6e',
+    'key' => '5c66d8e409fbdbae42b75e3a28e8be21',
   ),
   'session' => 
   array (
@@ -27,6 +27,9 @@ return array (
         'dbname' => 'magento2',
         'username' => 'dev',
         'password' => 'dev',
+        'model' => 'mysql4',
+        'engine' => 'innodb',
+        'initStatements' => 'SET NAMES utf8;',
         'active' => '1',
       ),
     ),
@@ -49,10 +52,11 @@ return array (
     'reflection' => 1,
     'db_ddl' => 1,
     'eav' => 1,
+    'full_page' => 1,
     'config_integration' => 1,
     'config_integration_api' => 1,
-    'full_page' => 1,
     'translate' => 1,
     'config_webservice' => 1,
+    'compiled_config' => 1,
   ),
 );

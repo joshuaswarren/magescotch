@@ -1,10 +1,13 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 /** @var \Magento\SalesRule\Model\Rule $rule */
+$tomorrow = new \DateTime();
+$tomorrow->add(\DateInterval::createFromDateString('+1 day'));
+
 $rule = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\SalesRule\Model\Rule');
 $rule->setName(
     '#1'
@@ -22,8 +25,10 @@ $rule->setName(
     '1'
 )->setCustomerGroupIds(
     '0'
+)->setDiscountStep(
+    0
 )->setFromDate(
     date('Y-m-d')
 )->setToDate(
-    date('Y-m-d')
+    $tomorrow->format('Y-m-d')
 )->save();

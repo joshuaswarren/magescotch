@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Ui\Test\Unit\Controller\Adminhtml\Export;
@@ -32,7 +32,7 @@ class GridToCsvTest extends \PHPUnit_Framework_TestCase
      */
     protected $fileFactory;
 
-    public function setUp()
+    protected function setUp()
     {
         $this->context = $this->getMockBuilder('Magento\Backend\App\Action\Context')
             ->disableOriginalConstructor()
@@ -66,6 +66,6 @@ class GridToCsvTest extends \PHPUnit_Framework_TestCase
             ->with('export.csv', $content, 'var')
             ->willReturn($content);
 
-        $this->assertEquals($content, $this->controller->executeInternal());
+        $this->assertEquals($content, $this->controller->execute());
     }
 }

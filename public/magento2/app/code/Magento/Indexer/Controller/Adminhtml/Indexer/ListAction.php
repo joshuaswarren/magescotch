@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Indexer\Controller\Adminhtml\Indexer;
@@ -13,7 +13,7 @@ class ListAction extends \Magento\Indexer\Controller\Adminhtml\Indexer
      *
      * @return void
      */
-    public function executeInternal()
+    public function execute()
     {
         $this->_view->loadLayout();
         $this->_setActiveMenu('Magento_Indexer::system_index');

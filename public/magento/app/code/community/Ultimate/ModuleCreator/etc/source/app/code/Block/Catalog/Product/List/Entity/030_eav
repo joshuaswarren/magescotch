@@ -1,3 +1,0 @@
-                ->setStoreId(Mage::app()->getStore()->getId())
-                ->addAttributeToSelect('{{nameAttributeCode}}', 1)
-                ->addAttributeToFilter('status', 1)

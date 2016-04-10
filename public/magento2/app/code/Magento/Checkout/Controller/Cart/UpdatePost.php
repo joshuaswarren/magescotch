@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Checkout\Controller\Cart;
@@ -64,7 +64,7 @@ class UpdatePost extends \Magento\Checkout\Controller\Cart
      *
      * @return \Magento\Framework\Controller\Result\Redirect
      */
-    public function executeInternal()
+    public function execute()
     {
         if (!$this->_formKeyValidator->validate($this->getRequest())) {
             return $this->resultRedirectFactory->create()->setPath('*/*/');

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Search\Controller\Adminhtml\Term;
@@ -36,7 +36,7 @@ class Save extends TermController
      * @return \Magento\Backend\Model\View\Result\Redirect
      * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */
-    public function executeInternal()
+    public function execute()
     {
         $data = $this->getRequest()->getPostValue();
         if ($this->getRequest()->isPost() && $data) {

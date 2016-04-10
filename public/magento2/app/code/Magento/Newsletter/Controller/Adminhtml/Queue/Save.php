@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -18,7 +18,7 @@ class Save extends \Magento\Newsletter\Controller\Adminhtml\Queue
      * @return void
      * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */
-    public function executeInternal()
+    public function execute()
     {
         try {
             /* @var $queue \Magento\Newsletter\Model\Queue */

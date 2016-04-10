@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Paypal\Controller\Billing\Agreement;
@@ -13,7 +13,7 @@ class CancelWizard extends \Magento\Paypal\Controller\Billing\Agreement
      *
      * @return void
      */
-    public function executeInternal()
+    public function execute()
     {
         $this->_redirect('*/*/index');
     }

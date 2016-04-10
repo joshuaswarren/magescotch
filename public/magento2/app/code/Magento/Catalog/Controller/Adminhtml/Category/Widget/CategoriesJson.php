@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Catalog\Controller\Adminhtml\Category\Widget;
@@ -42,7 +42,7 @@ class CategoriesJson extends \Magento\Catalog\Controller\Adminhtml\Category\Widg
      *
      * @return \Magento\Framework\Controller\Result\Json
      */
-    public function executeInternal()
+    public function execute()
     {
         $categoryId = (int)$this->getRequest()->getPost('id');
         if ($categoryId) {

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Shipping\Test\Unit\Controller\Adminhtml\Order\Shipment;
@@ -250,7 +250,7 @@ class PrintLabelTest extends \PHPUnit_Framework_TestCase
             ->method('getShippingLabel')
             ->will($this->returnValue($labelContent));
 
-        $this->assertEquals($this->fileCreate(), $this->controller->executeInternal());
+        $this->assertEquals($this->fileCreate(), $this->controller->execute());
     }
 
     /**
@@ -291,7 +291,7 @@ class PrintLabelTest extends \PHPUnit_Framework_TestCase
             ->method('getObject')
             ->will($this->returnSelf());
 
-        $this->assertEquals($this->fileCreate(), $this->controller->executeInternal());
+        $this->assertEquals($this->fileCreate(), $this->controller->execute());
     }
 
     /**
@@ -337,7 +337,7 @@ class PrintLabelTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue(1));
         $this->redirectSection();
 
-        $this->assertNull($this->controller->executeInternal());
+        $this->assertNull($this->controller->execute());
     }
 
     /**
@@ -351,6 +351,6 @@ class PrintLabelTest extends \PHPUnit_Framework_TestCase
         $this->messageManagerMock->expects($this->once())->method('addError')->will($this->returnSelf());
         $this->redirectSection();
 
-        $this->assertNull($this->controller->executeInternal());
+        $this->assertNull($this->controller->execute());
     }
 }

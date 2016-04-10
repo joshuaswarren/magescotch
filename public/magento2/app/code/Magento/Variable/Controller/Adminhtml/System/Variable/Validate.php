@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Variable\Controller\Adminhtml\System\Variable;
@@ -13,7 +13,7 @@ class Validate extends \Magento\Variable\Controller\Adminhtml\System\Variable
      *
      * @return \Magento\Framework\Controller\Result\Json
      */
-    public function executeInternal()
+    public function execute()
     {
         $response = new \Magento\Framework\DataObject(['error' => false]);
         $variable = $this->_initVariable();

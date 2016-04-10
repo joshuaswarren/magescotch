@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Sales\Controller\Adminhtml\Shipment\AbstractShipment;
@@ -11,6 +11,13 @@ use Magento\Framework\View\Result\PageFactory;
 
 abstract class Index extends \Magento\Backend\App\Action
 {
+    /**
+     * Authorization level of a basic admin session
+     *
+     * @see _isAllowed()
+     */
+    const ADMIN_RESOURCE = 'Magento_Sales::shipment';
+
     /**
      * @var PageFactory
      */
@@ -29,19 +36,11 @@ abstract class Index extends \Magento\Backend\App\Action
     }
 
     /**
-     * @return bool
-     */
-    protected function _isAllowed()
-    {
-        return $this->_authorization->isAllowed('Magento_Sales::shipment');
-    }
-
-    /**
      * Shipments grid
      *
      * @return \Magento\Backend\Model\View\Result\Page
      */
-    public function executeInternal()
+    public function execute()
     {
         /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
         $resultPage = $this->resultPageFactory->create();

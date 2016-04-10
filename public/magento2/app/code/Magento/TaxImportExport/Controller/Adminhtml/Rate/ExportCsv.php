@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\TaxImportExport\Controller\Adminhtml\Rate;
@@ -16,7 +16,7 @@ class ExportCsv extends \Magento\TaxImportExport\Controller\Adminhtml\Rate
      *
      * @return ResponseInterface
      */
-    public function executeInternal()
+    public function execute()
     {
         /** @var \Magento\Framework\View\Result\Layout $resultLayout */
         $resultLayout = $this->resultFactory->create(ResultFactory::TYPE_LAYOUT);

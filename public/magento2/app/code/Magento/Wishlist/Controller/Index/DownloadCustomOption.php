@@ -1,16 +1,15 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Wishlist\Controller\Index;
 
 use Magento\Framework\App\Action;
 use Magento\Framework\App\Filesystem\DirectoryList;
-use Magento\Wishlist\Controller\IndexInterface;
 use Magento\Framework\Controller\ResultFactory;
 
-class DownloadCustomOption extends Action\Action implements IndexInterface
+class DownloadCustomOption extends \Magento\Wishlist\Controller\AbstractIndex
 {
     /**
      * @var \Magento\Framework\App\Response\Http\FileFactory
@@ -36,7 +35,7 @@ class DownloadCustomOption extends Action\Action implements IndexInterface
      * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      * @SuppressWarnings(PHPMD.ExitExpression)
      */
-    public function executeInternal()
+    public function execute()
     {
         $option = $this->_objectManager->create(
             'Magento\Wishlist\Model\Item\Option'

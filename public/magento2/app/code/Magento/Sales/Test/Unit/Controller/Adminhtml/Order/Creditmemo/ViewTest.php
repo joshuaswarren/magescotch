@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Sales\Test\Unit\Controller\Adminhtml\Order\Creditmemo;
@@ -104,7 +104,7 @@ class ViewTest extends \PHPUnit_Framework_TestCase
     /**
      * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
-    public function setUp()
+    protected function setUp()
     {
         $titleMock = $this->getMockBuilder('Magento\Framework\App\Action\Title')
             ->disableOriginalConstructor()
@@ -223,7 +223,7 @@ class ViewTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf(
             'Magento\Backend\Model\View\Result\Forward',
-            $this->controller->executeInternal()
+            $this->controller->execute()
         );
     }
 
@@ -269,7 +269,7 @@ class ViewTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf(
             'Magento\Backend\Model\View\Result\Page',
-            $this->controller->executeInternal()
+            $this->controller->execute()
         );
     }
 

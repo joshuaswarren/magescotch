@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -14,7 +14,7 @@ $product->setTypeId(
 )->setWebsiteIds(
     [1]
 )->setName(
-    'Simple Product'
+    'Simple Product With Message'
 )->setSku(
     'simple_with_message'
 )->setPrice(

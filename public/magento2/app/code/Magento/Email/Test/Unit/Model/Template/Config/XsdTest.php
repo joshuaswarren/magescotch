@@ -2,7 +2,7 @@
 /**
  * Test for validation rules implemented by XSD schemas for email templates configuration
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -21,6 +21,9 @@ class XsdTest extends \PHPUnit_Framework_TestCase
      */
     public function testMergedXml($fixtureXml, array $expectedErrors)
     {
+        if (!function_exists('libxml_set_external_entity_loader')) {
+            $this->markTestSkipped('Skipped on HHVM. Will be fixed in MAGETWO-45033');
+        }
         $urnResolver = new \Magento\Framework\Config\Dom\UrnResolver();
         $schemaFile = $urnResolver->getRealPath('urn:magento:module:Magento_Email:etc/email_templates.xsd');
         $this->_testXmlAgainstXsd($fixtureXml, $schemaFile, $expectedErrors);

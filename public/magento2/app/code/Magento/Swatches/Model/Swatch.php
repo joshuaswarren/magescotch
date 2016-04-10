@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Swatches\Model;
@@ -39,6 +39,16 @@ class Swatch extends \Magento\Framework\Model\AbstractModel
 
     /** Constant for identifying empty swatch type */
     const SWATCH_TYPE_EMPTY = 3;
+
+    /**
+     * Name of swatch image
+     */
+    const SWATCH_IMAGE_NAME = 'swatch_image';
+
+    /**
+     * Name of swatch thumbnail
+     */
+    const SWATCH_THUMBNAIL_NAME = 'swatch_thumb';
 
     /**
      * Initialize resource model

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 -->
@@ -57,12 +57,6 @@
     </route>
     <route url="/V1/orders/:id/comments" method="GET">
         <service class="Magento\Sales\Api\OrderManagementInterface" method="getCommentsList"/>
-        <resources>
-            <resource ref="Magento_Sales::sales" />
-        </resources>
-    </route>
-    <route url="/V1/orders/create" method="PUT">
-        <service class="Magento\Sales\Api\OrderRepositoryInterface" method="save"/>
         <resources>
             <resource ref="Magento_Sales::sales" />
         </resources>
@@ -225,12 +219,6 @@
     </route>
     <route url="/V1/shipment/:id/label" method="GET">
         <service class="Magento\Sales\Api\ShipmentManagementInterface" method="getLabel"/>
-        <resources>
-            <resource ref="Magento_Sales::sales" />
-        </resources>
-    </route>
-    <route url="/V1/orders/" method="POST">
-        <service class="Magento\Sales\Api\OrderRepositoryInterface" method="save"/>
         <resources>
             <resource ref="Magento_Sales::sales" />
         </resources>

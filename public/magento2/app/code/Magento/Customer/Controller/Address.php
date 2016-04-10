@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Customer\Controller;
@@ -120,12 +120,12 @@ abstract class Address extends \Magento\Framework\App\Action\Action
      * @param RequestInterface $request
      * @return \Magento\Framework\App\ResponseInterface
      */
-    public function execute(RequestInterface $request)
+    public function dispatch(RequestInterface $request)
     {
         if (!$this->_getSession()->authenticate()) {
             $this->_actionFlag->set('', 'no-dispatch', true);
         }
-        return parent::execute($request);
+        return parent::dispatch($request);
     }
 
     /**

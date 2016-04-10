@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Review\Controller;
@@ -144,11 +144,11 @@ abstract class Product extends \Magento\Framework\App\Action\Action
      * @param RequestInterface $request
      * @return \Magento\Framework\App\ResponseInterface
      */
-    public function execute(RequestInterface $request)
+    public function dispatch(RequestInterface $request)
     {
         $allowGuest = $this->_objectManager->get('Magento\Review\Helper\Data')->getIsGuestAllowToWrite();
         if (!$request->isDispatched()) {
-            return parent::execute($request);
+            return parent::dispatch($request);
         }
 
         if (!$allowGuest && $request->getActionName() == 'post' && $request->isPost()) {
@@ -166,7 +166,7 @@ abstract class Product extends \Magento\Framework\App\Action\Action
             }
         }
 
-        return parent::execute($request);
+        return parent::dispatch($request);
     }
 
     /**

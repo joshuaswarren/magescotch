@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Sales\Service\V1;
@@ -46,7 +46,6 @@ class OrderAddressUpdateTest extends WebapiAbstract
             OrderAddress::FAX => null,
             OrderAddress::MIDDLENAME => null,
             OrderAddress::PREFIX => null,
-            OrderAddress::QUOTE_ADDRESS_ID => null,
             OrderAddress::REGION_ID => null,
             OrderAddress::SUFFIX => null,
             OrderAddress::VAT_ID => null,

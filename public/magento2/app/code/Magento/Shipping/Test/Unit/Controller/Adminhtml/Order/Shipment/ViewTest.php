@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Shipping\Test\Unit\Controller\Adminhtml\Order\Shipment;
@@ -187,7 +187,7 @@ class ViewTest extends \PHPUnit_Framework_TestCase
             )
             ->willReturnSelf();
 
-        $this->assertEquals($this->resultPageMock, $this->controller->executeInternal());
+        $this->assertEquals($this->resultPageMock, $this->controller->execute());
     }
 
     /**
@@ -209,7 +209,7 @@ class ViewTest extends \PHPUnit_Framework_TestCase
             ->with('noroute')
             ->willReturnSelf();
 
-        $this->assertEquals($this->resultForwardMock, $this->controller->executeInternal());
+        $this->assertEquals($this->resultForwardMock, $this->controller->execute());
     }
 
     protected function loadShipment($orderId, $shipmentId, $shipment, $tracking, $comeFrom, $returnShipment)

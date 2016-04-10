@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Shipping\Test\Unit\Controller\Adminhtml\Order\Shipment;
@@ -223,7 +223,7 @@ class AddCommentTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue($resultLayoutMock));
         $this->responseMock->expects($this->once())->method('setBody')->with($result);
 
-        $this->assertNull($this->controller->executeInternal());
+        $this->assertNull($this->controller->execute());
     }
 
     /**
@@ -261,7 +261,7 @@ class AddCommentTest extends \PHPUnit_Framework_TestCase
             ->willThrowException(new \Magento\Framework\Exception\LocalizedException(__('message')));
         $this->exceptionResponse();
 
-        $this->assertNull($this->controller->executeInternal());
+        $this->assertNull($this->controller->execute());
     }
 
     /**
@@ -278,7 +278,7 @@ class AddCommentTest extends \PHPUnit_Framework_TestCase
         $this->requestMock->expects($this->once())->method('getPost')->with('comment')->will($this->returnValue([]));
         $this->exceptionResponse();
 
-        $this->assertNull($this->controller->executeInternal());
+        $this->assertNull($this->controller->execute());
     }
 
     /**
@@ -322,6 +322,6 @@ class AddCommentTest extends \PHPUnit_Framework_TestCase
         $this->shipmentMock->expects($this->once())->method('save')->will($this->throwException(new \Exception()));
         $this->exceptionResponse();
 
-        $this->assertNull($this->controller->executeInternal());
+        $this->assertNull($this->controller->execute());
     }
 }

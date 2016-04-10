@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Cookie\Test\Unit\Controller\Index;
@@ -95,7 +95,7 @@ class NoCookiesTest extends \PHPUnit_Framework_TestCase
         $this->requestMock->expects($this->once())->method('setDispatched')->with($this->isTrue());
 
         // Make the call to test
-        $this->controller->executeInternal();
+        $this->controller->execute();
     }
 
     public function testExecuteRedirectPath()
@@ -126,7 +126,7 @@ class NoCookiesTest extends \PHPUnit_Framework_TestCase
         $this->requestMock->expects($this->once())->method('setDispatched')->with($this->isTrue());
 
         // Make the call to test
-        $this->controller->executeInternal();
+        $this->controller->execute();
     }
 
     public function testExecuteDefault()
@@ -139,6 +139,6 @@ class NoCookiesTest extends \PHPUnit_Framework_TestCase
         $this->requestMock->expects($this->once())->method('setDispatched')->with($this->isTrue());
 
         // Make the call to test
-        $this->controller->executeInternal();
+        $this->controller->execute();
     }
 }

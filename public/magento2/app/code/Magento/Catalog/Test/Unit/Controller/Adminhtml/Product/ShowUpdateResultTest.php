@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Catalog\Test\Unit\Controller\Adminhtml\Product;
@@ -146,6 +146,6 @@ class ShowUpdateResultTest extends \PHPUnit_Framework_TestCase
 
         /** @var \Magento\Catalog\Controller\Adminhtml\Product\ShowUpdateResult $controller */
         $controller = new ShowUpdateResult($context, $productBuilder, $productCompositeHelper);
-        $controller->executeInternal();
+        $controller->execute();
     }
 }

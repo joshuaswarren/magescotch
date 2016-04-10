@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Multishipping\Controller\Checkout;
@@ -15,7 +15,7 @@ class Addresses extends \Magento\Multishipping\Controller\Checkout
      *
      * @return void
      */
-    public function executeInternal()
+    public function execute()
     {
         // If customer do not have addresses
         if (!$this->_getCheckout()->getCustomerDefaultShippingAddress()) {

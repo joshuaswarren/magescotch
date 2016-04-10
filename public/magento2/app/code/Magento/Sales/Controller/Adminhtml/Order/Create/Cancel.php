@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Sales\Controller\Adminhtml\Order\Create;
@@ -12,7 +12,7 @@ class Cancel extends \Magento\Sales\Controller\Adminhtml\Order\Create
      *
      * @return \Magento\Backend\Model\View\Result\Redirect
      */
-    public function executeInternal()
+    public function execute()
     {
         /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();

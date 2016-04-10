@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Sales\Controller\Adminhtml\Order;
@@ -8,22 +8,21 @@ namespace Magento\Sales\Controller\Adminhtml\Order;
 class Creditmemos extends \Magento\Sales\Controller\Adminhtml\Order
 {
     /**
+     * Authorization level of a basic admin session
+     *
+     * @see _isAllowed()
+     */
+    const ADMIN_RESOURCE = 'Magento_Sales::creditmemo';
+
+    /**
      * Generate credit memos grid for ajax request
      *
      * @return \Magento\Framework\View\Result\Layout
      */
-    public function executeInternal()
+    public function execute()
     {
         $this->_initOrder();
         $resultLayout = $this->resultLayoutFactory->create();
         return $resultLayout;
-    }
-
-    /**
-     * @return bool
-     */
-    protected function _isAllowed()
-    {
-        return $this->_authorization->isAllowed('Magento_Sales::creditmemo');
     }
 }

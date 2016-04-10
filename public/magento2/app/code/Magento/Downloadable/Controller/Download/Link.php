@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Downloadable\Controller\Download;
@@ -31,7 +31,7 @@ class Link extends \Magento\Downloadable\Controller\Download
      * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      * @SuppressWarnings(PHPMD.ExitExpression)
      */
-    public function executeInternal()
+    public function execute()
     {
         $session = $this->_getCustomerSession();
 

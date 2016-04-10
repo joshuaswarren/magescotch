@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\CurrencySymbol\Controller\Adminhtml\System\Currency;
@@ -16,7 +16,7 @@ class FetchRates extends \Magento\CurrencySymbol\Controller\Adminhtml\System\Cur
      *
      * @return \Magento\Backend\Model\View\Result\Redirect
      */
-    public function executeInternal()
+    public function execute()
     {
         /** @var \Magento\Backend\Model\Session $backendSession */
         $backendSession = $this->_objectManager->get('Magento\Backend\Model\Session');

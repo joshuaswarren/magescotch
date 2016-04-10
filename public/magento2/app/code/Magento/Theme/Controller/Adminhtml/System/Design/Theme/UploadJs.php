@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Theme\Controller\Adminhtml\System\Design\Theme;
@@ -14,7 +14,7 @@ class UploadJs extends \Magento\Theme\Controller\Adminhtml\System\Design\Theme
      * @return void
      * @throws \Magento\Framework\Exception\LocalizedException
      */
-    public function executeInternal()
+    public function execute()
     {
         $themeId = $this->getRequest()->getParam('id');
         /** @var $serviceModel \Magento\Theme\Model\Uploader\Service */

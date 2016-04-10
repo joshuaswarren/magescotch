@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Review\Controller;
@@ -40,11 +40,11 @@ abstract class Customer extends Action
      * @param \Magento\Framework\App\RequestInterface $request
      * @return \Magento\Framework\App\ResponseInterface
      */
-    public function execute(RequestInterface $request)
+    public function dispatch(RequestInterface $request)
     {
         if (!$this->customerSession->authenticate()) {
             $this->_actionFlag->set('', self::FLAG_NO_DISPATCH, true);
         }
-        return parent::execute($request);
+        return parent::dispatch($request);
     }
 }

@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Paypal\Controller\Billing\Agreement;
@@ -13,7 +13,7 @@ class StartWizard extends \Magento\Paypal\Controller\Billing\Agreement
      *
      * @return \Magento\Framework\App\Response\Http
      */
-    public function executeInternal()
+    public function execute()
     {
         $agreement = $this->_objectManager->create('Magento\Paypal\Model\Billing\Agreement');
         $paymentCode = $this->getRequest()->getParam('payment_method');

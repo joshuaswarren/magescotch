@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Backend\Controller\Adminhtml\System\Store;
@@ -13,7 +13,7 @@ class EditStore extends \Magento\Backend\Controller\Adminhtml\System\Store
      * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      * @SuppressWarnings(PHPMD.NPathComplexity)
      */
-    public function executeInternal()
+    public function execute()
     {
         if ($this->_getSession()->getPostData()) {
             $this->_coreRegistry->register('store_post_data', $this->_getSession()->getPostData());

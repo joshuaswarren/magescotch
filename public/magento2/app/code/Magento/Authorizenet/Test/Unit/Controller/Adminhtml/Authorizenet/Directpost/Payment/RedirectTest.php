@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Authorizenet\Test\Unit\Controller\Adminhtml\Authorizenet\Directpost\Payment;
@@ -95,11 +95,6 @@ class RedirectTest extends \PHPUnit_Framework_TestCase
      * @var \Magento\Authorizenet\Helper\Backend\Data|\PHPUnit_Framework_MockObject_MockObject
      */
     protected $helperMock;
-
-    /**
-     * @var Redirect|\PHPUnit_Framework_MockObject_MockObject
-     */
-    protected $controller;
 
     protected function setUp()
     {
@@ -201,7 +196,7 @@ class RedirectTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    public function testExecuteInternalErrorMsgWithoutCancelOrder()
+    public function testExecuteErrorMsgWithoutCancelOrder()
     {
         $params = ['success' => 0, 'error_msg' => 'Error message'];
         $incrementId = 1;
@@ -243,10 +238,10 @@ class RedirectTest extends \PHPUnit_Framework_TestCase
             ->method('register')
             ->with(Iframe::REGISTRY_KEY);
 
-        $this->assertInstanceOf('\Magento\Framework\View\Result\Layout', $this->controller->executeInternal());
+        $this->assertInstanceOf('\Magento\Framework\View\Result\Layout', $this->controller->execute());
     }
 
-    public function testExecuteInternalErrorMsgWithCancelOrder()
+    public function testExecuteErrorMsgWithCancelOrder()
     {
         $params = ['success' => 0, 'error_msg' => 'Error message', 'x_invoice_num' => 1];
         $incrementId = 1;
@@ -278,10 +273,10 @@ class RedirectTest extends \PHPUnit_Framework_TestCase
             ->method('register')
             ->with(Iframe::REGISTRY_KEY);
 
-        $this->assertInstanceOf('\Magento\Framework\View\Result\Layout', $this->controller->executeInternal());
+        $this->assertInstanceOf('\Magento\Framework\View\Result\Layout', $this->controller->execute());
     }
 
-    public function testExecuteInternalSuccess()
+    public function testExecuteSuccess()
     {
         $params = ['success' => 1, 'controller_action_name' => 'action', 'x_invoice_num' => 1];
         $this->requestMock->expects($this->once())
@@ -312,6 +307,6 @@ class RedirectTest extends \PHPUnit_Framework_TestCase
             ->method('register')
             ->with(Iframe::REGISTRY_KEY);
 
-        $this->assertInstanceOf('\Magento\Framework\View\Result\Layout', $this->controller->executeInternal());
+        $this->assertInstanceOf('\Magento\Framework\View\Result\Layout', $this->controller->execute());
     }
 }

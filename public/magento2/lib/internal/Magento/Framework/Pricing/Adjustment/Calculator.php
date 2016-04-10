@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -33,9 +33,10 @@ class Calculator implements CalculatorInterface
      *
      * @param float|string $amount
      * @param SaleableInterface $saleableItem
-     * @param null|bool|string $exclude
+     * @param null|bool|string|array $exclude
      * @param null|array $context
      * @return \Magento\Framework\Pricing\Amount\AmountInterface
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */
     public function getAmount($amount, SaleableInterface $saleableItem, $exclude = null, $context = [])
     {
@@ -45,8 +46,14 @@ class Calculator implements CalculatorInterface
         foreach ($saleableItem->getPriceInfo()->getAdjustments() as $adjustment) {
             $code = $adjustment->getAdjustmentCode();
             $toExclude = false;
-            if ($exclude === true || ($exclude !== null && $code === $exclude)) {
-                $toExclude = true;
+            if (!is_array($exclude)) {
+                if ($exclude === true || ($exclude !== null && $code === $exclude)) {
+                    $toExclude = true;
+                }
+            } else {
+                if (in_array($code, $exclude)) {
+                    $toExclude = true;
+                }
             }
             if ($adjustment->isIncludedInBasePrice()) {
                 $adjust = $adjustment->extractAdjustment($baseAmount, $saleableItem, $context);

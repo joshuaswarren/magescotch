@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Rss\Controller\Feed;
@@ -20,7 +20,7 @@ class Index extends \Magento\Rss\Controller\Feed
      * @return void
      * @throws NotFoundException
      */
-    public function executeInternal()
+    public function execute()
     {
         if (!$this->scopeConfig->getValue('rss/config/active', \Magento\Store\Model\ScopeInterface::SCOPE_STORE)) {
             throw new NotFoundException(__('Page not found.'));

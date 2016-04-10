@@ -1,6 +1,0 @@
-        $attributes->addFieldToFilter(
-            'attribute_code',
-            array(
-                'nin' => array('meta_title', 'meta_description', 'meta_keywords')
-            )
-        );

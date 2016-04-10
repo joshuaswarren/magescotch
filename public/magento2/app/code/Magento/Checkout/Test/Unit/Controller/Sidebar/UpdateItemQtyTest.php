@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Checkout\Test\Unit\Controller\Sidebar;
@@ -110,7 +110,7 @@ class UpdateItemQtyTest extends \PHPUnit_Framework_TestCase
             ->with('json encoded')
             ->willReturn('json represented');
 
-        $this->assertEquals('json represented', $this->updateItemQty->executeInternal());
+        $this->assertEquals('json represented', $this->updateItemQty->execute());
     }
 
     public function testExecuteWithLocalizedException()
@@ -154,7 +154,7 @@ class UpdateItemQtyTest extends \PHPUnit_Framework_TestCase
             ->with('json encoded')
             ->willReturn('json represented');
 
-        $this->assertEquals('json represented', $this->updateItemQty->executeInternal());
+        $this->assertEquals('json represented', $this->updateItemQty->execute());
     }
 
     public function testExecuteWithException()
@@ -205,6 +205,6 @@ class UpdateItemQtyTest extends \PHPUnit_Framework_TestCase
             ->with('json encoded')
             ->willReturn('json represented');
 
-        $this->assertEquals('json represented', $this->updateItemQty->executeInternal());
+        $this->assertEquals('json represented', $this->updateItemQty->execute());
     }
 }

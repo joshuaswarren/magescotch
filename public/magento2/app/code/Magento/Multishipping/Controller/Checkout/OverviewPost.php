@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Multishipping\Controller\Checkout;
@@ -65,7 +65,7 @@ class OverviewPost extends \Magento\Multishipping\Controller\Checkout
      * @return void
      * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */
-    public function executeInternal()
+    public function execute()
     {
         if (!$this->formKeyValidator->validate($this->getRequest())) {
             $this->_forward('backToAddresses');

@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Newsletter\Controller\Adminhtml\Template;
@@ -30,7 +30,7 @@ class Edit extends \Magento\Newsletter\Controller\Adminhtml\Template
      *
      * @return void
      */
-    public function executeInternal()
+    public function execute()
     {
         $model = $this->_objectManager->create('Magento\Newsletter\Model\Template');
         $id = $this->getRequest()->getParam('id');

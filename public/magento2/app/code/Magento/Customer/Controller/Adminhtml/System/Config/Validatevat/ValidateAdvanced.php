@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Customer\Controller\Adminhtml\System\Config\Validatevat;
@@ -30,7 +30,7 @@ class ValidateAdvanced extends \Magento\Customer\Controller\Adminhtml\System\Con
      *
      * @return \Magento\Framework\Controller\Result\Json
      */
-    public function executeInternal()
+    public function execute()
     {
         $result = $this->_validate();
         $valid = $result->getIsValid();

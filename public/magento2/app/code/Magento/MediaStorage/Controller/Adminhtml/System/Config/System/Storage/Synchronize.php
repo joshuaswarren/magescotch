@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\MediaStorage\Controller\Adminhtml\System\Config\System\Storage;
@@ -13,7 +13,7 @@ class Synchronize extends \Magento\MediaStorage\Controller\Adminhtml\System\Conf
      *
      * @return void
      */
-    public function executeInternal()
+    public function execute()
     {
         session_write_close();
 

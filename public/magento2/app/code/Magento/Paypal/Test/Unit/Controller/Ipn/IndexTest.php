@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -8,7 +8,7 @@ namespace Magento\Paypal\Test\Unit\Controller\Ipn;
 
 class IndexTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var \Magento\Paypal\Controller\Ipn\Index */
+    /** @var Index */
     protected $model;
 
     /** @var \Psr\Log\LoggerInterface|\PHPUnit_Framework_MockObject_MockObject */
@@ -44,6 +44,6 @@ class IndexTest extends \PHPUnit_Framework_TestCase
         $this->request->expects($this->once())->method('getPostValue')->will($this->throwException($exception));
         $this->logger->expects($this->once())->method('critical')->with($this->identicalTo($exception));
         $this->response->expects($this->once())->method('setHttpResponseCode')->with(500);
-        $this->model->executeInternal();
+        $this->model->execute();
     }
 }

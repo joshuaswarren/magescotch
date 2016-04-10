@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -107,7 +107,7 @@ class SaveTest extends \PHPUnit_Framework_TestCase
             ->method('addSuccess');
         $this->messageManagerMock->expects($this->never())
             ->method('addError');
-        $this->action->executeInternal();
+        $this->action->execute();
     }
 
     public function testSaveActionNoCustomerInSession()
@@ -126,7 +126,7 @@ class SaveTest extends \PHPUnit_Framework_TestCase
         $this->messageManagerMock->expects($this->once())
             ->method('addError')
             ->with('Something went wrong while saving your subscription.');
-        $this->action->executeInternal();
+        $this->action->execute();
     }
 
     public function testSaveActionWithException()
@@ -156,6 +156,6 @@ class SaveTest extends \PHPUnit_Framework_TestCase
         $this->messageManagerMock->expects($this->once())
             ->method('addError')
             ->with('Something went wrong while saving your subscription.');
-        $this->action->executeInternal();
+        $this->action->execute();
     }
 }

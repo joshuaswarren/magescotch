@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\PageCache\Controller\Adminhtml\PageCache;
@@ -40,7 +40,7 @@ class ExportVarnishConfig extends \Magento\Backend\App\Action
      *
      * @return \Magento\Framework\App\ResponseInterface
      */
-    public function executeInternal()
+    public function execute()
     {
         $fileName = 'varnish.vcl';
         $varnishVersion = $this->getRequest()->getParam('varnish');

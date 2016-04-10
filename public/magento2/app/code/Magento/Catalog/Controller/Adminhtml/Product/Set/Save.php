@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Catalog\Controller\Adminhtml\Product\Set;
@@ -57,7 +57,7 @@ class Save extends \Magento\Catalog\Controller\Adminhtml\Product\Set
      * @return \Magento\Framework\Controller\ResultInterface
      * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */
-    public function executeInternal()
+    public function execute()
     {
         $entityTypeId = $this->_getEntityTypeId();
         $hasError = false;

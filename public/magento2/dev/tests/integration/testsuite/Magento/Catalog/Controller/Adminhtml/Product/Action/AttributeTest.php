@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Catalog\Controller\Adminhtml\Product\Action;
@@ -11,7 +11,7 @@ namespace Magento\Catalog\Controller\Adminhtml\Product\Action;
 class AttributeTest extends \Magento\TestFramework\TestCase\AbstractBackendController
 {
     /**
-     * @covers \Magento\Catalog\Controller\Adminhtml\Product\Action\Attribute\Save::executeInternal
+     * @covers \Magento\Catalog\Controller\Adminhtml\Product\Action\Attribute\Save::execute
      *
      * @magentoDataFixture Magento/Catalog/_files/product_simple.php
      */
@@ -46,7 +46,7 @@ class AttributeTest extends \Magento\TestFramework\TestCase\AbstractBackendContr
     }
 
     /**
-     * @covers \Magento\Catalog\Controller\Adminhtml\Product\Action\Attribute\Validate::executeInternal
+     * @covers \Magento\Catalog\Controller\Adminhtml\Product\Action\Attribute\Validate::execute
      *
      * @dataProvider validateActionDataProvider
      *

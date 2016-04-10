@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Sales\Test\Unit\Controller\Adminhtml\Order\Invoice;
@@ -84,7 +84,7 @@ class AddCommentTest extends \PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function setUp()
+    protected function setUp()
     {
         $objectManager = new ObjectManager($this);
 
@@ -265,7 +265,7 @@ class AddCommentTest extends \PHPUnit_Framework_TestCase
         $resultRaw->expects($this->once())->method('setContents')->with($response);
 
         $this->resultRawFactoryMock->expects($this->once())->method('create')->will($this->returnValue($resultRaw));
-        $this->assertSame($resultRaw, $this->controller->executeInternal());
+        $this->assertSame($resultRaw, $this->controller->execute());
     }
 
     /**
@@ -288,7 +288,7 @@ class AddCommentTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue($this->resultJsonMock));
 
         $this->resultJsonMock->expects($this->once())->method('setData')->with($response);
-        $this->assertSame($this->resultJsonMock, $this->controller->executeInternal());
+        $this->assertSame($this->resultJsonMock, $this->controller->execute());
     }
 
     /**
@@ -310,6 +310,6 @@ class AddCommentTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue($this->resultJsonMock));
 
         $this->resultJsonMock->expects($this->once())->method('setData')->with($response);
-        $this->assertSame($this->resultJsonMock, $this->controller->executeInternal());
+        $this->assertSame($this->resultJsonMock, $this->controller->execute());
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /***
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Swagger\Controller\Index;
@@ -35,7 +35,7 @@ class Index extends \Magento\Framework\App\Action\Action
     /**
      * @return \Magento\Framework\View\Result\Page
      */
-    public function executeInternal()
+    public function execute()
     {
         $this->pageConfig->addBodyClass('swagger-section');
         return $this->pageFactory->create();

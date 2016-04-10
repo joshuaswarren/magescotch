@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Checkout\Controller\Cart;
@@ -48,7 +48,7 @@ class Configure extends \Magento\Checkout\Controller\Cart
      *
      * @return \Magento\Framework\View\Result\Page|\Magento\Framework\Controller\Result\Redirect
      */
-    public function executeInternal()
+    public function execute()
     {
         // Extract item and product to configure
         $id = (int)$this->getRequest()->getParam('id');

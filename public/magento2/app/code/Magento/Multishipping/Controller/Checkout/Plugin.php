@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Multishipping\Controller\Checkout;
@@ -28,7 +28,7 @@ class Plugin
      * @return void
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function beforeExecuteInternal(\Magento\Framework\App\Action\Action $subject)
+    public function beforeExecute(\Magento\Framework\App\Action\Action $subject)
     {
         $this->cart->getQuote()->setIsMultiShipping(0);
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Sales\Test\Unit\Controller\Adminhtml\Order;
@@ -97,7 +97,7 @@ class ViewTest extends \PHPUnit_Framework_TestCase
      */
     protected $orderRepositoryMock;
 
-    public function setUp()
+    protected function setUp()
     {
         $this->orderManagementMock = $this->getMockBuilder('Magento\Sales\Api\OrderManagementInterface')
             ->getMockForAbstractClass();
@@ -167,7 +167,7 @@ class ViewTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Magento\Sales\Controller\Adminhtml\Order\View::executeInternal
+     * @covers \Magento\Sales\Controller\Adminhtml\Order\View::execute
      */
     public function testExecute()
     {
@@ -197,12 +197,12 @@ class ViewTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf(
             'Magento\Backend\Model\View\Result\Page',
-            $this->viewAction->executeInternal()
+            $this->viewAction->execute()
         );
     }
 
     /**
-     * @covers \Magento\Sales\Controller\Adminhtml\Order\View::executeInternal
+     * @covers \Magento\Sales\Controller\Adminhtml\Order\View::execute
      */
     public function testExecuteNoOrder()
     {
@@ -224,12 +224,12 @@ class ViewTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf(
             'Magento\Backend\Model\View\Result\Redirect',
-            $this->viewAction->executeInternal()
+            $this->viewAction->execute()
         );
     }
 
     /**
-     * @covers \Magento\Sales\Controller\Adminhtml\Order\View::executeInternal
+     * @covers \Magento\Sales\Controller\Adminhtml\Order\View::execute
      */
     public function testGlobalException()
     {
@@ -253,7 +253,7 @@ class ViewTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf(
             'Magento\Backend\Model\View\Result\Redirect',
-            $this->viewAction->executeInternal()
+            $this->viewAction->execute()
         );
     }
 

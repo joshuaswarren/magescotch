@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -72,6 +72,6 @@ HANDLE;
                 $this->equalTo(['adminhtml_integration_activate_permissions_webapi'])
             );
 
-        $controller->executeInternal();
+        $controller->execute();
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Shipping\Test\Unit\Controller\Adminhtml\Order\Shipment;
@@ -193,7 +193,7 @@ class PrintPackageTest extends \PHPUnit_Framework_TestCase
                 'application/pdf'
             )->will($this->returnValue('result-pdf-content'));
 
-        $this->assertEquals('result-pdf-content', $this->controller->executeInternal());
+        $this->assertEquals('result-pdf-content', $this->controller->execute());
     }
 
     /**
@@ -215,6 +215,6 @@ class PrintPackageTest extends \PHPUnit_Framework_TestCase
             ->method('setIsUrlNotice')
             ->with(true);
 
-        $this->assertNull($this->controller->executeInternal());
+        $this->assertNull($this->controller->execute());
     }
 }

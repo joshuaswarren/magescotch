@@ -2,7 +2,7 @@
 /**
  * RouterList model test class
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Framework\App\Test\Unit\Router;
@@ -29,7 +29,7 @@ class ActionListTest extends \PHPUnit_Framework_TestCase
      */
     protected $actionList;
 
-    public function setUp()
+    protected function setUp()
     {
         $this->objectManager = new \Magento\Framework\TestFramework\Unit\Helper\ObjectManager($this);
         $this->cacheMock = $this->getMockBuilder('Magento\Framework\Config\CacheInterface')
@@ -156,6 +156,14 @@ class ActionListTest extends \PHPUnit_Framework_TestCase
                 'Namespace',
                 'Index',
                 [],
+                null
+            ],
+            [
+                'Magento_Module',
+                null,
+                'adminhtml_product',
+                'index',
+                'magento\module\controller\adminhtml\product\index' => '$mockClassName',
                 null
             ],
         ];

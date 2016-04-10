@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\User\Controller\Adminhtml\User;
@@ -27,7 +27,7 @@ class RoleTest extends \Magento\TestFramework\TestCase\AbstractBackendController
     }
 
     /**
-     * @covers \Magento\User\Controller\Adminhtml\User\Role\Editrolegrid::executeInternal
+     * @covers \Magento\User\Controller\Adminhtml\User\Role\Editrolegrid::execute
      */
     public function testEditrolegridAction()
     {
@@ -38,7 +38,7 @@ class RoleTest extends \Magento\TestFramework\TestCase\AbstractBackendController
     }
 
     /**
-     * @covers \Magento\User\Controller\Adminhtml\User\Role\RoleGrid::executeInternal
+     * @covers \Magento\User\Controller\Adminhtml\User\Role\RoleGrid::execute
      */
     public function testRoleGridAction()
     {

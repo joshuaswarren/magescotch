@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\CatalogSearch\Controller;
@@ -12,6 +12,7 @@ class ResultTest extends \Magento\TestFramework\TestCase\AbstractController
      */
     public function testIndexActionTranslation()
     {
+        $this->markTestSkipped('MAGETWO-44910');
         $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
         $objectManager->get('Magento\Framework\Locale\ResolverInterface')->setLocale('de_DE');
 

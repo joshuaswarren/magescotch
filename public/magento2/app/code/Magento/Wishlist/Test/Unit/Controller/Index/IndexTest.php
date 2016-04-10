@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Wishlist\Test\Unit\Controller\Index;
@@ -139,7 +139,7 @@ class IndexTest extends \PHPUnit_Framework_TestCase
             ->method('getWishlist')
             ->willReturn(null);
 
-        $this->getController()->executeInternal();
+        $this->getController()->execute();
     }
 
     public function testExecutePassed()
@@ -150,6 +150,6 @@ class IndexTest extends \PHPUnit_Framework_TestCase
             ->method('getWishlist')
             ->willReturn($wishlist);
 
-        $this->assertSame($this->resultPageMock, $this->getController()->executeInternal());
+        $this->assertSame($this->resultPageMock, $this->getController()->execute());
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Backend\Test\Unit\Controller\Adminhtml\Dashboard;
@@ -92,7 +92,7 @@ class TunnelTest extends \PHPUnit_Framework_TestCase
             ->with('success_msg')
             ->willReturnSelf();
 
-        $controller->executeInternal();
+        $controller->execute();
         $this->assertEquals('success_msg', $controller->getResponse()->getBody());
     }
 
@@ -112,7 +112,7 @@ class TunnelTest extends \PHPUnit_Framework_TestCase
             ->with('Service unavailable: invalid request')
             ->willReturnSelf();
 
-        $controller->executeInternal();
+        $controller->execute();
     }
 
     public function testTunnelAction503()
@@ -164,7 +164,7 @@ class TunnelTest extends \PHPUnit_Framework_TestCase
             ->with('Service unavailable: see error log for details')
             ->willReturnSelf();
 
-        $controller->executeInternal();
+        $controller->execute();
     }
 
     /**

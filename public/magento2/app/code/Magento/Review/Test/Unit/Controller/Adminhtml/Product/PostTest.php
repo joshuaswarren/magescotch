@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Review\Test\Unit\Controller\Adminhtml\Product;
@@ -209,6 +209,6 @@ class PostTest extends \PHPUnit_Framework_TestCase
             ->method('addOptionVote')
             ->willReturnSelf();
 
-        $this->assertSame($this->resultRedirectMock, $this->postController->executeInternal());
+        $this->assertSame($this->resultRedirectMock, $this->postController->execute());
     }
 }

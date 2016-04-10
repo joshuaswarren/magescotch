@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -10,7 +10,7 @@ namespace Magento\Backend\Test\Unit\Controller\Adminhtml\Cache;
 
 class CleanMediaTest extends \PHPUnit_Framework_TestCase
 {
-    public function testExecuteInternal()
+    public function testExecute()
     {
         // Wire object with mocks
         $response = $this->getMock('Magento\Framework\App\Response\Http', [], [], '', false);
@@ -62,7 +62,6 @@ class CleanMediaTest extends \PHPUnit_Framework_TestCase
         $context->expects($this->once())->method('getMessageManager')->willReturn($messageManager);
         $context->expects($this->once())->method('getResultFactory')->willReturn($resultFactory);
 
-        /** @var \Magento\Backend\Controller\Adminhtml\Cache\CleanMedia $controller */
         $controller = $helper->getObject(
             'Magento\Backend\Controller\Adminhtml\Cache\CleanMedia',
             [
@@ -91,6 +90,6 @@ class CleanMediaTest extends \PHPUnit_Framework_TestCase
             ->willReturnSelf();
 
         // Run
-        $controller->executeInternal();
+        $controller->execute();
     }
 }

@@ -1,103 +1,94 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
-namespace Magento\Braintree\Controller\PayPal;
+namespace Magento\Braintree\Controller\Paypal;
 
-use Magento\Customer\Model\Session;
+use Magento\Checkout\Model\Session;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\Controller\ResultFactory;
-use Magento\Braintree\Model\PaymentMethod\PayPal;
+use Magento\Braintree\Gateway\Config\PayPal\Config;
+use Magento\Braintree\Model\Paypal\Helper\QuoteUpdater;
 
-class Review extends \Magento\Braintree\Controller\PayPal
+/**
+ * Class Review
+ */
+class Review extends AbstractAction
 {
     /**
-     * @var \Magento\Framework\Json\Helper\Data
+     * @var QuoteUpdater
      */
-    protected $jsonHelper;
+    private $quoteUpdater;
 
     /**
-     * @param \Magento\Framework\App\Action\Context $context
-     * @param \Magento\Customer\Model\Session $customerSession
-     * @param \Magento\Checkout\Model\Session $checkoutSession
-     * @param \Magento\Braintree\Model\Config\PayPal $braintreePayPalConfig
-     * @param \Magento\Paypal\Model\Config $paypalConfig
-     * @param \Magento\Braintree\Model\CheckoutFactory $checkoutFactory
-     * @param \Magento\Framework\Json\Helper\Data $jsonHelper
+     * Constructor
+     *
+     * @param Context $context
+     * @param Config $config
+     * @param Session $checkoutSession
+     * @param QuoteUpdater $quoteUpdater
      */
     public function __construct(
         Context $context,
-        Session $customerSession,
-        \Magento\Checkout\Model\Session $checkoutSession,
-        \Magento\Braintree\Model\Config\PayPal $braintreePayPalConfig,
-        \Magento\Paypal\Model\Config $paypalConfig,
-        \Magento\Braintree\Model\CheckoutFactory $checkoutFactory,
-        \Magento\Framework\Json\Helper\Data $jsonHelper
+        Config $config,
+        Session $checkoutSession,
+        QuoteUpdater $quoteUpdater
     ) {
-        parent::__construct(
-            $context,
-            $customerSession,
-            $checkoutSession,
-            $braintreePayPalConfig,
-            $paypalConfig,
-            $checkoutFactory
-        );
-        $this->jsonHelper = $jsonHelper;
+        parent::__construct($context, $config, $checkoutSession);
+        $this->quoteUpdater = $quoteUpdater;
     }
 
     /**
-     * @return $this|\Magento\Framework\View\Result\Page
+     * @inheritdoc
      */
-    public function executeInternal()
+    public function execute()
     {
-        $paymentMethodNonce = $this->getRequest()->getParam('payment_method_nonce');
-        $details = $this->getRequest()->getParam('details');
-        if (!empty($details)) {
-            $details = $this->jsonHelper->jsonDecode($details);
-        }
+        $requestData = json_decode(
+            $this->getRequest()->getPostValue('result', '{}'),
+            true
+        );
+        $quote = $this->checkoutSession->getQuote();
+
         try {
-            $this->initCheckout();
+            $this->validateQuote($quote);
+            $this->validateRequestData($requestData);
 
-            if ($paymentMethodNonce && $details) {
-                if (!$this->braintreePayPalConfig->isBillingAddressEnabled()) {
-                    unset($details['billingAddress']);
-                }
-                $this->getCheckout()->initializeQuoteForReview($paymentMethodNonce, $details);
-                $paymentMethod = $this->getQuote()->getPayment()->getMethodInstance();
-                $paymentMethod->validate();
-            } else {
-                $paymentMethod = $this->getQuote()->getPayment()->getMethodInstance();
-                if (!$paymentMethod || $paymentMethod->getCode() !== PayPal::METHOD_CODE) {
-                    $this->messageManager->addErrorMessage(
-                        __('Incorrect payment method.')
-                    );
-
-                    /** @var \Magento\Framework\Controller\Result\Redirect $resultRedirect */
-                    $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
-                    return $resultRedirect->setPath('checkout/cart');
-                }
-                $this->getQuote()->setMayEditShippingMethod(true);
-            }
+            $this->quoteUpdater->execute(
+                $requestData['nonce'],
+                $requestData['details'],
+                $quote
+            );
 
             /** @var \Magento\Framework\View\Result\Page $resultPage */
             $resultPage = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
-            /** @var \Magento\Braintree\Block\Checkout\Review $reviewBlock */
+
+            /** @var \Magento\Braintree\Block\Paypal\Checkout\Review $reviewBlock */
             $reviewBlock = $resultPage->getLayout()->getBlock('braintree.paypal.review');
-            $reviewBlock->setQuote($this->getQuote());
-            $reviewBlock->getChildBlock('shipping_method')->setQuote($this->getQuote());
+
+            $reviewBlock->setQuote($quote);
+            $reviewBlock->getChildBlock('shipping_method')->setData('quote', $quote);
+
             return $resultPage;
-        } catch (\Magento\Framework\Exception\LocalizedException $e) {
-            $this->messageManager->addExceptionMessage($e, $e->getMessage());
         } catch (\Exception $e) {
-            $this->messageManager->addExceptionMessage(
-                $e,
-                __('We can\'t initialize checkout review.')
-            );
+            $this->messageManager->addExceptionMessage($e, $e->getMessage());
         }
 
         /** @var \Magento\Framework\Controller\Result\Redirect $resultRedirect */
         $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
-        return $resultRedirect->setPath('checkout/cart');
+
+        return $resultRedirect->setPath('checkout/cart', ['_secure' => true]);
+    }
+
+    /**
+     * @param array $requestData
+     * @return void
+     * @throws \InvalidArgumentException
+     */
+    private function validateRequestData(array $requestData)
+    {
+        if (empty($requestData['nonce']) || empty($requestData['details'])) {
+            throw new \InvalidArgumentException('Data of request cannot be empty.');
+        }
     }
 }

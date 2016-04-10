@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Paypal\Model;
@@ -266,6 +266,7 @@ class Express extends \Magento\Payment\Model\Method\AbstractMethod
                 ApiProcessableException::API_COUNTRY_FILTER_DECLINE,
                 ApiProcessableException::API_MAXIMUM_AMOUNT_FILTER_DECLINE,
                 ApiProcessableException::API_OTHER_FILTER_DECLINE,
+                ApiProcessableException::API_ADDRESS_MATCH_FAIL,
             ]
         );
     }
@@ -662,8 +663,9 @@ class Express extends \Magento\Payment\Model\Method\AbstractMethod
      *
      * @param array|\Magento\Framework\DataObject $data
      * @return \Magento\Payment\Model\Info
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
-    public function assignData($data)
+    public function assignData(\Magento\Framework\DataObject $data)
     {
         $result = parent::assignData($data);
         $key = ExpressCheckout::PAYMENT_INFO_TRANSPORT_BILLING_AGREEMENT;

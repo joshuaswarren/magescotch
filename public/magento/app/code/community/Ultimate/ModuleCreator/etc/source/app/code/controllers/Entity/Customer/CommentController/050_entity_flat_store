@@ -1,4 +1,0 @@
-        if (count(array_intersect($stores, ${{entity}}->getStoreId())) == 0) {
-            $this->_forward('no-route');
-            return;
-        }

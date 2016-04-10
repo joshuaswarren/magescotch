@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Sitemap\Controller\Adminhtml\Sitemap;
@@ -133,7 +133,7 @@ class Save extends \Magento\Sitemap\Controller\Adminhtml\Sitemap
      *
      * @return \Magento\Backend\Model\View\Result\Redirect
      */
-    public function executeInternal()
+    public function execute()
     {
         // check if data sent
         $data = $this->getRequest()->getPostValue();

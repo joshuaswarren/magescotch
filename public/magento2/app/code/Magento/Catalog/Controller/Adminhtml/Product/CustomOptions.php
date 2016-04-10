@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Catalog\Controller\Adminhtml\Product;
@@ -45,7 +45,7 @@ class CustomOptions extends \Magento\Catalog\Controller\Adminhtml\Product
      *
      * @return \Magento\Framework\View\Result\Layout
      */
-    public function executeInternal()
+    public function execute()
     {
         $this->registry->register('import_option_products', $this->getRequest()->getPost('products'));
         return $this->resultLayoutFactory->create();

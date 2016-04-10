@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Downloadable\Controller\Download;
@@ -17,7 +17,7 @@ class Sample extends \Magento\Downloadable\Controller\Download
      * @return ResponseInterface
      * @SuppressWarnings(PHPMD.ExitExpression)
      */
-    public function executeInternal()
+    public function execute()
     {
         $sampleId = $this->getRequest()->getParam('sample_id', 0);
         /** @var \Magento\Downloadable\Model\Sample $sample */

@@ -1,4 +1,0 @@
-    <catalog_product_view>
-        <reference name="product.info">
-{{productViewLayout}}        </reference>
-    </catalog_product_view>

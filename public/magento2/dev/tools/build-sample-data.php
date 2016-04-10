@@ -1,1 +1,1 @@
-/home/vagrant/source/magento2-sample-data/dev/tools/build-sample-data.php
+/opt/magento2-sample-data/dev/tools/build-sample-data.php

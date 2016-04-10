@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -66,7 +66,7 @@ class ViewfileTest extends \PHPUnit_Framework_TestCase
      */
     protected $requestMock;
 
-    public function setUp()
+    protected function setUp()
     {
         $this->objectManager = new \Magento\Framework\TestFramework\Unit\Helper\ObjectManager($this);
         $this->requestMock = $this->getMock('Magento\Framework\App\RequestInterface', [], [], '', false);
@@ -107,7 +107,7 @@ class ViewfileTest extends \PHPUnit_Framework_TestCase
     {
         /** @var \Magento\Customer\Controller\Adminhtml\Index\Viewfile $controller */
         $controller = $this->objectManager->getObject('Magento\Customer\Controller\Adminhtml\Index\Viewfile');
-        $controller->executeInternal();
+        $controller->execute();
     }
 
     public function testExecuteParamFile()
@@ -154,7 +154,7 @@ class ViewfileTest extends \PHPUnit_Framework_TestCase
                 'fileFactory' => $fileFactoryMock
             ]
         );
-        $controller->executeInternal();
+        $controller->execute();
     }
 
     public function testExecuteGetParamImage()
@@ -184,7 +184,6 @@ class ViewfileTest extends \PHPUnit_Framework_TestCase
                     ['Magento\MediaStorage\Helper\File\Storage', $this->storage]
                 ]
             );
-
 
         $this->urlDecoderMock->expects($this->once())->method('decode')->with($decodedFile)->willReturn($file);
 
@@ -217,6 +216,6 @@ class ViewfileTest extends \PHPUnit_Framework_TestCase
                 'resultRawFactory' => $this->resultRawFactoryMock
             ]
         );
-        $this->assertSame($this->resultRawMock, $controller->executeInternal());
+        $this->assertSame($this->resultRawMock, $controller->execute());
     }
 }

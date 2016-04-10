@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -251,9 +251,11 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetDateRangeFirstPart($range, $customStart, $customEnd, $expectedInterval)
     {
-        $this->markTestIncomplete('MAGETWO-44815');
+        $timeZoneToReturn = date_default_timezone_get();
+        date_default_timezone_set('UTC');
         $result = $this->collection->getDateRange($range, $customStart, $customEnd);
         $interval = $result['to']->diff($result['from']);
+        date_default_timezone_set($timeZoneToReturn);
         $intervalResult = $interval->format('%y %m %d %h:%i:%s');
         $this->assertEquals($expectedInterval, $intervalResult);
     }

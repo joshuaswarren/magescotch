@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -88,7 +88,7 @@ class EmailTest extends \PHPUnit_Framework_TestCase
      */
     protected $orderMock;
 
-    public function setUp()
+    protected function setUp()
     {
         $objectManagerHelper = new ObjectManagerHelper($this);
         $this->context = $this->getMock(
@@ -196,7 +196,7 @@ class EmailTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf(
             'Magento\Backend\Model\View\Result\Redirect',
-            $this->orderEmail->executeInternal()
+            $this->orderEmail->execute()
         );
         $this->assertEquals($this->response, $this->orderEmail->getResponse());
     }
@@ -228,7 +228,7 @@ class EmailTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf(
             'Magento\Backend\Model\View\Result\Redirect',
-            $this->orderEmail->executeInternal()
+            $this->orderEmail->execute()
         );
     }
 }

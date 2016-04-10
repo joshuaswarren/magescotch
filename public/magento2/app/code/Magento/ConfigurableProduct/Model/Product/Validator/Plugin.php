@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\ConfigurableProduct\Model\Product\Validator;
@@ -65,6 +65,9 @@ class Plugin
         \Magento\Framework\App\RequestInterface $request,
         \Magento\Framework\DataObject $response
     ) {
+        if ($request->has('attributes')) {
+            $product->setTypeId(\Magento\ConfigurableProduct\Model\Product\Type\Configurable::TYPE_CODE);
+        }
         $result = $proceed($product, $request, $response);
         $variationProducts = (array)$request->getPost('variations-matrix');
         if ($variationProducts) {

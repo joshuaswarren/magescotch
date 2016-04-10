@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Sales\Controller\Adminhtml\Order\Invoice;
@@ -71,7 +71,7 @@ class UpdateQty extends \Magento\Sales\Controller\Adminhtml\Invoice\AbstractInvo
      *
      * @return \Magento\Framework\Controller\ResultInterface
      */
-    public function executeInternal()
+    public function execute()
     {
         try {
             $orderId = $this->getRequest()->getParam('order_id');

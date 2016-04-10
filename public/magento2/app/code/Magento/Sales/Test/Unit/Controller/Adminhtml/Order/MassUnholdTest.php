@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -85,7 +85,7 @@ class MassUnholdTest extends \PHPUnit_Framework_TestCase
      */
     protected $filterMock;
 
-    public function setUp()
+    protected function setUp()
     {
         $objectManagerHelper = new ObjectManagerHelper($this);
         $this->contextMock = $this->getMock('Magento\Backend\App\Action\Context', [], [], '', false);
@@ -212,7 +212,7 @@ class MassUnholdTest extends \PHPUnit_Framework_TestCase
             ->with('sales/*/')
             ->willReturnSelf();
 
-        $this->massAction->executeInternal();
+        $this->massAction->execute();
     }
 
     public function testExecuteNoReleasedOrderFromHold()
@@ -251,6 +251,6 @@ class MassUnholdTest extends \PHPUnit_Framework_TestCase
             ->with('sales/*/')
             ->willReturnSelf();
 
-        $this->massAction->executeInternal();
+        $this->massAction->execute();
     }
 }

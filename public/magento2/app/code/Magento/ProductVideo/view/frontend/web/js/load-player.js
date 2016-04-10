@@ -1,5 +1,5 @@
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -189,6 +189,8 @@ define(['jquery', 'jquery/ui'], function ($) {
                              */
                             'onReady': function onPlayerReady() {
                                 self._player.getDuration();
+                                self.element.closest('.fotorama__stage__frame')
+                                    .addClass('fotorama__product-video--loaded');
                             },
 
                             /**
@@ -327,11 +329,15 @@ define(['jquery', 'jquery/ui'], function ($) {
                     .attr('width', this._width)
                     .attr('height', this._height)
                     .attr('src', src)
+                    .attr('webkitallowfullscreen', '')
+                    .attr('mozallowfullscreen', '')
+                    .attr('allowfullscreen', '')
             );
             this._player = window.$f(this.element.children(':first')[0]);
 
             // Froogaloop throws error without a registered ready event
-            this._player.addEvent('ready', function () {
+            this._player.addEvent('ready', function (id) {
+                $('#' + id).closest('.fotorama__stage__frame').addClass('fotorama__product-video--loaded');
             });
         },
 

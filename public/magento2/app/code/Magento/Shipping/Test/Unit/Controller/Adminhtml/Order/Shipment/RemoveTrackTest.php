@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Shipping\Test\Unit\Controller\Adminhtml\Order\Shipment;
@@ -255,7 +255,7 @@ class RemoveTrackTest extends \PHPUnit_Framework_TestCase
             ->method('setBody')
             ->with($response);
 
-        $this->assertNull($this->controller->executeInternal());
+        $this->assertNull($this->controller->execute());
     }
 
     /**
@@ -275,7 +275,7 @@ class RemoveTrackTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue($trackId));
         $this->representJson($errors);
 
-        $this->assertNull($this->controller->executeInternal());
+        $this->assertNull($this->controller->execute());
     }
 
     /**
@@ -294,7 +294,7 @@ class RemoveTrackTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue(null));
         $this->representJson($errors);
 
-        $this->assertNull($this->controller->executeInternal());
+        $this->assertNull($this->controller->execute());
     }
 
     /**
@@ -313,6 +313,6 @@ class RemoveTrackTest extends \PHPUnit_Framework_TestCase
             ->will($this->throwException(new \Exception()));
         $this->representJson($errors);
 
-        $this->assertNull($this->controller->executeInternal());
+        $this->assertNull($this->controller->execute());
     }
 }

@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Wishlist\Controller\Index;
@@ -60,7 +60,7 @@ class Plugin
      * @return void
      * @throws \Magento\Framework\Exception\NotFoundException
      */
-    public function beforeExecute(\Magento\Framework\App\ActionInterface $subject, RequestInterface $request)
+    public function beforeDispatch(\Magento\Framework\App\ActionInterface $subject, RequestInterface $request)
     {
         if ($this->authenticationState->isEnabled() && !$this->customerSession->authenticate()) {
             $subject->getActionFlag()->set('', 'no-dispatch', true);
@@ -68,6 +68,10 @@ class Plugin
                 $this->customerSession->setBeforeWishlistUrl($this->redirector->getRefererUrl());
             }
             $this->customerSession->setBeforeWishlistRequest($request->getParams());
+            $this->customerSession->setBeforeRequestParams($this->customerSession->getBeforeWishlistRequest());
+            $this->customerSession->setBeforeModuleName('wishlist');
+            $this->customerSession->setBeforeControllerName('index');
+            $this->customerSession->setBeforeAction('add');
         }
         if (!$this->config->isSetFlag('wishlist/general/active')) {
             throw new NotFoundException(__('Page not found.'));

@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Catalog\Controller\Adminhtml\Product;
@@ -32,7 +32,7 @@ class Crosssell extends \Magento\Catalog\Controller\Adminhtml\Product
      *
      * @return \Magento\Framework\View\Result\Layout
      */
-    public function executeInternal()
+    public function execute()
     {
         $this->productBuilder->build($this->getRequest());
         $resultLayout = $this->resultLayoutFactory->create();

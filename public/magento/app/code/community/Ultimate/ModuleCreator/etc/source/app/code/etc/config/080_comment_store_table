@@ -1,3 +1,0 @@
-                    <{{entity}}_comment_store>
-                        <table>{{namespace}}_{{module}}_{{entity}}_comment_store</table>
-                    </{{entity}}_comment_store>

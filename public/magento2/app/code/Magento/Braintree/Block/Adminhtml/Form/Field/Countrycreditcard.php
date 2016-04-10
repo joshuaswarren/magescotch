@@ -1,32 +1,38 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Braintree\Block\Adminhtml\Form\Field;
 
-class Countrycreditcard extends \Magento\Config\Block\System\Config\Form\Field\FieldArray\AbstractFieldArray
+use Magento\Framework\DataObject;
+use Magento\Config\Block\System\Config\Form\Field\FieldArray\AbstractFieldArray;
+
+/**
+ * Class CountryCreditCard
+ */
+class CountryCreditCard extends AbstractFieldArray
 {
     /**
-     * @var \Magento\Braintree\Block\Adminhtml\Form\Field\Countries
+     * @var Countries
      */
     protected $countryRenderer = null;
 
     /**
-     * @var \Magento\Braintree\Block\Adminhtml\Form\Field\CcTypes
+     * @var CcTypes
      */
     protected $ccTypesRenderer = null;
     
     /**
      * Returns renderer for country element
      * 
-     * @return \Magento\Braintree\Block\Adminhtml\Form\Field\Countries
+     * @return Countries
      */
     protected function getCountryRenderer()
     {
         if (!$this->countryRenderer) {
             $this->countryRenderer = $this->getLayout()->createBlock(
-                '\Magento\Braintree\Block\Adminhtml\Form\Field\Countries',
+                Countries::class,
                 '',
                 ['data' => ['is_render_to_js_template' => true]]
             );
@@ -37,13 +43,13 @@ class Countrycreditcard extends \Magento\Config\Block\System\Config\Form\Field\F
     /**
      * Returns renderer for country element
      * 
-     * @return \Magento\Braintree\Block\Adminhtml\Form\Field\Cctypes
+     * @return CcTypes
      */
     protected function getCcTypesRenderer()
     {
         if (!$this->ccTypesRenderer) {
             $this->ccTypesRenderer = $this->getLayout()->createBlock(
-                '\Magento\Braintree\Block\Adminhtml\Form\Field\Cctypes',
+                CcTypes::class,
                 '',
                 ['data' => ['is_render_to_js_template' => true]]
             );
@@ -78,10 +84,10 @@ class Countrycreditcard extends \Magento\Config\Block\System\Config\Form\Field\F
     /**
      * Prepare existing row data object
      *
-     * @param \Magento\Framework\DataObject $row
+     * @param DataObject $row
      * @return void
      */
-    protected function _prepareArrayRow(\Magento\Framework\DataObject $row)
+    protected function _prepareArrayRow(DataObject $row)
     {
         $country = $row->getCountryId();
         $options = [];
@@ -90,15 +96,11 @@ class Countrycreditcard extends \Magento\Config\Block\System\Config\Form\Field\F
                 = 'selected="selected"';
 
             $ccTypes = $row->getCcTypes();
-            if (!is_array($ccTypes)) {
-                $ccTypes = [$ccTypes];
-            }
             foreach ($ccTypes as $cardType) {
                 $options['option_' . $this->getCcTypesRenderer()->calcOptionHash($cardType)]
                     = 'selected="selected"';
             }
         }
         $row->setData('option_extra_attrs', $options);
-        return;
     }
 }

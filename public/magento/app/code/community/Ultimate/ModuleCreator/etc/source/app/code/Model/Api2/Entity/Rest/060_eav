@@ -1,2 +1,0 @@
-            $storeId = $this->_getStore()->getId();
-            ${{entity}}->setStoreId($storeId);

@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Bundle\Controller\Adminhtml\Bundle\Selection;
@@ -11,7 +11,7 @@ class Grid extends \Magento\Backend\App\Action
     /**
      * @return mixed
      */
-    public function executeInternal()
+    public function execute()
     {
         $index = $this->getRequest()->getParam('index');
         if (!preg_match('/^[a-z0-9_.]*$/i', $index)) {

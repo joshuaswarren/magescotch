@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Checkout\Controller\ShippingRates;
@@ -41,7 +41,7 @@ class Index extends \Magento\Framework\App\Action\Action
      * @return \Magento\Framework\Controller\ResultInterface
      * @throws Action\NotFoundException
      */
-    public function executeInternal()
+    public function execute()
     {
         $quote = $this->checkoutSession->getQuote();
         $address = $quote->getShippingAddress();

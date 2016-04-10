@@ -1,5 +1,0 @@
-            if (isset($data['{{siblings}}'])) {
-                ${{entity}}->set{{Siblings}}Data(
-                    Mage::helper('adminhtml/js')->decodeGridSerializedInput($data['{{siblings}}'])
-                );
-            }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Shipping\Test\Unit\Model\Shipping;
@@ -62,6 +62,7 @@ class LabelGeneratorTest extends \PHPUnit_Framework_TestCase
         $this->scopeConfig = $this->getMock('Magento\Framework\App\Config\ScopeConfigInterface');
         $this->trackFactory = $this->getMockBuilder('Magento\Sales\Model\Order\Shipment\TrackFactory')
             ->disableOriginalConstructor()
+            ->setMethods(['create'])
             ->getMock();
         $this->filesystem = $this->getMockBuilder('Magento\Framework\Filesystem')
             ->disableOriginalConstructor()

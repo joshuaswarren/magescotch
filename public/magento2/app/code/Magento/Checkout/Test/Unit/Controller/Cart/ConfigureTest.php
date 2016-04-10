@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Checkout\Test\Unit\Controller\Cart;
@@ -57,7 +57,7 @@ class ConfigureTest extends \PHPUnit_Framework_TestCase
      */
     protected $cartMock;
 
-    public function setUp()
+    protected function setUp()
     {
         $this->contextMock = $this->getMock('Magento\Framework\App\Action\Context', [], [], '', false);
         $this->objectManagerMock = $this->getMock('Magento\Framework\ObjectManagerInterface');
@@ -162,7 +162,7 @@ class ConfigureTest extends \PHPUnit_Framework_TestCase
 
         $productMock->expects($this->exactly(2))->method('getId')->willReturn($actualProductId);
 
-        $this->assertSame($pageMock, $this->configureController->executeInternal());
+        $this->assertSame($pageMock, $this->configureController->execute());
     }
 
     /**
@@ -206,6 +206,6 @@ class ConfigureTest extends \PHPUnit_Framework_TestCase
             ->method('create')
             ->with(ResultFactory::TYPE_REDIRECT, [])
             ->willReturn($this->resultRedirectMock);
-        $this->assertSame($this->resultRedirectMock, $this->configureController->executeInternal());
+        $this->assertSame($this->resultRedirectMock, $this->configureController->execute());
     }
 }

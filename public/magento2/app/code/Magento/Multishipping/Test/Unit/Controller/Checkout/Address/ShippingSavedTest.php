@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Multishipping\Test\Unit\Controller\Checkout\Address;
@@ -100,7 +100,7 @@ class ShippingSavedTest extends \PHPUnit_Framework_TestCase
 
         // check that checkout is reset
         $this->checkoutMock->expects($this->once())->method('reset');
-        $this->controller->executeInternal();
+        $this->controller->execute();
     }
 
     public function testExecuteDoesNotResetCheckoutIfCustomerHasMoreThanOneAddress()
@@ -120,7 +120,7 @@ class ShippingSavedTest extends \PHPUnit_Framework_TestCase
 
         // check that checkout is not reset
         $this->checkoutMock->expects($this->never())->method('reset');
-        $this->controller->executeInternal();
+        $this->controller->execute();
     }
 
     /**

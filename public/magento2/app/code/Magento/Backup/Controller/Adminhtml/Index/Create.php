@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Backup\Controller\Adminhtml\Index;
@@ -17,7 +17,7 @@ class Create extends \Magento\Backup\Controller\Adminhtml\Index
      * @return void|\Magento\Backend\App\Action
      * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */
-    public function executeInternal()
+    public function execute()
     {
         if (!$this->getRequest()->isAjax()) {
             return $this->_redirect('*/*/index');

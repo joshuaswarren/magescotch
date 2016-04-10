@@ -2,7 +2,7 @@
 /**
  * Massaction key processor
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Backend\App\Action\Plugin;
@@ -19,7 +19,7 @@ class MassactionKey
      * @return mixed
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function aroundExecute(
+    public function aroundDispatch(
         \Magento\Backend\App\AbstractAction $subject,
         \Closure $proceed,
         \Magento\Framework\App\RequestInterface $request

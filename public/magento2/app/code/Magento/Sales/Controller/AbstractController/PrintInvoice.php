@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Sales\Controller\AbstractController;
@@ -49,7 +49,7 @@ abstract class PrintInvoice extends \Magento\Framework\App\Action\Action
      *
      * @return \Magento\Framework\Controller\Result\Redirect|\Magento\Framework\View\Result\Page
      */
-    public function executeInternal()
+    public function execute()
     {
         $invoiceId = (int)$this->getRequest()->getParam('invoice_id');
         if ($invoiceId) {

@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Catalog\Controller\Adminhtml\Product\Gallery;
@@ -10,6 +10,13 @@ use Magento\Framework\App\Filesystem\DirectoryList;
 
 class Upload extends \Magento\Backend\App\Action
 {
+    /**
+     * Authorization level of a basic admin session
+     *
+     * @see _isAllowed()
+     */
+    const ADMIN_RESOURCE = 'Magento_Catalog::products';
+
     /**
      * @var \Magento\Framework\Controller\Result\RawFactory
      */
@@ -28,17 +35,9 @@ class Upload extends \Magento\Backend\App\Action
     }
 
     /**
-     * @return bool
-     */
-    protected function _isAllowed()
-    {
-        return $this->_authorization->isAllowed('Magento_Catalog::products');
-    }
-
-    /**
      * @return \Magento\Framework\Controller\Result\Raw
      */
-    public function executeInternal()
+    public function execute()
     {
         try {
             $uploader = $this->_objectManager->create(

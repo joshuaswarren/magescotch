@@ -1,7 +1,14 @@
 ############################################
-## uncomment the line below to enable developer mode
+## overrides deployment configuration mode value
+## use command bin/magento deploy:mode:set to switch modes
 
 #   SetEnv MAGE_MODE developer
+
+############################################
+## overrides default umask value to allow using different
+## file permissions
+
+#   SetEnv MAGE_UMASK 022
 
 ############################################
 ## uncomment these lines for CGI mode
@@ -208,3 +215,9 @@
         order allow,deny
         deny from all
     </Files>
+
+<IfModule mod_headers.c>
+    ############################################
+    ## prevent clickjacking
+    Header set X-Frame-Options SAMEORIGIN
+</IfModule>

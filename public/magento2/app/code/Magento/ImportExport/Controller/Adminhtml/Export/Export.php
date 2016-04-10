@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\ImportExport\Controller\Adminhtml\Export;
@@ -37,7 +37,7 @@ class Export extends ExportController
      *
      * @return \Magento\Backend\Model\View\Result\Redirect
      */
-    public function executeInternal()
+    public function execute()
     {
         if ($this->getRequest()->getPost(ExportModel::FILTER_ELEMENT_GROUP)) {
             try {

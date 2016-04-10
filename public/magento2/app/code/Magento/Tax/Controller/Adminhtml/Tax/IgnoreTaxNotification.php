@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Tax\Controller\Adminhtml\Tax;
@@ -37,7 +37,7 @@ class IgnoreTaxNotification extends \Magento\Tax\Controller\Adminhtml\Tax
      *
      * @return \Magento\Backend\Model\View\Result\Redirect
      */
-    public function executeInternal()
+    public function execute()
     {
         $section = $this->getRequest()->getParam('section');
         if ($section) {

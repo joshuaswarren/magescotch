@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Sales\Test\Unit\Model;
@@ -574,7 +574,7 @@ class OrderTest extends \PHPUnit_Framework_TestCase
         }
         $payment->expects($this->any())->method('isDeleted')->will($this->returnValue(false));
 
-        $order->setData(\Magento\Sales\Api\Data\OrderInterface::PAYMENTS, [$payment]);
+        $order->setData(\Magento\Sales\Api\Data\OrderInterface::PAYMENT, $payment);
 
         return $payment;
     }

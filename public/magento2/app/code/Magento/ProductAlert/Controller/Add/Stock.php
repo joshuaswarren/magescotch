@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\ProductAlert\Controller\Add;
@@ -37,7 +37,7 @@ class Stock extends AddController
     /**
      * @return \Magento\Framework\Controller\Result\Redirect
      */
-    public function executeInternal()
+    public function execute()
     {
         $backUrl = $this->getRequest()->getParam(Action::PARAM_NAME_URL_ENCODED);
         $productId = (int)$this->getRequest()->getParam('product_id');

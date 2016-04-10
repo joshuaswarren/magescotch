@@ -2,7 +2,7 @@
 /**
  * Unit Test for \Magento\Framework\Validator\Config
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Framework\Validator\Test\Unit;
@@ -24,6 +24,9 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
+        if (!function_exists('libxml_set_external_entity_loader')) {
+            $this->markTestSkipped('Skipped on HHVM. Will be fixed in MAGETWO-45033');
+        }
         $this->_objectManager = new \Magento\Framework\TestFramework\Unit\Helper\ObjectManager($this);
         $this->urnResolver = new \Magento\Framework\Config\Dom\UrnResolver();
     }

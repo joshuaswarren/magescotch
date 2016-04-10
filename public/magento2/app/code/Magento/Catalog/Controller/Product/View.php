@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Catalog\Controller\Product;
@@ -69,7 +69,7 @@ class View extends \Magento\Catalog\Controller\Product
      *
      * @return \Magento\Framework\Controller\Result\Forward|\Magento\Framework\Controller\Result\Redirect
      */
-    public function executeInternal()
+    public function execute()
     {
         // Get initial data from request
         $categoryId = (int) $this->getRequest()->getParam('category', false);
@@ -105,7 +105,7 @@ class View extends \Magento\Catalog\Controller\Product
 
         // Render page
         try {
-            $page = $this->resultPageFactory->create(false, ['isIsolated' => true]);
+            $page = $this->resultPageFactory->create();
             $this->viewHelper->prepareAndRender($page, $productId, $this, $params);
             return $page;
         } catch (\Magento\Framework\Exception\NoSuchEntityException $e) {

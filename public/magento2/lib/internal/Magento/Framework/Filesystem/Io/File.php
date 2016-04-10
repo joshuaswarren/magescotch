@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Framework\Filesystem\Io;
@@ -190,7 +190,7 @@ class File extends AbstractIo
             if (!is_string($value)) {
                 $value = (string)$value;
             }
-            if (isset($value[0]) && $value[0] === '=') {
+            if (isset($value[0]) && in_array($value[0], ['=', '+', '-'])) {
                 $row[$key] = ' ' . $value;
             }
         }
@@ -301,7 +301,7 @@ class File extends AbstractIo
      * @param bool $recursive
      * @return bool
      */
-    public function mkdir($dir, $mode = DriverInterface::WRITEABLE_DIRECTORY_MODE, $recursive = true)
+    public function mkdir($dir, $mode = 0777, $recursive = true)
     {
         $this->_cwd();
         $result = @mkdir($dir, $mode, $recursive);
@@ -553,7 +553,7 @@ class File extends AbstractIo
      * @return true
      * @throws \Exception
      */
-    public function checkAndCreateFolder($folder, $mode = DriverInterface::WRITEABLE_DIRECTORY_MODE)
+    public function checkAndCreateFolder($folder, $mode = 0777)
     {
         if (is_dir($folder)) {
             return true;

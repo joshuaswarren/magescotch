@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Sales\Test\Unit\Controller\Adminhtml\Order\Invoice;
@@ -72,7 +72,7 @@ class CaptureTest extends \PHPUnit_Framework_TestCase
     /**
      * @return void
      */
-    public function setUp()
+    protected function setUp()
     {
         $objectManager = new ObjectManager($this);
 
@@ -244,7 +244,7 @@ class CaptureTest extends \PHPUnit_Framework_TestCase
             ->method('create')
             ->will($this->returnValue($resultRedirect));
 
-        $this->assertSame($resultRedirect, $this->controller->executeInternal());
+        $this->assertSame($resultRedirect, $this->controller->execute());
     }
 
     /**
@@ -280,7 +280,7 @@ class CaptureTest extends \PHPUnit_Framework_TestCase
             ->method('create')
             ->will($this->returnValue($resultForward));
 
-        $this->assertSame($resultForward, $this->controller->executeInternal());
+        $this->assertSame($resultForward, $this->controller->execute());
     }
 
     /**
@@ -339,7 +339,7 @@ class CaptureTest extends \PHPUnit_Framework_TestCase
             ->method('create')
             ->will($this->returnValue($resultRedirect));
 
-        $this->assertSame($resultRedirect, $this->controller->executeInternal());
+        $this->assertSame($resultRedirect, $this->controller->execute());
     }
 
     /**
@@ -399,6 +399,6 @@ class CaptureTest extends \PHPUnit_Framework_TestCase
             ->method('create')
             ->will($this->returnValue($resultRedirect));
 
-        $this->assertSame($resultRedirect, $this->controller->executeInternal());
+        $this->assertSame($resultRedirect, $this->controller->execute());
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\ProductVideo\Test\Unit\Controller\Adminhtml\Product\Gallery;
@@ -69,7 +69,7 @@ class RetrieveImageTest extends \PHPUnit_Framework_TestCase
     /**
      * Set up
      */
-    public function setUp()
+    protected function setUp()
     {
         $this->contextMock = $this->getMock('\Magento\Backend\App\Action\Context', [], [], '', false);
         $this->rawFactoryMock =
@@ -128,6 +128,6 @@ class RetrieveImageTest extends \PHPUnit_Framework_TestCase
         $readInterface->expects($this->any())->method('getAbsolutePath')->willReturn('/var/www/application/sample.jpg');
         $this->abstractAdapter->expects($this->any())->method('validateUploadFile')->willReturn('true');
 
-        $this->image->executeInternal();
+        $this->image->execute();
     }
 }

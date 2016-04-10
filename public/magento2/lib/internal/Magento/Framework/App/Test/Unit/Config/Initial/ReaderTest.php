@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Framework\App\Test\Unit\Config\Initial;
@@ -51,6 +51,9 @@ class ReaderTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
+        if (!function_exists('libxml_set_external_entity_loader')) {
+            $this->markTestSkipped('Skipped on HHVM. Will be fixed in MAGETWO-45033');
+        }
         $this->objectManager = new \Magento\Framework\TestFramework\Unit\Helper\ObjectManager($this);
         $this->filePath = __DIR__ . '/_files/';
         $this->fileResolverMock = $this->getMock('Magento\Framework\Config\FileResolverInterface');

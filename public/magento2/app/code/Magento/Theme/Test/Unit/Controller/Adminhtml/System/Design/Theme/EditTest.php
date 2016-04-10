@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Theme\Test\Unit\Controller\Adminhtml\System\Design\Theme;
@@ -59,7 +59,7 @@ class EditTest extends \Magento\Theme\Test\Unit\Controller\Adminhtml\System\Desi
             ->method('getUrl')
             ->willReturn('http://return.url');
 
-        $this->_model->executeInternal();
+        $this->_model->execute();
     }
 
     public function testExecuteWithException()
@@ -125,7 +125,7 @@ class EditTest extends \Magento\Theme\Test\Unit\Controller\Adminhtml\System\Desi
             ->method('getUrl')
             ->willReturn('http://return.url');
 
-        $this->_model->executeInternal();
+        $this->_model->execute();
     }
 
     /**
@@ -245,6 +245,6 @@ class EditTest extends \Magento\Theme\Test\Unit\Controller\Adminhtml\System\Desi
         $this->view->expects($this->once())
             ->method('renderLayout');
 
-        $this->_model->executeInternal();
+        $this->_model->execute();
     }
 }

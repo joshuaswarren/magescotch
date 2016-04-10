@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Customer\Test\Unit\Controller\Adminhtml\System\Config\Validatevat;
@@ -104,7 +104,7 @@ class ValidateTest extends \PHPUnit_Framework_TestCase
             ])
             ->willReturn($json);
 
-        $this->assertEquals($json, $this->controller->executeInternal());
+        $this->assertEquals($json, $this->controller->execute());
     }
 
     /**

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -233,7 +233,7 @@ class ProcessDataTest extends \PHPUnit_Framework_TestCase
             ->method('forward')
             ->with('index')
             ->willReturnSelf();
-        $this->assertInstanceOf('Magento\Backend\Model\View\Result\Forward', $this->processData->executeInternal());
+        $this->assertInstanceOf('Magento\Backend\Model\View\Result\Forward', $this->processData->execute());
     }
 
     public function isApplyDiscountDataProvider()

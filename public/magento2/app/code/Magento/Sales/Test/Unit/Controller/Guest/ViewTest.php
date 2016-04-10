@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Sales\Test\Unit\Controller\Guest;
@@ -103,7 +103,7 @@ class ViewTest extends \PHPUnit_Framework_TestCase
             ->method('getBreadcrumbs')
             ->with($this->resultPageMock);
 
-        $this->assertSame($this->resultPageMock, $this->viewController->executeInternal());
+        $this->assertSame($this->resultPageMock, $this->viewController->execute());
     }
 
     /**
@@ -116,6 +116,6 @@ class ViewTest extends \PHPUnit_Framework_TestCase
             ->with($this->requestMock)
             ->willReturn($this->resultRedirectMock);
 
-        $this->assertSame($this->resultRedirectMock, $this->viewController->executeInternal());
+        $this->assertSame($this->resultRedirectMock, $this->viewController->execute());
     }
 }

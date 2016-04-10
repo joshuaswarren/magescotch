@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Sales\Controller\Order\Plugin;
@@ -40,7 +40,7 @@ class Authentication
      * @return void
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function beforeExecute(\Magento\Framework\App\ActionInterface $subject, RequestInterface $request)
+    public function beforeDispatch(\Magento\Framework\App\ActionInterface $subject, RequestInterface $request)
     {
         $loginUrl = $this->customerUrl->getLoginUrl();
 

@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\CheckoutAgreements\Controller\Adminhtml\Agreement;
@@ -11,7 +11,7 @@ class Index extends \Magento\CheckoutAgreements\Controller\Adminhtml\Agreement
     /**
      * @return void
      */
-    public function executeInternal()
+    public function execute()
     {
         $this->_initAction()->_addContent(
             $this->_view->getLayout()->createBlock('Magento\CheckoutAgreements\Block\Adminhtml\Agreement')

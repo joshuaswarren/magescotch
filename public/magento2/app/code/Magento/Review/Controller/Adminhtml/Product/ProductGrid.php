@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Review\Controller\Adminhtml\Product;
@@ -41,7 +41,7 @@ class ProductGrid extends ProductController
     /**
      * @return \Magento\Framework\Controller\Result\Raw
      */
-    public function executeInternal()
+    public function execute()
     {
         $layout = $this->layoutFactory->create();
         /** @var \Magento\Framework\Controller\Result\Raw $resultRaw */

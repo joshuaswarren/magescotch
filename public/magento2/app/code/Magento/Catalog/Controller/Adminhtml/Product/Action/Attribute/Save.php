@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Catalog\Controller\Adminhtml\Product\Action\Attribute;
@@ -85,7 +85,7 @@ class Save extends \Magento\Catalog\Controller\Adminhtml\Product\Action\Attribut
      * @SuppressWarnings(PHPMD.NPathComplexity)
      * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
-    public function executeInternal()
+    public function execute()
     {
         if (!$this->_validateProducts()) {
             return $this->resultRedirectFactory->create()->setPath('catalog/product/', ['_current' => true]);

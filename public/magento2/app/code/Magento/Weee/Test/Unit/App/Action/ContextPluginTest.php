@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Weee\Test\Unit\App\Action;
@@ -123,7 +123,7 @@ class ContextPluginTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    public function testAroundExecuteBasedOnDefault()
+    public function testAroundDispatchBasedOnDefault()
     {
         $this->customerSessionMock->expects($this->once())
             ->method('isLoggedIn')
@@ -191,10 +191,10 @@ class ContextPluginTest extends \PHPUnit_Framework_TestCase
         $proceed = function ($request) use ($expectedResult) {
             return $expectedResult;
         };
-        $this->contextPlugin->aroundExecute($action, $proceed, $request);
+        $this->contextPlugin->aroundDispatch($action, $proceed, $request);
     }
 
-    public function testAroundExecuteBasedOnOrigin()
+    public function testAroundDispatchBasedOnOrigin()
     {
         $this->customerSessionMock->expects($this->once())
             ->method('isLoggedIn')
@@ -223,10 +223,10 @@ class ContextPluginTest extends \PHPUnit_Framework_TestCase
         $proceed = function ($request) use ($expectedResult) {
             return $expectedResult;
         };
-        $this->contextPlugin->aroundExecute($action, $proceed, $request);
+        $this->contextPlugin->aroundDispatch($action, $proceed, $request);
     }
 
-    public function testAroundExecuteBasedOnBilling()
+    public function testAroundDispatchBasedOnBilling()
     {
         $this->customerSessionMock->expects($this->once())
             ->method('isLoggedIn')
@@ -298,10 +298,10 @@ class ContextPluginTest extends \PHPUnit_Framework_TestCase
         $proceed = function ($request) use ($expectedResult) {
             return $expectedResult;
         };
-        $this->contextPlugin->aroundExecute($action, $proceed, $request);
+        $this->contextPlugin->aroundDispatch($action, $proceed, $request);
     }
 
-    public function testAroundExecuteBasedOnShipping()
+    public function testAroundDispatchBasedOnShipping()
     {
         $this->customerSessionMock->expects($this->once())
             ->method('isLoggedIn')
@@ -373,6 +373,6 @@ class ContextPluginTest extends \PHPUnit_Framework_TestCase
         $proceed = function ($request) use ($expectedResult) {
             return $expectedResult;
         };
-        $this->contextPlugin->aroundExecute($action, $proceed, $request);
+        $this->contextPlugin->aroundDispatch($action, $proceed, $request);
     }
 }

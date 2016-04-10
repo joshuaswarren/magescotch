@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Customer\Test\Unit\Controller\Adminhtml\Index;
@@ -86,7 +86,7 @@ class IndexTest extends \PHPUnit_Framework_TestCase
             ->getMock();
         $this->sessionMock = $this->getMockBuilder('Magento\Backend\Model\Session')
             ->disableOriginalConstructor()
-            ->setMethods(['unsCustomerData'])
+            ->setMethods(['unsCustomerData', 'unsCustomerFormData'])
             ->getMock();
 
         $objectManager = new \Magento\Framework\TestFramework\Unit\Helper\ObjectManager($this);
@@ -108,7 +108,7 @@ class IndexTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Magento\Customer\Controller\Adminhtml\Index\Index::executeInternal
+     * @covers \Magento\Customer\Controller\Adminhtml\Index\Index::execute
      */
     public function testExecute()
     {
@@ -137,15 +137,17 @@ class IndexTest extends \PHPUnit_Framework_TestCase
             );
         $this->sessionMock->expects($this->once())
             ->method('unsCustomerData');
+        $this->sessionMock->expects($this->once())
+            ->method('unsCustomerFormData');
 
         $this->assertInstanceOf(
             'Magento\Framework\View\Result\Page',
-            $this->indexController->executeInternal()
+            $this->indexController->execute()
         );
     }
 
     /**
-     * @covers \Magento\Customer\Controller\Adminhtml\Index\Index::executeInternal
+     * @covers \Magento\Customer\Controller\Adminhtml\Index\Index::execute
      */
     public function testExecuteAjax()
     {
@@ -161,7 +163,7 @@ class IndexTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf(
             'Magento\Backend\Model\View\Result\Forward',
-            $this->indexController->executeInternal()
+            $this->indexController->execute()
         );
     }
 

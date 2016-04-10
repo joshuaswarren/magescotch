@@ -1,3 +1,0 @@
-        foreach ($result->categories as $key => $value) {
-            $result->categories[$key] = array('key' => $key, 'value' => $value);
-        }

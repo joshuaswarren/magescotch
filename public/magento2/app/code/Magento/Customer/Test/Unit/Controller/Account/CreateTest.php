@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -116,7 +116,7 @@ class CreateTest extends \PHPUnit_Framework_TestCase
         $this->resultPageMock->expects($this->never())
             ->method('getLayout');
 
-        $this->object->executeInternal();
+        $this->object->execute();
     }
 
     /**
@@ -139,6 +139,6 @@ class CreateTest extends \PHPUnit_Framework_TestCase
             ->method('create')
             ->willReturn($this->resultPageMock);
 
-        $this->object->executeInternal();
+        $this->object->execute();
     }
 }

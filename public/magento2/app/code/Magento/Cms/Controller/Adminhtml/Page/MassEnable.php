@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Cms\Controller\Adminhtml\Page;
@@ -43,7 +43,7 @@ class MassEnable extends \Magento\Backend\App\Action
      * @return \Magento\Backend\Model\View\Result\Redirect
      * @throws \Magento\Framework\Exception\LocalizedException|\Exception
      */
-    public function executeInternal()
+    public function execute()
     {
         $collection = $this->filter->getCollection($this->collectionFactory->create());
 

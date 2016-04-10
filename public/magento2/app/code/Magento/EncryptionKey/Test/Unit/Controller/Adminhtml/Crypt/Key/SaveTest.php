@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -14,20 +14,26 @@ class SaveTest extends \PHPUnit_Framework_TestCase
 {
     /** @var \Magento\Framework\Encryption\EncryptorInterface|\PHPUnit_Framework_MockObject_MockObject */
     protected $encryptMock;
+
     /** @var \Magento\EncryptionKey\Model\ResourceModel\Key\Change|\PHPUnit_Framework_MockObject_MockObject */
     protected $changeMock;
+
     /** @var \Magento\Framework\App\CacheInterface|\PHPUnit_Framework_MockObject_MockObject */
     protected $cacheMock;
+
     /** @var \Magento\Framework\App\RequestInterface|\PHPUnit_Framework_MockObject_MockObject */
     protected $requestMock;
+
     /** @var \Magento\Framework\Message\ManagerInterface|\PHPUnit_Framework_MockObject_MockObject */
     protected $managerMock;
+
     /** @var \Magento\Framework\App\ResponseInterface|\PHPUnit_Framework_MockObject_MockObject */
     protected $responseMock;
+
     /** @var \Magento\EncryptionKey\Controller\Adminhtml\Crypt\Key\Save */
     protected $model;
 
-    public function setUp()
+    protected function setUp()
     {
         $this->encryptMock = $this->getMockBuilder('Magento\Framework\Encryption\EncryptorInterface')
             ->disableOriginalConstructor()
@@ -90,7 +96,7 @@ class SaveTest extends \PHPUnit_Framework_TestCase
         $this->cacheMock->expects($this->once())->method('clean');
         $this->responseMock->expects($this->once())->method('setRedirect');
 
-        $this->model->executeInternal();
+        $this->model->execute();
     }
 
     public function testExecuteNonRandomAndWithoutCryptKey()
@@ -108,7 +114,7 @@ class SaveTest extends \PHPUnit_Framework_TestCase
             ->willReturn($key);
         $this->managerMock->expects($this->once())->method('addErrorMessage');
 
-        $this->model->executeInternal();
+        $this->model->execute();
     }
 
     public function testExecuteRandom()
@@ -125,6 +131,6 @@ class SaveTest extends \PHPUnit_Framework_TestCase
         $this->cacheMock->expects($this->once())->method('clean');
         $this->responseMock->expects($this->once())->method('setRedirect');
 
-        $this->model->executeInternal();
+        $this->model->execute();
     }
 }

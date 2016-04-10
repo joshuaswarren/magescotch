@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Wishlist\Test\Unit\Controller\Shared;
@@ -132,7 +132,7 @@ class AllcartTest extends \PHPUnit_Framework_TestCase
             ->with($url)
             ->willReturnSelf();
 
-        $this->assertSame($this->resultRedirectMock, $this->allcartController->executeInternal());
+        $this->assertSame($this->resultRedirectMock, $this->allcartController->execute());
     }
 
     public function testExecuteWithNoWishlist()
@@ -145,6 +145,6 @@ class AllcartTest extends \PHPUnit_Framework_TestCase
             ->with('noroute')
             ->willReturnSelf();
 
-        $this->assertSame($this->resultForwardMock, $this->allcartController->executeInternal());
+        $this->assertSame($this->resultForwardMock, $this->allcartController->execute());
     }
 }

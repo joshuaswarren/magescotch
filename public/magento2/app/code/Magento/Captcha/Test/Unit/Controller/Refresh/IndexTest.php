@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Captcha\Test\Unit\Controller\Refresh;
@@ -100,7 +100,7 @@ class IndexTest extends \PHPUnit_Framework_TestCase
         $this->responseMock->expects($this->once())->method('representJson')->with(json_encode(['imgSrc' => 'source']));
         $this->flagMock->expects($this->once())->method('set')->with('', 'no-postDispatch', true);
 
-        $this->model->executeInternal();
+        $this->model->execute();
     }
 
     /**

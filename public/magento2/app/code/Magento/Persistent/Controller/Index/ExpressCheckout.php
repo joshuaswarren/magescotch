@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Persistent\Controller\Index;
@@ -18,7 +18,7 @@ class ExpressCheckout extends Index
      *
      * @return \Magento\Framework\Controller\Result\Redirect
      */
-    public function executeInternal()
+    public function execute()
     {
         $this->messageManager->addNotice(__('Your shopping cart has been updated with new prices.'));
         /** @var \Magento\Framework\Controller\Result\Redirect $resultRedirect */

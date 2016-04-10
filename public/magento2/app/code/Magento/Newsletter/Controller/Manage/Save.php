@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Newsletter\Controller\Manage;
@@ -60,7 +60,7 @@ class Save extends \Magento\Newsletter\Controller\Manage
      *
      * @return void|null
      */
-    public function executeInternal()
+    public function execute()
     {
         if (!$this->formKeyValidator->validate($this->getRequest())) {
             return $this->_redirect('customer/account/');

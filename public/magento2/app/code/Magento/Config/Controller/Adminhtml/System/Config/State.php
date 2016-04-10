@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Config\Controller\Adminhtml\System\Config;
@@ -36,7 +36,7 @@ class State extends AbstractScopeConfig
      *
      * @return \Magento\Framework\Controller\Result\Raw
      */
-    public function executeInternal()
+    public function execute()
     {
         if ($this->getRequest()->getParam('isAjax')
             && $this->getRequest()->getParam('container') != ''

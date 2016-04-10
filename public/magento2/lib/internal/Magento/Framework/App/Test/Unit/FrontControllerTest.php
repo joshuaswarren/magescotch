@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Framework\App\Test\Unit;
@@ -80,9 +80,11 @@ class FrontControllerTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue(true));
 
         $response = $this->getMock('Magento\Framework\App\Response\Http', [], [], '', false);
-        $controllerInstance = $this->getMock('Magento\Framework\App\ActionInterface');
+        $controllerInstance = $this->getMockBuilder('Magento\Framework\App\Action\Action')
+            ->disableOriginalConstructor()
+            ->getMock();
         $controllerInstance->expects($this->any())
-            ->method('execute')
+            ->method('dispatch')
             ->with($this->request)
             ->will($this->returnValue($response));
         $this->router->expects($this->at(0))
@@ -112,9 +114,11 @@ class FrontControllerTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue(true));
 
         $response = $this->getMock('Magento\Framework\App\Response\Http', [], [], '', false);
-        $controllerInstance = $this->getMock('Magento\Framework\App\ActionInterface');
+        $controllerInstance = $this->getMockBuilder('Magento\Framework\App\Action\Action')
+            ->disableOriginalConstructor()
+            ->getMock();
         $controllerInstance->expects($this->any())
-            ->method('execute')
+            ->method('dispatch')
             ->with($this->request)
             ->will($this->returnValue($response));
         $this->router->expects($this->at(0))

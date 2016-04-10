@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -45,6 +45,6 @@ class ExportOrdersExcelTest extends \Magento\Reports\Test\Unit\Controller\Adminh
             ->expects($this->once())
             ->method('create')
             ->with('customers_orders.xml', ['export'], \Magento\Framework\App\Filesystem\DirectoryList::VAR_DIR);
-        $this->exportOrdersExcel->executeInternal();
+        $this->exportOrdersExcel->execute();
     }
 }

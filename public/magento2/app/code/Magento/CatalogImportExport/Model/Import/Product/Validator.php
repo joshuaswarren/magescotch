@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\CatalogImportExport\Model\Import\Product;
@@ -34,6 +34,11 @@ class Validator extends AbstractValidator implements RowValidatorInterface
      * @var array
      */
     protected $_rowData;
+
+    /*
+     * @var string|null
+     */
+    protected $invalidAttribute;
 
     /**
      * @param \Magento\Framework\Stdlib\StringUtils $string
@@ -104,6 +109,8 @@ class Validator extends AbstractValidator implements RowValidatorInterface
         $doCheck = false;
         if ($attrCode == Product::COL_SKU) {
             $doCheck = true;
+        } elseif ($attrCode == 'price') {
+            $doCheck = false;
         } elseif ($attributeParams['is_required'] && $this->getRowScope($rowData) == Product::SCOPE_DEFAULT
             && $this->context->getBehavior() != \Magento\ImportExport\Model\Import::BEHAVIOR_DELETE
         ) {
@@ -124,7 +131,9 @@ class Validator extends AbstractValidator implements RowValidatorInterface
     public function isAttributeValid($attrCode, array $attrParams, array $rowData)
     {
         $this->_rowData = $rowData;
-        if (!empty($attrParams['apply_to']) && !in_array($rowData['product_type'], $attrParams['apply_to'])) {
+        if (isset($rowData['product_type']) && !empty($attrParams['apply_to'])
+            && !in_array($rowData['product_type'], $attrParams['apply_to'])
+        ) {
             return true;
         }
 
@@ -196,8 +205,30 @@ class Validator extends AbstractValidator implements RowValidatorInterface
             }
             $this->_uniqueAttributes[$attrCode][$rowData[$attrCode]] = $rowData[Product::COL_SKU];
         }
+        
+        if (!$valid) {
+            $this->setInvalidAttribute($attrCode);
+        }
+
         return (bool)$valid;
 
+    }
+
+    /**
+     * @param string|null $attribute
+     * @return void
+     */
+    protected function setInvalidAttribute($attribute)
+    {
+        $this->invalidAttribute = $attribute;
+    }
+
+    /**
+     * @return string
+     */
+    public function getInvalidAttribute()
+    {
+        return $this->invalidAttribute;
     }
 
     /**
@@ -207,6 +238,7 @@ class Validator extends AbstractValidator implements RowValidatorInterface
     protected function isValidAttributes()
     {
         $this->_clearMessages();
+        $this->setInvalidAttribute(null);
         if (!isset($this->_rowData['product_type'])) {
             return false;
         }

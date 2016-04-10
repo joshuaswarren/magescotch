@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Downloadable\Controller\Adminhtml\Downloadable\Product\Edit;
@@ -31,7 +31,7 @@ class Sample extends \Magento\Downloadable\Controller\Adminhtml\Downloadable\Pro
      *
      * @return void
      */
-    public function executeInternal()
+    public function execute()
     {
         $sampleId = $this->getRequest()->getParam('id', 0);
         /** @var \Magento\Downloadable\Model\Sample $sample */

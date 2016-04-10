@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -138,6 +138,7 @@ class SetupUtil
         'coupon_type' => \Magento\SalesRule\Model\Rule::COUPON_TYPE_NO_COUPON,
         'simple_action' => 'by_percent',
         'discount_amount' => 40,
+        'discount_step' => 0,
         'stop_rules_processing' => 1,
         'website_ids' => [1],
     ];
@@ -464,7 +465,7 @@ class SetupUtil
         $product->isObjectNew(true);
         $product->setTypeId('simple')
             ->setAttributeSetId(4)
-            ->setName('Simple Product')
+            ->setName('Simple Product' . $sku)
             ->setSku($sku)
             ->setPrice($price)
             ->setTaxClassId($taxClassId)

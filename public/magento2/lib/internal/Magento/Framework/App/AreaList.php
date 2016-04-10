@@ -2,7 +2,7 @@
 /**
  * Application area list
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Framework\App;
@@ -69,9 +69,8 @@ class AreaList
     {
         foreach ($this->_areas as $areaCode => &$areaInfo) {
             if (!isset($areaInfo['frontName']) && isset($areaInfo['frontNameResolver'])) {
-                $areaInfo['frontName'] = $this->_resolverFactory->create(
-                    $areaInfo['frontNameResolver']
-                )->getFrontName();
+                $resolver = $this->_resolverFactory->create($areaInfo['frontNameResolver']);
+                $areaInfo['frontName'] = $resolver->getFrontName(true);
             }
             if ($areaInfo['frontName'] == $frontName) {
                 return $areaCode;

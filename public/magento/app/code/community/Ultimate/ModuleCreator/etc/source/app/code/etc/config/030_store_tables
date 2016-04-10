@@ -1,3 +1,0 @@
-                    <{{entity}}_store>
-                        <table>{{namespace}}_{{module}}_{{entity}}_store</table>
-                    </{{entity}}_store>

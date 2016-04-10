@@ -1,7 +1,0 @@
-            default:
-                parent::{{filterMethod}}($attribute, $condition, $joinType);
-                break;
-        }
-        return $this;
-    }
-}

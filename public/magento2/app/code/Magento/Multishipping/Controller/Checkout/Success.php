@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Multishipping\Controller\Checkout;
@@ -15,7 +15,7 @@ class Success extends \Magento\Multishipping\Controller\Checkout
      *
      * @return void
      */
-    public function executeInternal()
+    public function execute()
     {
         if (!$this->_getState()->getCompleteStep(State::STEP_OVERVIEW)) {
             $this->_redirect('*/*/addresses');

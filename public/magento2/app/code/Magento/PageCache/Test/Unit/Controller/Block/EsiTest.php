@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -123,7 +123,7 @@ class EsiTest extends \PHPUnit_Framework_TestCase
             ->method('appendBody')
             ->with($this->equalTo($html));
 
-        $this->action->executeInternal();
+        $this->action->execute();
     }
 
     public function executeDataProvider()
@@ -145,6 +145,6 @@ class EsiTest extends \PHPUnit_Framework_TestCase
         $this->requestMock->expects($this->any())->method('getParam')->will($this->returnValueMap($mapData));
         $this->viewMock->expects($this->never())->method('getLayout')->will($this->returnValue($this->layoutMock));
 
-        $this->action->executeInternal();
+        $this->action->execute();
     }
 }

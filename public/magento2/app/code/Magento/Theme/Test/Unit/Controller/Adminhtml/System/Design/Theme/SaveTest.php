@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Theme\Test\Unit\Controller\Adminhtml\System\Design\Theme;
@@ -85,6 +85,6 @@ class SaveTest extends \Magento\Theme\Test\Unit\Controller\Adminhtml\System\Desi
             ->with('Magento\Theme\Model\Theme\SingleFile')
             ->will($this->returnValue(null));
 
-        $this->_model->executeInternal();
+        $this->_model->execute();
     }
 }

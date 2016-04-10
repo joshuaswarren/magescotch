@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -91,7 +91,7 @@ class SaveTest extends \PHPUnit_Framework_TestCase
     /**
      * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
-    public function setUp()
+    protected function setUp()
     {
         $objectManagerHelper = new ObjectManagerHelper($this);
         $this->shipmentLoader = $this->getMockBuilder('Magento\Shipping\Controller\Adminhtml\Order\ShipmentLoader')
@@ -249,7 +249,7 @@ class SaveTest extends \PHPUnit_Framework_TestCase
             $this->shipmentLoader->expects($this->never())
                 ->method('load');
 
-            $this->assertEquals($this->resultRedirect, $this->saveAction->executeInternal());
+            $this->assertEquals($this->resultRedirect, $this->saveAction->execute());
         } else {
             $shipmentId = 1000012;
             $orderId = 10003;
@@ -345,7 +345,7 @@ class SaveTest extends \PHPUnit_Framework_TestCase
                 ->will($this->returnValue($orderId));
             $this->prepareRedirect($path, $arguments);
 
-            $this->saveAction->executeInternal();
+            $this->saveAction->execute();
             $this->assertEquals($this->response, $this->saveAction->getResponse());
         }
     }

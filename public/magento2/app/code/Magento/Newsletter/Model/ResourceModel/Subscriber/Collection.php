@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Newsletter\Model\ResourceModel\Subscriber;
@@ -146,7 +146,8 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
             [
                 'customer' => $this->getTable('customer_entity')
             ],
-            'main_table.customer_id = customer.entity_id'
+            'main_table.customer_id = customer.entity_id',
+            ['firstname', 'lastname']
         );
         return $this;
     }

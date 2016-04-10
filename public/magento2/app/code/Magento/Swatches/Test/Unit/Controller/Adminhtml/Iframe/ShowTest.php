@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Swatches\Test\Unit\Controller\Adminhtml\Iframe;
@@ -45,7 +45,7 @@ class ShowTest extends \PHPUnit_Framework_TestCase
     /** @var ObjectManager|\Magento\Swatches\Controller\Adminhtml\Iframe\Show */
     protected $controller;
 
-    public function setUp()
+    protected function setUp()
     {
         $this->contextMock = $this->getMock('\Magento\Backend\App\Action\Context', [], [], '', false);
         $observerMock = $this->getMock('\Magento\Framework\Event\Manager', [], [], '', false);
@@ -96,7 +96,7 @@ class ShowTest extends \PHPUnit_Framework_TestCase
             ->expects($this->once())
             ->method('create')
             ->will($this->throwException(new \Exception));
-        $this->controller->executeInternal();
+        $this->controller->execute();
     }
 
     /**
@@ -132,7 +132,7 @@ class ShowTest extends \PHPUnit_Framework_TestCase
 
         $this->responseMock->expects($this->once())->method('setBody')->willReturn(json_encode($expectedResult));
 
-        $this->controller->executeInternal();
+        $this->controller->execute();
     }
 
     public function dataForExecute()

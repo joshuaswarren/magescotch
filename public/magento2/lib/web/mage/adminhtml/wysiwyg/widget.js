@@ -1,5 +1,5 @@
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -209,7 +209,7 @@ define([
             var descrCnt = $('widget-description-' + this.widgetEl.selectedIndex);
             if(noteCnt != undefined) {
                 var description = (descrCnt != undefined ? descrCnt.innerHTML : '');
-                noteCnt.update(descrCnt.innerHTML);
+                noteCnt.update(description);
             }
         },
 
@@ -273,6 +273,7 @@ define([
                 var textarea = document.getElementById(this.widgetTargetId);
                 updateElementAtCursor(textarea, content);
                 varienGlobalEvents.fireEvent('tinymceChange');
+                jQuery(textarea).change();
             }
         },
 

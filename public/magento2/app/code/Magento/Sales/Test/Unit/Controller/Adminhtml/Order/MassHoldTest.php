@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -90,7 +90,7 @@ class MassHoldTest extends \PHPUnit_Framework_TestCase
      */
     protected $orderManagementMock;
 
-    public function setUp()
+    protected function setUp()
     {
         $objectManagerHelper = new ObjectManagerHelper($this);
         $this->orderManagementMock = $this->getMockBuilder('Magento\Sales\Api\OrderManagementInterface')
@@ -217,7 +217,7 @@ class MassHoldTest extends \PHPUnit_Framework_TestCase
             ->with('sales/*/')
             ->willReturnSelf();
 
-        $this->massAction->executeInternal();
+        $this->massAction->execute();
     }
 
     public function testExecuteNoOrdersPutOnHold()
@@ -257,6 +257,6 @@ class MassHoldTest extends \PHPUnit_Framework_TestCase
             ->with('sales/*/')
             ->willReturnSelf();
 
-        $this->massAction->executeInternal();
+        $this->massAction->execute();
     }
 }

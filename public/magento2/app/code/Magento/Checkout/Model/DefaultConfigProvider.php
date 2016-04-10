@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Checkout\Model;
@@ -265,6 +265,7 @@ class DefaultConfigProvider implements ConfigProviderInterface
         $output['isCustomerLoginRequired'] = $this->isCustomerLoginRequired();
         $output['registerUrl'] = $this->getRegisterUrl();
         $output['checkoutUrl'] = $this->getCheckoutUrl();
+        $output['defaultSuccessPageUrl'] = $this->getDefaultSuccessPageUrl();
         $output['pageNotFoundUrl'] = $this->pageNotFoundUrl();
         $output['forgotPasswordUrl'] = $this->getForgotPasswordUrl();
         $output['staticBaseUrl'] = $this->getStaticBaseUrl();
@@ -278,7 +279,6 @@ class DefaultConfigProvider implements ConfigProviderInterface
         );
         $output['postCodes'] = $this->postCodesConfig->getPostCodes();
         $output['imageData'] = $this->imageProvider->getImages($quoteId);
-        $output['defaultCountryId'] = $this->directoryHelper->getDefaultCountry();
         $output['totalsData'] = $this->getTotalsData();
         $output['shippingPolicy'] = [
             'isEnabled' => $this->scopeConfig->isSetFlag(
@@ -450,6 +450,17 @@ class DefaultConfigProvider implements ConfigProviderInterface
     public function pageNotFoundUrl()
     {
         return $this->urlBuilder->getUrl('checkout/noroute');
+    }
+
+    /**
+     * Retrieve default success page URL
+     *
+     * @return string
+     * @codeCoverageIgnore
+     */
+    public function getDefaultSuccessPageUrl()
+    {
+        return $this->urlBuilder->getUrl('checkout/onepage/success/');
     }
 
     /**

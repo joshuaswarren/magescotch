@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Backup\Test\Unit\Controller\Adminhtml\Index;
@@ -84,7 +84,7 @@ class DownloadTest extends \PHPUnit_Framework_TestCase
      */
     protected $resultRedirectMock;
 
-    public function setUp()
+    protected function setUp()
     {
         $this->objectManagerMock = $this->getMockBuilder('Magento\Framework\ObjectManagerInterface')
             ->getMock();
@@ -143,7 +143,7 @@ class DownloadTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Magento\Backup\Controller\Adminhtml\Index\Download::executeInternal
+     * @covers \Magento\Backup\Controller\Adminhtml\Index\Download::execute
      */
     public function testExecuteBackupFound()
     {
@@ -201,11 +201,11 @@ class DownloadTest extends \PHPUnit_Framework_TestCase
             ->method('create')
             ->willReturn($this->resultRawMock);
 
-        $this->assertSame($this->resultRawMock, $this->downloadController->executeInternal());
+        $this->assertSame($this->resultRawMock, $this->downloadController->execute());
     }
 
     /**
-     * @covers \Magento\Backup\Controller\Adminhtml\Index\Download::executeInternal
+     * @covers \Magento\Backup\Controller\Adminhtml\Index\Download::execute
      * @param int $time
      * @param bool $exists
      * @param int $existsCount
@@ -240,7 +240,7 @@ class DownloadTest extends \PHPUnit_Framework_TestCase
             ->method('create')
             ->willReturn($this->resultRedirectMock);
 
-        $this->assertSame($this->resultRedirectMock, $this->downloadController->executeInternal());
+        $this->assertSame($this->resultRedirectMock, $this->downloadController->execute());
     }
 
     /**

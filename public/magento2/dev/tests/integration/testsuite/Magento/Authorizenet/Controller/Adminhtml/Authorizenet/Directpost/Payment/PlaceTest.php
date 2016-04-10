@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Authorizenet\Controller\Adminhtml\Authorizenet\Directpost\Payment;
@@ -13,7 +13,7 @@ class PlaceTest extends \Magento\TestFramework\TestCase\AbstractBackendControlle
     /**
      * Test requestToAuthorizenetData returning
      */
-    public function testExecuteInternalAuthorizenetDataReturning()
+    public function testExecuteAuthorizenetDataReturning()
     {
         $requestToAuthorizenetData = ['Authorizenet' => 'data'];
 
@@ -56,12 +56,11 @@ class PlaceTest extends \Magento\TestFramework\TestCase\AbstractBackendControlle
             ]
         );
 
-        /** @var \Magento\Authorizenet\Controller\Adminhtml\Authorizenet\Directpost\Payment\PlaceTesting $controller */
         $controller = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
             'Magento\Authorizenet\Controller\Adminhtml\Authorizenet\Directpost\Payment\PlaceTesting',
             ['context' => $context]
         );
-        $controller->executeInternal();
+        $controller->execute();
         $this->assertContains(json_encode($requestToAuthorizenetData), $this->getResponse()->getBody());
     }
 

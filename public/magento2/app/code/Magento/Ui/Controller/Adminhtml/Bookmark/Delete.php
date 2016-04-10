@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Ui\Controller\Adminhtml\Bookmark;
@@ -48,7 +48,7 @@ class Delete extends AbstractAction
      *
      * @return void
      */
-    protected function executeInternal()
+    public function execute()
     {
         $viewIds = explode('.', $this->_request->getParam('data'));
         $bookmark = $this->bookmarkManagement->getByIdentifierNamespace(

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Framework\App\Action;
@@ -83,7 +83,7 @@ abstract class Action extends AbstractAction
      * @return ResponseInterface
      * @throws NotFoundException
      */
-    public function execute(RequestInterface $request)
+    public function dispatch(RequestInterface $request)
     {
         $this->_request = $request;
         $profilerKey = 'CONTROLLER_ACTION:' . $request->getFullActionName();
@@ -99,7 +99,7 @@ abstract class Action extends AbstractAction
         $result = null;
         if ($request->isDispatched() && !$this->_actionFlag->get('', self::FLAG_NO_DISPATCH)) {
             \Magento\Framework\Profiler::start('action_body');
-            $result = $this->executeInternal();
+            $result = $this->execute();
             \Magento\Framework\Profiler::start('postdispatch');
             if (!$this->_actionFlag->get('', self::FLAG_NO_POST_DISPATCH)) {
                 $this->_eventManager->dispatch(
@@ -118,11 +118,6 @@ abstract class Action extends AbstractAction
         \Magento\Framework\Profiler::stop($profilerKey);
         return $result ?: $this->_response;
     }
-
-    /**
-     * @return ResultInterface
-     */
-    abstract protected function executeInternal();
 
     /**
      * Throw control to different action (control and module if was specified).

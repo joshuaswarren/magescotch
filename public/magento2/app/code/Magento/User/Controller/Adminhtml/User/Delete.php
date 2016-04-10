@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\User\Controller\Adminhtml\User;
@@ -11,7 +11,7 @@ class Delete extends \Magento\User\Controller\Adminhtml\User
     /**
      * @return void
      */
-    public function executeInternal()
+    public function execute()
     {
         $currentUser = $this->_objectManager->get('Magento\Backend\Model\Auth\Session')->getUser();
 

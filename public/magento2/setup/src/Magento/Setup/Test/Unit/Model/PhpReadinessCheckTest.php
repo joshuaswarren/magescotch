@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Setup\Test\Unit\Model;
@@ -57,7 +57,7 @@ class PhpReadinessCheckTest extends \PHPUnit_Framework_TestCase
     {
         $this->composerInfo->expects($this->once())->method('getRequiredPhpVersion')->willReturn('1.0');
         $multipleConstraints = $this->getMockForAbstractClass(
-            'Composer\Package\LinkConstraint\LinkConstraintInterface',
+            'Composer\Semver\Constraint\ConstraintInterface',
             [],
             '',
             false
@@ -68,7 +68,7 @@ class PhpReadinessCheckTest extends \PHPUnit_Framework_TestCase
             ->willThrowException(new \UnexpectedValueException());
         $this->versionParser->expects($this->at(2))->method('normalize')->willReturn('1.0');
         $currentPhpVersion = $this->getMockForAbstractClass(
-            'Composer\Package\LinkConstraint\LinkConstraintInterface',
+            'Composer\Semver\Constraint\ConstraintInterface',
             [],
             '',
             false
@@ -89,7 +89,7 @@ class PhpReadinessCheckTest extends \PHPUnit_Framework_TestCase
     {
         $this->composerInfo->expects($this->once())->method('getRequiredPhpVersion')->willReturn('1.0');
         $multipleConstraints = $this->getMockForAbstractClass(
-            'Composer\Package\LinkConstraint\LinkConstraintInterface',
+            'Composer\Semver\Constraint\ConstraintInterface',
             [],
             '',
             false
@@ -100,7 +100,7 @@ class PhpReadinessCheckTest extends \PHPUnit_Framework_TestCase
             ->willThrowException(new \UnexpectedValueException());
         $this->versionParser->expects($this->at(2))->method('normalize')->willReturn('1.0');
         $currentPhpVersion = $this->getMockForAbstractClass(
-            'Composer\Package\LinkConstraint\LinkConstraintInterface',
+            'Composer\Semver\Constraint\ConstraintInterface',
             [],
             '',
             false
@@ -117,11 +117,10 @@ class PhpReadinessCheckTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $this->phpReadinessCheck->checkPhpVersion());
     }
 
-    public function testCheckPhpVersion()
+    private function setUpNoPrettyVersionParser()
     {
-        $this->composerInfo->expects($this->once())->method('getRequiredPhpVersion')->willReturn('1.0');
         $multipleConstraints = $this->getMockForAbstractClass(
-            'Composer\Package\LinkConstraint\LinkConstraintInterface',
+            'Composer\Semver\Constraint\ConstraintInterface',
             [],
             '',
             false
@@ -129,13 +128,20 @@ class PhpReadinessCheckTest extends \PHPUnit_Framework_TestCase
         $this->versionParser->expects($this->at(0))->method('parseConstraints')->willReturn($multipleConstraints);
         $this->versionParser->expects($this->at(1))->method('normalize')->willReturn('1.0');
         $currentPhpVersion = $this->getMockForAbstractClass(
-            'Composer\Package\LinkConstraint\LinkConstraintInterface',
+            'Composer\Semver\Constraint\ConstraintInterface',
             [],
             '',
             false
         );
         $this->versionParser->expects($this->at(2))->method('parseConstraints')->willReturn($currentPhpVersion);
         $multipleConstraints->expects($this->once())->method('matches')->willReturn(true);
+    }
+
+    public function testCheckPhpVersion()
+    {
+        $this->composerInfo->expects($this->once())->method('getRequiredPhpVersion')->willReturn('1.0');
+
+        $this->setUpNoPrettyVersionParser();
         $expected = [
             'responseType' => ResponseTypeInterface::RESPONSE_TYPE_SUCCESS,
             'data' => [
@@ -150,7 +156,7 @@ class PhpReadinessCheckTest extends \PHPUnit_Framework_TestCase
     {
         $this->composerInfo->expects($this->once())->method('getRequiredPhpVersion')->willReturn('1.0');
         $multipleConstraints = $this->getMockForAbstractClass(
-            'Composer\Package\LinkConstraint\LinkConstraintInterface',
+            'Composer\Semver\Constraint\ConstraintInterface',
             [],
             '',
             false
@@ -158,7 +164,7 @@ class PhpReadinessCheckTest extends \PHPUnit_Framework_TestCase
         $this->versionParser->expects($this->at(0))->method('parseConstraints')->willReturn($multipleConstraints);
         $this->versionParser->expects($this->at(1))->method('normalize')->willReturn('1.0');
         $currentPhpVersion = $this->getMockForAbstractClass(
-            'Composer\Package\LinkConstraint\LinkConstraintInterface',
+            'Composer\Semver\Constraint\ConstraintInterface',
             [],
             '',
             false
@@ -186,12 +192,13 @@ class PhpReadinessCheckTest extends \PHPUnit_Framework_TestCase
             100,
             50
         );
+
         $rawPostMessage = sprintf(
             'Your PHP Version is %s, but always_populate_raw_post_data = -1.
- 	        $HTTP_RAW_POST_DATA is deprecated from PHP 5.6 onwards and will stop the installer from running.
+ 	        $HTTP_RAW_POST_DATA is deprecated from PHP 5.6 onwards and will be removed in PHP 7.0.
+ 	        This will stop the installer from running.
 	        Please open your php.ini file and set always_populate_raw_post_data to -1.
- 	        If you need more help please call your hosting provider.
- 	        ',
+ 	        If you need more help please call your hosting provider.',
             PHP_VERSION
         );
         $expected = [
@@ -201,13 +208,16 @@ class PhpReadinessCheckTest extends \PHPUnit_Framework_TestCase
                     'message' => $xdebugMessage,
                     'error' => false,
                 ],
-                'always_populate_raw_post_data' => [
-                    'message' => $rawPostMessage,
-                    'helpUrl' => 'http://php.net/manual/en/ini.core.php#ini.always-populate-settings-data',
-                    'error' => false
-                ]
             ]
         ];
+        if (!$this->isPhp7OrHhvm()) {
+            $this->setUpNoPrettyVersionParser();
+            $expected['data']['always_populate_raw_post_data'] = [
+                'message' => $rawPostMessage,
+                'helpUrl' => 'http://php.net/manual/en/ini.core.php#ini.always-populate-settings-data',
+                'error' => false
+            ];
+        }
         $this->assertEquals($expected, $this->phpReadinessCheck->checkPhpSettings());
     }
 
@@ -222,12 +232,13 @@ class PhpReadinessCheckTest extends \PHPUnit_Framework_TestCase
             100,
             200
         );
+
         $rawPostMessage = sprintf(
             'Your PHP Version is %s, but always_populate_raw_post_data = -1.
- 	        $HTTP_RAW_POST_DATA is deprecated from PHP 5.6 onwards and will stop the installer from running.
+ 	        $HTTP_RAW_POST_DATA is deprecated from PHP 5.6 onwards and will be removed in PHP 7.0.
+ 	        This will stop the installer from running.
 	        Please open your php.ini file and set always_populate_raw_post_data to -1.
- 	        If you need more help please call your hosting provider.
- 	        ',
+ 	        If you need more help please call your hosting provider.',
             PHP_VERSION
         );
         $expected = [
@@ -236,38 +247,46 @@ class PhpReadinessCheckTest extends \PHPUnit_Framework_TestCase
                 'xdebug_max_nesting_level' => [
                     'message' => $xdebugMessage,
                     'error' => true,
-                ],
-                'always_populate_raw_post_data' => [
-                    'message' => $rawPostMessage,
-                    'helpUrl' => 'http://php.net/manual/en/ini.core.php#ini.always-populate-settings-data',
-                    'error' => false
                 ]
             ]
         ];
+        if (!$this->isPhp7OrHhvm()) {
+            $this->setUpNoPrettyVersionParser();
+            $expected['data']['always_populate_raw_post_data'] = [
+                'message' => $rawPostMessage,
+                'helpUrl' => 'http://php.net/manual/en/ini.core.php#ini.always-populate-settings-data',
+                'error' => false
+            ];
+        }
         $this->assertEquals($expected, $this->phpReadinessCheck->checkPhpSettings());
     }
 
     public function testCheckPhpSettingsNoXDebug()
     {
         $this->phpInfo->expects($this->once())->method('getCurrent')->willReturn([]);
+
         $rawPostMessage = sprintf(
             'Your PHP Version is %s, but always_populate_raw_post_data = -1.
- 	        $HTTP_RAW_POST_DATA is deprecated from PHP 5.6 onwards and will stop the installer from running.
+ 	        $HTTP_RAW_POST_DATA is deprecated from PHP 5.6 onwards and will be removed in PHP 7.0.
+ 	        This will stop the installer from running.
 	        Please open your php.ini file and set always_populate_raw_post_data to -1.
- 	        If you need more help please call your hosting provider.
- 	        ',
+ 	        If you need more help please call your hosting provider.',
             PHP_VERSION
         );
         $expected = [
             'responseType' => ResponseTypeInterface::RESPONSE_TYPE_SUCCESS,
-            'data' => [
+            'data' => []
+        ];
+        if (!$this->isPhp7OrHhvm()) {
+            $this->setUpNoPrettyVersionParser();
+            $expected['data'] = [
                 'always_populate_raw_post_data' => [
                     'message' => $rawPostMessage,
                     'helpUrl' => 'http://php.net/manual/en/ini.core.php#ini.always-populate-settings-data',
                     'error' => false
                 ]
-            ]
-        ];
+            ];
+        }
         $this->assertEquals($expected, $this->phpReadinessCheck->checkPhpSettings());
     }
 
@@ -320,6 +339,14 @@ class PhpReadinessCheckTest extends \PHPUnit_Framework_TestCase
             ]
         ];
         $this->assertEquals($expected, $this->phpReadinessCheck->checkPhpExtensions());
+    }
+    
+    /**
+     * @return bool
+     */
+    protected function isPhp7OrHhvm()
+    {
+        return version_compare(PHP_VERSION, '7.0.0-beta') >= 0 || defined('HHVM_VERSION');
     }
 }
 

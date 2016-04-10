@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Cms\Controller\Adminhtml\Page\Widget;
@@ -40,7 +40,7 @@ class Chooser extends \Magento\Backend\App\Action
      *
      * @return \Magento\Framework\Controller\Result\Raw
      */
-    public function executeInternal()
+    public function execute()
     {
         $uniqId = $this->getRequest()->getParam('uniq_id');
         /** @var \Magento\Framework\View\Layout $layout */

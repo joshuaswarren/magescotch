@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Reports\Controller\Adminhtml\Report\Review;
@@ -16,7 +16,7 @@ class ExportProductCsv extends \Magento\Reports\Controller\Adminhtml\Report\Revi
      *
      * @return ResponseInterface
      */
-    public function executeInternal()
+    public function execute()
     {
         $this->_view->loadLayout(false);
         $fileName = 'review_product.csv';

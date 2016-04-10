@@ -1,5 +1,5 @@
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -28,12 +28,19 @@ var app = angular.module(
         'updater-success',
         'home',
         'auth-dialog',
-        'system-config'
+        'system-config',
+        'marketplace-credentials'
     ]);
 
-app.config(function ($stateProvider) {
+app.config(['$httpProvider', '$stateProvider', function ($httpProvider, $stateProvider) {
+    if (!$httpProvider.defaults.headers.get) {
+        $httpProvider.defaults.headers.get = {};
+    }
+    $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache, no-store, must-revalidate';
+    $httpProvider.defaults.headers.get['Pragma'] = 'no-cache';
+    $httpProvider.defaults.headers.get['Expires'] = 0;
     app.stateProvider = $stateProvider;
-})
+}])
     .config(function($provide) {
         $provide.decorator('$state', function($delegate, $stateParams) {
             $delegate.forceReload = function() {

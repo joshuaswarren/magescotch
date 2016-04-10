@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Theme\Controller\Adminhtml\System\Design\Theme;
@@ -13,7 +13,7 @@ class UploadCss extends \Magento\Theme\Controller\Adminhtml\System\Design\Theme
      *
      * @return void
      */
-    public function executeInternal()
+    public function execute()
     {
         /** @var $serviceModel \Magento\Theme\Model\Uploader\Service */
         $serviceModel = $this->_objectManager->get('Magento\Theme\Model\Uploader\Service');

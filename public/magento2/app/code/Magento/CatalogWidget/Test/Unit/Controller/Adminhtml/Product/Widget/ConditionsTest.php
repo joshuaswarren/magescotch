@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -94,6 +94,6 @@ class ConditionsTest extends \PHPUnit_Framework_TestCase
         $this->objectManager->expects($this->once())->method('create')->will($this->returnValue($condition));
 
         $this->response->expects($this->once())->method('setBody')->with('<some_html>')->will($this->returnSelf());
-        $this->controller->executeInternal();
+        $this->controller->execute();
     }
 }

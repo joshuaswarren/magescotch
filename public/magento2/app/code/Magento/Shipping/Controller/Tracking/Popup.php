@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Shipping\Controller\Tracking;
@@ -52,7 +52,7 @@ class Popup extends \Magento\Framework\App\Action\Action
      * @return void
      * @throws NotFoundException
      */
-    public function executeInternal()
+    public function execute()
     {
         $shippingInfoModel = $this->_shippingInfoFactory->create()->loadByHash($this->getRequest()->getParam('hash'));
         $this->_coreRegistry->register('current_shipping_info', $shippingInfoModel);

@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Reports\Controller\Adminhtml\Report\Product;
@@ -11,21 +11,18 @@ use Magento\Framework\App\ResponseInterface;
 class ExportDownloadsCsv extends \Magento\Reports\Controller\Adminhtml\Report\Product
 {
     /**
-     * Check is allowed for report
+     * Authorization level of a basic admin session
      *
-     * @return bool
+     * @see _isAllowed()
      */
-    protected function _isAllowed()
-    {
-        return $this->_authorization->isAllowed('Magento_Reports::report_products');
-    }
+    const ADMIN_RESOURCE = 'Magento_Reports::report_products';
 
     /**
      * Export products downloads report to CSV format
      *
      * @return ResponseInterface
      */
-    public function executeInternal()
+    public function execute()
     {
         $fileName = 'products_downloads.csv';
         $content = $this->_view->getLayout()->createBlock(

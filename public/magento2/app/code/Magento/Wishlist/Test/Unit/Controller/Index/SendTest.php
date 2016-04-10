@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Wishlist\Test\Unit\Controller\Index;
@@ -270,7 +270,7 @@ class SendTest extends \PHPUnit_Framework_TestCase
             ->with('*/*/')
             ->willReturnSelf();
 
-        $this->assertEquals($this->resultRedirect, $this->model->executeInternal());
+        $this->assertEquals($this->resultRedirect, $this->model->execute());
     }
 
     /**
@@ -288,7 +288,7 @@ class SendTest extends \PHPUnit_Framework_TestCase
             ->method('getWishlist')
             ->willReturn(null);
 
-        $this->model->executeInternal();
+        $this->model->execute();
     }
 
     /**
@@ -356,7 +356,7 @@ class SendTest extends \PHPUnit_Framework_TestCase
             ->with('*/*/share')
             ->willReturnSelf();
 
-        $this->assertEquals($this->resultRedirect, $this->model->executeInternal());
+        $this->assertEquals($this->resultRedirect, $this->model->execute());
     }
 
     /**
@@ -514,7 +514,7 @@ class SendTest extends \PHPUnit_Framework_TestCase
             ->with('*/*/share')
             ->willReturnSelf();
 
-        $this->assertEquals($this->resultRedirect, $this->model->executeInternal());
+        $this->assertEquals($this->resultRedirect, $this->model->execute());
     }
 
     /**
@@ -693,6 +693,6 @@ class SendTest extends \PHPUnit_Framework_TestCase
             ->with('*/*', ['wishlist_id' => $wishlistId])
             ->willReturnSelf();
 
-        $this->assertEquals($this->resultRedirect, $this->model->executeInternal());
+        $this->assertEquals($this->resultRedirect, $this->model->execute());
     }
 }

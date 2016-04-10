@@ -1,5 +1,5 @@
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 define([
@@ -7,7 +7,7 @@ define([
     "jquery/ui",
     "mage/translate",
     "prototype",
-    'Magento_Ui/js/modal/modal'
+    "Magento_Ui/js/modal/modal"
 ], function(jQuery){
 
     window.ProductConfigure = Class.create();

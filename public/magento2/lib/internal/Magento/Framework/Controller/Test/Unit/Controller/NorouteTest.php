@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Framework\Controller\Test\Unit\Controller;
@@ -8,7 +8,7 @@ namespace Magento\Framework\Controller\Test\Unit\Controller;
 class NorouteTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var \Magento\Framework\Controller\Noroute\Index
+     * @var \Magento\Framework\Controller\Noroute
      */
     protected $_controller;
 
@@ -53,7 +53,7 @@ class NorouteTest extends \PHPUnit_Framework_TestCase
         $this->_statusMock->expects($this->any())->method('getLoaded')->will($this->returnValue(false));
         $this->_viewMock->expects($this->once())->method('loadLayout')->with(['default', 'noroute']);
         $this->_viewMock->expects($this->once())->method('renderLayout');
-        $this->_controller->executeInternal();
+        $this->_controller->execute();
     }
 
     public function testIndexActionWhenStatusLoaded()
@@ -77,7 +77,7 @@ class NorouteTest extends \PHPUnit_Framework_TestCase
         )->will(
             $this->returnValue($this->_requestMock)
         );
-        $this->_controller->executeInternal();
+        $this->_controller->execute();
     }
 
     public function testIndexActionWhenStatusNotInstanceofMagentoObject()
@@ -91,6 +91,6 @@ class NorouteTest extends \PHPUnit_Framework_TestCase
         )->will(
             $this->returnValue('string')
         );
-        $this->_controller->executeInternal();
+        $this->_controller->execute();
     }
 }

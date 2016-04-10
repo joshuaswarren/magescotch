@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Theme\Controller\Adminhtml\System\Design\Theme;
@@ -14,7 +14,7 @@ class Save extends \Magento\Theme\Controller\Adminhtml\System\Design\Theme
      * @return void
      * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */
-    public function executeInternal()
+    public function execute()
     {
         $redirectBack = (bool)$this->getRequest()->getParam('back', false);
         $themeData = $this->getRequest()->getParam('theme');

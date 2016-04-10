@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Backend\Controller\Adminhtml\System;
@@ -28,7 +28,7 @@ class Index extends \Magento\Backend\Controller\Adminhtml\System
     /**
      * @return \Magento\Backend\Model\View\Result\Page
      */
-    public function executeInternal()
+    public function execute()
     {
         /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
         $resultPage = $this->resultPageFactory->create();

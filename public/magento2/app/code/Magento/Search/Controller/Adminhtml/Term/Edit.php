@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Search\Controller\Adminhtml\Term;
@@ -35,7 +35,7 @@ class Edit extends TermController
      * @return \Magento\Framework\Controller\ResultInterface
      * @SuppressWarnings(PHPMD.NPathComplexity)
      */
-    public function executeInternal()
+    public function execute()
     {
         $id = $this->getRequest()->getParam('id');
         $model = $this->_objectManager->create('Magento\Search\Model\Query');

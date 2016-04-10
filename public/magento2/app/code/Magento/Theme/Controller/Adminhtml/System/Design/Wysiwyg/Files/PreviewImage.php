@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Theme\Controller\Adminhtml\System\Design\Wysiwyg\Files;
@@ -16,7 +16,7 @@ class PreviewImage extends \Magento\Theme\Controller\Adminhtml\System\Design\Wys
      *
      * @return ResponseInterface|void
      */
-    public function executeInternal()
+    public function execute()
     {
         $file = $this->getRequest()->getParam('file');
         /** @var $helper \Magento\Theme\Helper\Storage */

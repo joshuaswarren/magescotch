@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\TaxImportExport\Controller\Adminhtml\Rate;
@@ -14,7 +14,7 @@ class ImportPost extends \Magento\TaxImportExport\Controller\Adminhtml\Rate
      *
      * @return \Magento\Backend\Model\View\Result\Redirect
      */
-    public function executeInternal()
+    public function execute()
     {
         if ($this->getRequest()->isPost() && !empty($_FILES['import_rates_file']['tmp_name'])) {
             try {

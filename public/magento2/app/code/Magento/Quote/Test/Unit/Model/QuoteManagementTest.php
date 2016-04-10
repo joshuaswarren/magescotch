@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -89,6 +89,11 @@ class QuoteManagementTest extends \PHPUnit_Framework_TestCase
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
+    protected $quoteAddressFactory;
+
+    /**
+     * @var \PHPUnit_Framework_MockObject_MockObject
+     */
     protected $storeManagerMock;
 
     /**
@@ -119,7 +124,7 @@ class QuoteManagementTest extends \PHPUnit_Framework_TestCase
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $quoteFactoryMock;
+    private $quoteIdMock;
 
     /**
      * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
@@ -207,6 +212,14 @@ class QuoteManagementTest extends \PHPUnit_Framework_TestCase
             false
         );
 
+        $this->quoteAddressFactory = $this->getMock(
+            'Magento\Quote\Model\Quote\AddressFactory',
+            ['create'],
+            [],
+            '',
+            false
+        );
+
         $this->dataObjectHelperMock = $this->getMock('\Magento\Framework\Api\DataObjectHelper', [], [], '', false);
         $this->checkoutSessionMock = $this->getMock(
             'Magento\Checkout\Model\Session',
@@ -225,7 +238,6 @@ class QuoteManagementTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->quoteFactoryMock = $this->getMock('\Magento\Quote\Model\QuoteFactory', ['create'], [], '', false);
-
         $this->model = $objectManager->getObject(
             '\Magento\Quote\Model\QuoteManagement',
             [
@@ -242,6 +254,7 @@ class QuoteManagementTest extends \PHPUnit_Framework_TestCase
                 'quoteRepository' => $this->quoteRepositoryMock,
                 'customerRepository' => $this->customerRepositoryMock,
                 'customerModelFactory' => $this->customerFactoryMock,
+                'quoteAddressFactory' => $this->quoteAddressFactory,
                 'dataObjectHelper' => $this->dataObjectHelperMock,
                 'storeManager' => $this->storeManagerMock,
                 'checkoutSession' => $this->checkoutSessionMock,
@@ -250,6 +263,12 @@ class QuoteManagementTest extends \PHPUnit_Framework_TestCase
                 'quoteFactory' => $this->quoteFactoryMock
             ]
         );
+
+        // Set the new dependency
+        $this->quoteIdMock = $this->getMock('Magento\Quote\Model\QuoteIdMask', [], [], '', false);
+        $quoteIdFactoryMock = $this->getMock(\Magento\Quote\Model\QuoteIdMaskFactory::class, ['create'], [], '', false);
+        $this->setPropertyValue($this->model, 'quoteIdMaskFactory', $quoteIdFactoryMock);
+
     }
 
     public function testCreateEmptyCartAnonymous()
@@ -258,6 +277,13 @@ class QuoteManagementTest extends \PHPUnit_Framework_TestCase
         $quoteId = 2311;
 
         $quoteMock = $this->getMock('\Magento\Quote\Model\Quote', [], [], '', false);
+
+        $quoteAddress = $this->getMock('\Magento\Quote\Model\Quote\Address', [], [], '', false);
+
+        $quoteMock->expects($this->any())->method('setBillingAddress')->with($quoteAddress)->willReturnSelf();
+        $quoteMock->expects($this->any())->method('setShippingAddress')->with($quoteAddress)->willReturnSelf();
+
+        $this->quoteAddressFactory->expects($this->any())->method('create')->willReturn($quoteAddress);
 
         $this->quoteFactoryMock->expects($this->once())->method('create')->willReturn($quoteMock);
         $quoteMock->expects($this->any())->method('setStoreId')->with($storeId);
@@ -487,6 +513,13 @@ class QuoteManagementTest extends \PHPUnit_Framework_TestCase
         $customerId = 455;
         $storeId = 5;
 
+        $this->getPropertyValue($this->model, 'quoteIdMaskFactory')
+            ->expects($this->once())
+            ->method('create')
+            ->willReturn($this->quoteIdMock);
+        $this->quoteIdMock->expects($this->once())->method('load')->with($cartId, 'quote_id')->willReturnSelf();
+        $this->quoteIdMock->expects($this->once())->method('getId')->willReturn(10);
+        $this->quoteIdMock->expects($this->once())->method('delete');
         $quoteMock = $this->getMock(
             '\Magento\Quote\Model\Quote',
             ['getCustomerId', 'setCustomer', 'setCustomerIsGuest'],
@@ -563,7 +596,6 @@ class QuoteManagementTest extends \PHPUnit_Framework_TestCase
         $convertedQuoteItem = $this->getMock('Magento\Sales\Api\Data\OrderItemInterface', [], [], '', false);
 
         $addresses = [$convertedShippingAddress, $convertedBillingAddress];
-        $payments = [$convertedPayment];
         $quoteItems = [$quoteItem];
         $convertedItems = [$convertedQuoteItem];
 
@@ -615,11 +647,13 @@ class QuoteManagementTest extends \PHPUnit_Framework_TestCase
             ->with($payment)
             ->willReturn($convertedPayment);
 
+        $shippingAddress->expects($this->once())->method('getShippingMethod')->willReturn('free');
+
         $order = $this->prepareOrderFactory(
             $baseOrder,
             $convertedBillingAddress,
             $addresses,
-            $payments,
+            $convertedPayment,
             $convertedItems,
             $quoteId,
             $convertedShippingAddress
@@ -688,6 +722,7 @@ class QuoteManagementTest extends \PHPUnit_Framework_TestCase
                 'quoteRepository' => $this->quoteRepositoryMock,
                 'customerRepository' => $this->customerRepositoryMock,
                 'customerModelFactory' => $this->customerFactoryMock,
+                'quoteAddressFactory' => $this->quoteAddressFactory,
                 'dataObjectHelper' => $this->dataObjectHelperMock,
                 'storeManager' => $this->storeManagerMock,
                 'checkoutSession' => $this->checkoutSessionMock,
@@ -716,7 +751,7 @@ class QuoteManagementTest extends \PHPUnit_Framework_TestCase
         $this->checkoutSessionMock->expects($this->once())->method('setLastOrderId')->with($orderId);
         $this->checkoutSessionMock->expects($this->once())->method('setLastRealOrderId')->with($orderIncrementId);
         $this->checkoutSessionMock->expects($this->once())->method('setLastOrderStatus')->with($orderStatus);
- 
+
         $this->assertEquals($orderId, $service->placeOrder($cartId));
     }
 
@@ -745,6 +780,7 @@ class QuoteManagementTest extends \PHPUnit_Framework_TestCase
                 'quoteRepository' => $this->quoteRepositoryMock,
                 'customerRepository' => $this->customerRepositoryMock,
                 'customerModelFactory' => $this->customerFactoryMock,
+                'quoteAddressFactory' => $this->quoteAddressFactory,
                 'dataObjectHelper' => $this->dataObjectHelperMock,
                 'storeManager' => $this->storeManagerMock,
                 'checkoutSession' => $this->checkoutSessionMock,
@@ -860,7 +896,7 @@ class QuoteManagementTest extends \PHPUnit_Framework_TestCase
             ->method('isVirtual')
             ->willReturn($isVirtual);
         if ($shippingAddress) {
-            $quote->expects($this->exactly(2))
+            $quote->expects($this->exactly(3))
                 ->method('getShippingAddress')
                 ->willReturn($shippingAddress);
         }
@@ -892,7 +928,7 @@ class QuoteManagementTest extends \PHPUnit_Framework_TestCase
      * @param \Magento\Sales\Api\Data\OrderInterface $baseOrder
      * @param \Magento\Sales\Api\Data\OrderAddressInterface $billingAddress
      * @param array $addresses
-     * @param array $payments
+     * @param $payment
      * @param array $items
      * @param $quoteId
      * @param \Magento\Sales\Api\Data\OrderAddressInterface $shippingAddress
@@ -902,7 +938,7 @@ class QuoteManagementTest extends \PHPUnit_Framework_TestCase
         \Magento\Sales\Api\Data\OrderInterface $baseOrder,
         \Magento\Sales\Api\Data\OrderAddressInterface $billingAddress,
         array $addresses,
-        array $payments,
+        $payment,
         array $items,
         $quoteId,
         \Magento\Sales\Api\Data\OrderAddressInterface $shippingAddress = null,
@@ -911,7 +947,7 @@ class QuoteManagementTest extends \PHPUnit_Framework_TestCase
         $order = $this->getMock(
             'Magento\Sales\Model\Order',
             ['setShippingAddress', 'getAddressesCollection', 'getAddresses', 'getBillingAddress', 'addAddresses',
-            'setBillingAddress', 'setAddresses', 'setPayments', 'setItems', 'setQuoteId'],
+                'setBillingAddress', 'setAddresses', 'setPayment', 'setItems', 'setQuoteId'],
             [],
             '',
             false
@@ -938,7 +974,7 @@ class QuoteManagementTest extends \PHPUnit_Framework_TestCase
         $order->expects($this->any())->method('addAddresses')->withAnyParameters()->willReturnSelf();
         $order->expects($this->once())->method('setBillingAddress')->with($billingAddress);
         $order->expects($this->once())->method('setAddresses')->with($addresses);
-        $order->expects($this->once())->method('setPayments')->with($payments);
+        $order->expects($this->once())->method('setPayment')->with($payment);
         $order->expects($this->once())->method('setItems')->with($items);
         $order->expects($this->once())->method('setQuoteId')->with($quoteId);
 
@@ -954,5 +990,38 @@ class QuoteManagementTest extends \PHPUnit_Framework_TestCase
             ->with($customerId)
             ->willReturn($cartMock);
         $this->assertEquals($cartMock, $this->model->getCartForCustomer($customerId));
+    }
+
+    /**
+     * Get any object property value.
+     *
+     * @param $object
+     * @param $property
+     * @return mixed
+     */
+    protected function getPropertyValue($object, $property)
+    {
+        $reflection = new \ReflectionClass(get_class($object));
+        $reflectionProperty = $reflection->getProperty($property);
+        $reflectionProperty->setAccessible(true);
+
+        return $reflectionProperty->getValue($object);
+    }
+
+    /**
+     * Set object property value.
+     *
+     * @param $object
+     * @param $property
+     * @param $value
+     */
+    protected function setPropertyValue(&$object, $property, $value)
+    {
+        $reflection = new \ReflectionClass(get_class($object));
+        $reflectionProperty = $reflection->getProperty($property);
+        $reflectionProperty->setAccessible(true);
+        $reflectionProperty->setValue($object, $value);
+
+        return $object;
     }
 }

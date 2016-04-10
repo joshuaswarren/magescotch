@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Paypal\Test\Unit\Controller\Transparent;
@@ -153,7 +153,7 @@ class RequestSecureTokenTest extends \PHPUnit_Framework_TestCase
             ->with($resultExpectation)
             ->willReturnSelf();
 
-        $this->assertEquals($jsonMock, $this->controller->executeInternal());
+        $this->assertEquals($jsonMock, $this->controller->execute());
     }
 
     public function testExecuteTokenRequestException()
@@ -193,7 +193,7 @@ class RequestSecureTokenTest extends \PHPUnit_Framework_TestCase
             ->with($resultExpectation)
             ->willReturnSelf();
 
-        $this->assertEquals($jsonMock, $this->controller->executeInternal());
+        $this->assertEquals($jsonMock, $this->controller->execute());
     }
 
     public function testExecuteEmptyQuoteError()
@@ -220,6 +220,6 @@ class RequestSecureTokenTest extends \PHPUnit_Framework_TestCase
             ->with($resultExpectation)
             ->willReturnSelf();
 
-        $this->assertEquals($jsonMock, $this->controller->executeInternal());
+        $this->assertEquals($jsonMock, $this->controller->execute());
     }
 }

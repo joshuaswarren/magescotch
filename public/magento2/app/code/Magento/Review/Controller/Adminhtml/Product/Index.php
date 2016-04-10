@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Review\Controller\Adminhtml\Product;
@@ -13,7 +13,7 @@ class Index extends ProductController
     /**
      * @return \Magento\Framework\Controller\ResultInterface
      */
-    public function executeInternal()
+    public function execute()
     {
         if ($this->getRequest()->getParam('ajax')) {
             /** @var \Magento\Backend\Model\View\Result\Forward $resultForward */

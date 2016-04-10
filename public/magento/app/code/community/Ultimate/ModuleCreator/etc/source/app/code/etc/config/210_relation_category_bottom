@@ -1,5 +1,0 @@
-                    <{{namespace}}_{{module}}_{{entity}}_category>
-                        <type>singleton</type>
-                        <class>{{namespace}}_{{module}}/adminhtml_observer</class>
-                        <method>saveCategory{{Entity}}Data</method>
-                    </{{namespace}}_{{module}}_{{entity}}_category>

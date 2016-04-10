@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Checkout\Controller\Noroute;
@@ -17,7 +17,7 @@ class Index extends \Magento\Framework\App\Action\Action
      * @return void
      * @codeCoverageIgnore
      */
-    public function executeInternal()
+    public function execute()
     {
         throw new NotFoundException(__('Page not found.'));
     }

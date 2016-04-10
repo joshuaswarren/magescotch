@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -58,14 +58,11 @@ class SystemPackage
         $result = [];
         $systemPackages = [];
         $systemPackages = $this->getInstalledSystemPackages($systemPackages);
-        if (empty($systemPackages)) {
-            throw new \RuntimeException('System packages not found');
-        }
         foreach ($systemPackages as $systemPackage) {
             $versions = [];
             $systemPackageInfo = $this->infoCommand->run($systemPackage);
             if (!$systemPackageInfo) {
-                throw new \RuntimeException('System package not found');
+                throw new \RuntimeException("We cannot retrieve information on $systemPackage.");
             }
 
             $versions = $this->getSystemPackageVersions($systemPackageInfo, $versions);
@@ -104,7 +101,7 @@ class SystemPackage
         $enterpriseVersions = $this->infoCommand->run('magento/product-enterprise-edition');
         $eeVersions = [];
         $maxVersion = '';
-        if (array_key_exists('available_versions', $enterpriseVersions)) {
+        if (is_array($enterpriseVersions) && array_key_exists('available_versions', $enterpriseVersions)) {
             $enterpriseVersions = $this->sortVersions($enterpriseVersions);
             if (isset($enterpriseVersions['available_versions'][0])) {
                 $maxVersion = $enterpriseVersions['available_versions'][0];
@@ -150,6 +147,7 @@ class SystemPackage
     /**
      * @param array $systemPackages
      * @return array
+     * @throws \RuntimeException
      */
     public function getInstalledSystemPackages($systemPackages)
     {
@@ -168,6 +166,14 @@ class SystemPackage
                     $systemPackages[] = $packageName;
                 }
             }
+        }
+        if (empty($systemPackages)) {
+            throw new \RuntimeException(
+                'We\'re sorry, no components are available because you cloned the Magento 2 GitHub repository. ' .
+                'You must manually update components as discussed in the ' .
+                '<a href="http://devdocs.magento.com/guides/v2.0/install-gde/install/cli/dev_options.html">' .
+                'Installation Guide</a>.'
+            );
         }
         return $systemPackages;
     }

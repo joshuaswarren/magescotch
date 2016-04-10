@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\OfflinePayments\Model;
@@ -43,8 +43,9 @@ class Purchaseorder extends \Magento\Payment\Model\Method\AbstractMethod
      *
      * @param \Magento\Framework\DataObject|mixed $data
      * @return $this
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
-    public function assignData($data)
+    public function assignData(\Magento\Framework\DataObject $data)
     {
         if (!$data instanceof \Magento\Framework\DataObject) {
             $data = new \Magento\Framework\DataObject($data);

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Framework\Acl\Test\Unit\AclResource\Config;
@@ -25,6 +25,9 @@ class XsdTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
+        if (!function_exists('libxml_set_external_entity_loader')) {
+            $this->markTestSkipped('Skipped on HHVM. Will be fixed in MAGETWO-45033');
+        }
         $this->_schemaLocator = new \Magento\Framework\Acl\AclResource\Config\SchemaLocator(
             new \Magento\Framework\Config\Dom\UrnResolver()
         );

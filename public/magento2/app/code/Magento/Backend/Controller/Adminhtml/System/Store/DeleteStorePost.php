@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Backend\Controller\Adminhtml\System\Store;
@@ -15,7 +15,7 @@ class DeleteStorePost extends \Magento\Backend\Controller\Adminhtml\System\Store
      *
      * @return \Magento\Backend\Model\View\Result\Redirect
      */
-    public function executeInternal()
+    public function execute()
     {
         $itemId = $this->getRequest()->getParam('item_id');
 
@@ -44,7 +44,7 @@ class DeleteStorePost extends \Magento\Backend\Controller\Adminhtml\System\Store
         } catch (\Magento\Framework\Exception\LocalizedException $e) {
             $this->messageManager->addError($e->getMessage());
         } catch (\Exception $e) {
-            $this->messageManager->addException($e, __('Unable to delete store view. Please, try again later.'));
+            $this->messageManager->addException($e, __('Unable to delete the store view. Please try again later.'));
         }
         return $redirectResult->setPath('adminhtml/*/editStore', ['store_id' => $itemId]);
     }

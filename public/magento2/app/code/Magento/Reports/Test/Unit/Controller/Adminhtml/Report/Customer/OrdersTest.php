@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -70,6 +70,6 @@ class OrdersTest extends \Magento\Reports\Test\Unit\Controller\Adminhtml\Report\
             ->expects($this->at(2))
             ->method('addLink')
             ->with(new Phrase('Customers by Number of Orders'), new Phrase('Customers by Number of Orders'));
-        $this->orders->executeInternal();
+        $this->orders->execute();
     }
 }

@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Catalog\Test\Unit\Controller\Adminhtml\Product;
@@ -80,6 +80,6 @@ class MassStatusTest extends \Magento\Catalog\Test\Unit\Controller\Adminhtml\Pro
     public function testMassStatusAction()
     {
         $this->priceProcessor->expects($this->once())->method('reindexList');
-        $this->action->executeInternal();
+        $this->action->execute();
     }
 }

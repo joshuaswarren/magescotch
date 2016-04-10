@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -87,6 +87,6 @@ class SearchTest extends \PHPUnit_Framework_TestCase
         $block->expects($this->once())->method('setFirstShow')->with(true)->willReturnSelf();
         $block->expects($this->once())->method('toHtml')->willReturnSelf();
 
-        $this->assertEquals($this->response, $this->controller->executeInternal());
+        $this->assertEquals($this->response, $this->controller->execute());
     }
 }

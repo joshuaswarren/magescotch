@@ -1,7 +1,0 @@
-
-            ->{{filterMethod}}(
-                'entity_id',
-                array(
-                    'neq'=>Mage::helper('{{namespace}}_{{module}}/{{entity}}')->getRoot{{Entity}}Id()
-                )
-            )

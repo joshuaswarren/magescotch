@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -14,7 +14,7 @@ namespace Magento\Sales\Test\Unit\Controller\Adminhtml\Order\Creditmemo;
 class SaveTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var \Magento\Sales\Controller\Adminhtml\Order\Creditmemo\Save
+     * @var \Magento\Sales\Controller\Adminhtml\Order\Creditmemo
      */
     protected $_controller;
 
@@ -190,7 +190,7 @@ class SaveTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf(
             'Magento\Backend\Model\View\Result\Redirect',
-            $this->_controller->executeInternal()
+            $this->_controller->execute()
         );
     }
 
@@ -237,7 +237,7 @@ class SaveTest extends \PHPUnit_Framework_TestCase
 
         $this->_setSaveActionExpectationForMageCoreException($data, 'The credit memo\'s total must be positive.');
 
-        $this->_controller->executeInternal();
+        $this->_controller->execute();
     }
 
     /**

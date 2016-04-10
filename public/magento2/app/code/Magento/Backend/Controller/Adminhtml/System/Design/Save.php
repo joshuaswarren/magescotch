@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Backend\Controller\Adminhtml\System\Design;
@@ -28,7 +28,7 @@ class Save extends \Magento\Backend\Controller\Adminhtml\System\Design
     /**
      * @return \Magento\Backend\Model\View\Result\Redirect
      */
-    public function executeInternal()
+    public function execute()
     {
         $data = $this->getRequest()->getPostValue();
         /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */

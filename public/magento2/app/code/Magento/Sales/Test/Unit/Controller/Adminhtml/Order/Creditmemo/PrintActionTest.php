@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Sales\Test\Unit\Controller\Adminhtml\Order\Creditmemo;
@@ -81,7 +81,7 @@ class PrintActionTest extends \PHPUnit_Framework_TestCase
      */
     protected $resultForwardMock;
 
-    public function setUp()
+    protected function setUp()
     {
         $this->requestMock = $this->getMockBuilder('Magento\Framework\App\RequestInterface')
             ->getMock();
@@ -152,7 +152,7 @@ class PrintActionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Magento\Sales\Controller\Adminhtml\Order\Creditmemo\PrintAction::executeInternal
+     * @covers \Magento\Sales\Controller\Adminhtml\Order\Creditmemo\PrintAction::execute
      */
     public function testExecute()
     {
@@ -201,12 +201,12 @@ class PrintActionTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf(
             'Magento\Framework\App\ResponseInterface',
-            $this->printAction->executeInternal()
+            $this->printAction->execute()
         );
     }
 
     /**
-     * @covers \Magento\Sales\Controller\Adminhtml\Order\Creditmemo\PrintAction::executeInternal
+     * @covers \Magento\Sales\Controller\Adminhtml\Order\Creditmemo\PrintAction::execute
      */
     public function testExecuteNoCreditmemoId()
     {
@@ -222,7 +222,7 @@ class PrintActionTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf(
             'Magento\Backend\Model\View\Result\Forward',
-            $this->printAction->executeInternal()
+            $this->printAction->execute()
         );
     }
 

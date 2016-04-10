@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Catalog\Controller\Product;
@@ -44,7 +44,7 @@ class Gallery extends \Magento\Catalog\Controller\Product
      *
      * @return \Magento\Framework\Controller\ResultInterface
      */
-    public function executeInternal()
+    public function execute()
     {
         $result = null;
         if (!$this->_initProduct()) {

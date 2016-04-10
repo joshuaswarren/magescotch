@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Checkout\Test\Unit\Controller\Cart;
@@ -70,7 +70,7 @@ class CouponPostTest extends \PHPUnit_Framework_TestCase
     /**
      * @return void
      */
-    public function setUp()
+    protected function setUp()
     {
         $this->request = $this->getMock('Magento\Framework\App\Request\Http', [], [], '', false);
         $this->response = $this->getMock('Magento\Framework\App\Response\Http', [], [], '', false);
@@ -174,7 +174,7 @@ class CouponPostTest extends \PHPUnit_Framework_TestCase
             ->method('getQuote')
             ->willReturn($this->quote);
 
-        $this->controller->executeInternal();
+        $this->controller->execute();
     }
 
     public function testExecuteWithGoodCouponAndItems()
@@ -232,7 +232,7 @@ class CouponPostTest extends \PHPUnit_Framework_TestCase
             ->method('get')
             ->willReturnSelf();
 
-        $this->controller->executeInternal();
+        $this->controller->execute();
     }
 
     public function testExecuteWithGoodCouponAndNoItems()
@@ -286,7 +286,7 @@ class CouponPostTest extends \PHPUnit_Framework_TestCase
             ->method('get')
             ->willReturnSelf();
 
-        $this->controller->executeInternal();
+        $this->controller->execute();
     }
 
     public function testExecuteWithBadCouponAndItems()
@@ -337,7 +337,7 @@ class CouponPostTest extends \PHPUnit_Framework_TestCase
             ->with('You canceled the coupon code.')
             ->willReturnSelf();
 
-        $this->controller->executeInternal();
+        $this->controller->execute();
     }
 
     public function testExecuteWithBadCouponAndNoItems()
@@ -382,6 +382,6 @@ class CouponPostTest extends \PHPUnit_Framework_TestCase
             ->method('get')
             ->willReturnSelf();
 
-        $this->controller->executeInternal();
+        $this->controller->execute();
     }
 }

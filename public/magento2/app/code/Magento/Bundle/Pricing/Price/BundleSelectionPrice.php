@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Bundle\Pricing\Price;
@@ -68,7 +68,7 @@ class BundleSelectionPrice extends AbstractPrice
      * @param ManagerInterface $eventManager
      * @param DiscountCalculator $discountCalculator
      * @param bool $useRegularPrice
-     * @param string $excludeAdjustment
+     * @param array $excludeAdjustment
      */
     public function __construct(
         Product $saleableItem,

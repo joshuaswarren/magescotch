@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Tax\Controller\Adminhtml\Rate;
@@ -13,7 +13,7 @@ class Index extends \Magento\Tax\Controller\Adminhtml\Rate
      *
      * @return \Magento\Backend\Model\View\Result\Page
      */
-    public function executeInternal()
+    public function execute()
     {
         $resultPage = $this->initResultPage();
         $resultPage->addBreadcrumb(__('Manage Tax Rates'), __('Manage Tax Rates'));

@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Sales\Controller\Adminhtml\Transactions;
@@ -13,7 +13,7 @@ class Index extends \Magento\Sales\Controller\Adminhtml\Transactions
     /**
      * @return Page
      */
-    public function executeInternal()
+    public function execute()
     {
         /** @var Page $resultPage */
         $resultPage = $this->resultPageFactory->create();

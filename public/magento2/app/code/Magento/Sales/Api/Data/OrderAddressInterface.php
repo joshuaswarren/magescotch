@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Sales\Api\Data;
@@ -27,10 +27,6 @@ interface OrderAddressInterface extends \Magento\Framework\Api\ExtensibleDataInt
      * Customer address ID.
      */
     const CUSTOMER_ADDRESS_ID = 'customer_address_id';
-    /*
-     * Quote address ID.
-     */
-    const QUOTE_ADDRESS_ID = 'quote_address_id';
     /*
      * Region ID.
      */
@@ -238,13 +234,6 @@ interface OrderAddressInterface extends \Magento\Framework\Api\ExtensibleDataInt
     public function getPrefix();
 
     /**
-     * Gets the quote address ID for the order address.
-     *
-     * @return int|null Quote address ID.
-     */
-    public function getQuoteAddressId();
-
-    /**
      * Gets the region for the order address.
      *
      * @return string|null Region.
@@ -336,14 +325,6 @@ interface OrderAddressInterface extends \Magento\Framework\Api\ExtensibleDataInt
      * @return $this
      */
     public function setCustomerAddressId($id);
-
-    /**
-     * Sets the quote address ID for the order address.
-     *
-     * @param int $id
-     * @return $this
-     */
-    public function setQuoteAddressId($id);
 
     /**
      * Sets the region ID for the order address.

@@ -1,0 +1,12 @@
+<div class="links social-media">
+	<div class="block-title">
+		<strong><span>Connect With Us</span></strong>
+	</div>
+	<ul>
+		<li><a href="#"><em class="facebook"></em>Facebook</a></li>
+		<li><a href="#"><em class="twitter"></em>Twitter</a></li>
+		<li><a href="#"><em class="youtube"></em>YouTube</a></li>
+		<li><a href="#"><em class="pinterest"></em>Pinterest</a></li>
+		<li class="last"><a href="#"><em class="rss"></em>RSS</a></li>
+	</ul>
+</div>

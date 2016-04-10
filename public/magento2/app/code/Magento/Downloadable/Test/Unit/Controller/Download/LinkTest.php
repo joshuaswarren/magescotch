@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Downloadable\Test\Unit\Controller\Download;
@@ -236,7 +236,7 @@ class LinkTest extends \PHPUnit_Framework_TestCase
             ->with("We can't find the link you requested.");
         $this->redirect->expects($this->once())->method('redirect')->with($this->response, '*/customer/products', []);
 
-        $this->assertEquals($this->response, $this->link->executeInternal());
+        $this->assertEquals($this->response, $this->link->execute());
     }
 
     public function testGetLinkForGuestCustomer()
@@ -287,7 +287,7 @@ class LinkTest extends \PHPUnit_Framework_TestCase
             ->willReturn('before_auth_url');
         $this->session->expects($this->once())->method('setBeforeAuthUrl')->with('before_auth_url')->willReturnSelf();
 
-        $this->assertNull($this->link->executeInternal());
+        $this->assertNull($this->link->execute());
     }
 
     public function testGetLinkForWrongCustomer()
@@ -327,7 +327,7 @@ class LinkTest extends \PHPUnit_Framework_TestCase
             ->with("We can't find the link you requested.");
         $this->redirect->expects($this->once())->method('redirect')->with($this->response, '*/customer/products', []);
 
-        $this->assertEquals($this->response, $this->link->executeInternal());
+        $this->assertEquals($this->response, $this->link->execute());
     }
 
     public function testExceptionInUpdateLinkStatus()
@@ -371,7 +371,7 @@ class LinkTest extends \PHPUnit_Framework_TestCase
             ->willReturnSelf();
         $this->redirect->expects($this->once())->method('redirect')->with($this->response, '*/customer/products', []);
 
-        $this->assertEquals($this->response, $this->link->executeInternal());
+        $this->assertEquals($this->response, $this->link->execute());
     }
 
     private function processDownload($resource, $resourceType)
@@ -448,7 +448,7 @@ class LinkTest extends \PHPUnit_Framework_TestCase
         $this->linkPurchasedItem->expects($this->once())->method('getStatus')->willReturn($status);
         $this->messageManager->expects($this->once())->method($messageType)->with($notice)->willReturnSelf();
 
-        $this->assertEquals($this->response, $this->link->executeInternal());
+        $this->assertEquals($this->response, $this->link->execute());
     }
 
     /**

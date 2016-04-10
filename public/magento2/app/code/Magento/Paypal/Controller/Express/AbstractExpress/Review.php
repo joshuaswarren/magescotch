@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Paypal\Controller\Express\AbstractExpress;
@@ -15,7 +15,7 @@ class Review extends \Magento\Paypal\Controller\Express\AbstractExpress
      *
      * @return void|\Magento\Framework\Controller\Result\Redirect
      */
-    public function executeInternal()
+    public function execute()
     {
         try {
             $this->_initCheckout();

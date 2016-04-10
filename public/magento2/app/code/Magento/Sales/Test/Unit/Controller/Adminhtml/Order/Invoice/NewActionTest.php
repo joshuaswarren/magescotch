@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Sales\Test\Unit\Controller\Adminhtml\Order\Invoice;
@@ -89,8 +89,7 @@ class NewActionTest extends \PHPUnit_Framework_TestCase
      */
     protected $invoiceServiceMock;
 
-
-    public function setUp()
+    protected function setUp()
     {
         $objectManager = new ObjectManager($this);
 
@@ -285,7 +284,7 @@ class NewActionTest extends \PHPUnit_Framework_TestCase
             ->method('create')
             ->will($this->returnValue($this->resultPageMock));
 
-        $this->assertSame($this->resultPageMock, $this->controller->executeInternal());
+        $this->assertSame($this->resultPageMock, $this->controller->execute());
     }
 
     public function testExecuteNoOrder()
@@ -329,6 +328,6 @@ class NewActionTest extends \PHPUnit_Framework_TestCase
             ->method('create')
             ->will($this->returnValue($resultRedirect));
 
-        $this->assertSame($resultRedirect, $this->controller->executeInternal());
+        $this->assertSame($resultRedirect, $this->controller->execute());
     }
 }

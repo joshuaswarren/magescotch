@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Paypal\Test\Unit\Controller\Billing\Agreement;
@@ -122,7 +122,7 @@ class CancelTest extends \PHPUnit_Framework_TestCase
             $this->identicalTo($this->_agreement)
         );
 
-        $this->_controller->executeInternal();
+        $this->_controller->execute();
     }
 
     public function testExecuteAgreementDoesNotBelongToCustomer()
@@ -136,7 +136,7 @@ class CancelTest extends \PHPUnit_Framework_TestCase
 
         $this->_registry->expects($this->never())->method('register');
 
-        $this->_controller->executeInternal();
+        $this->_controller->execute();
     }
 
     public function testExecuteAgreementStatusDoesNotAllowToCancel()
@@ -157,6 +157,6 @@ class CancelTest extends \PHPUnit_Framework_TestCase
             $this->identicalTo($this->_agreement)
         );
 
-        $this->_controller->executeInternal();
+        $this->_controller->execute();
     }
 }

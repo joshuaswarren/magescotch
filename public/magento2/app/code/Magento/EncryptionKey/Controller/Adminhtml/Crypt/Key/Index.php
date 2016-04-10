@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\EncryptionKey\Controller\Adminhtml\Crypt\Key;
@@ -16,7 +16,7 @@ class Index extends \Magento\EncryptionKey\Controller\Adminhtml\Crypt\Key
      *
      * @return void
      */
-    public function executeInternal()
+    public function execute()
     {
         /** @var \Magento\Framework\App\DeploymentConfig\Writer $writer */
         $writer = $this->_objectManager->get('Magento\Framework\App\DeploymentConfig\Writer');

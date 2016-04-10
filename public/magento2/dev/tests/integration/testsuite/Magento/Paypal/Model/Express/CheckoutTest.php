@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Paypal\Model\Express;
@@ -27,22 +27,6 @@ class CheckoutTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->_objectManager = Bootstrap::getObjectManager();
-    }
-
-    /**
-     * Initialization the quote
-     *
-     * @param Quote $quote
-     * @return void
-     */
-    protected function quoteInitialization(Quote $quote)
-    {
-        $quote->setCheckoutMethod(Onepage::METHOD_REGISTER);
-        $quote->setCustomerEmail('user@example.com');
-        $quote->setCustomerFirstname('Firstname');
-        $quote->setCustomerLastname('Lastname');
-        $quote->setCustomerIsGuest(false);
-        $quote->setReservedOrderId(null);
     }
 
     /**
@@ -83,28 +67,6 @@ class CheckoutTest extends \PHPUnit_Framework_TestCase
         $order = $checkout->getOrder();
         $this->assertEquals(1, $order->getBillingAddress()->getCustomerAddressId());
         $this->assertEquals(2, $order->getShippingAddress()->getCustomerAddressId());
-    }
-
-    /**
-     * Verify that an order placed with a new customer will create the customer.
-     *
-     * @magentoDataFixture Magento/Paypal/_files/quote_payment_express.php
-     * @magentoAppIsolation enabled
-     * @magentoDbIsolation enabled
-     */
-    public function testPrepareNewCustomerQuote()
-    {
-        /** @var \Magento\Customer\Api\CustomerRepositoryInterface $customerService */
-        $customerService = $this->_objectManager->get('Magento\Customer\Api\CustomerRepositoryInterface');
-
-        /** @var Quote $quote */
-        $quote = $this->_getFixtureQuote();
-        $this->quoteInitialization($quote);
-        $checkout = $this->_getCheckout($quote);
-        $checkout->place('token');
-        $customer = $customerService->getById($quote->getCustomerId());
-        $this->assertEquals('user@example.com', $customer->getEmail());
-        $this->assertEquals('11111111', $customer->getAddresses()[0]->getTelephone());
     }
 
     /**
@@ -224,9 +186,7 @@ class CheckoutTest extends \PHPUnit_Framework_TestCase
         $this->assertArrayHasKey(Checkout::PAYMENT_INFO_TRANSPORT_PAYER_ID, $paymentAdditionalInformation);
         $this->assertArrayHasKey(Checkout::PAYMENT_INFO_TRANSPORT_TOKEN, $paymentAdditionalInformation);
         $this->assertTrue($quote->getPayment()->hasMethod());
-
         $this->assertTrue($quote->getTotalsCollectedFlag());
-        $this->assertFalse($quote->hasDataChanges());
     }
 
     /**

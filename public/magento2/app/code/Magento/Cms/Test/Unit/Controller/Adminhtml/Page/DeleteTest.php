@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Cms\Test\Unit\Controller\Adminhtml\Page;
@@ -146,7 +146,7 @@ class DeleteTest extends \PHPUnit_Framework_TestCase
             ->with('*/*/')
             ->willReturnSelf();
 
-        $this->assertSame($this->resultRedirectMock, $this->deleteController->executeInternal());
+        $this->assertSame($this->resultRedirectMock, $this->deleteController->execute());
     }
 
     public function testDeleteActionNoId()
@@ -166,7 +166,7 @@ class DeleteTest extends \PHPUnit_Framework_TestCase
             ->with('*/*/')
             ->willReturnSelf();
 
-        $this->assertSame($this->resultRedirectMock, $this->deleteController->executeInternal());
+        $this->assertSame($this->resultRedirectMock, $this->deleteController->execute());
     }
 
     public function testDeleteActionThrowsException()
@@ -210,6 +210,6 @@ class DeleteTest extends \PHPUnit_Framework_TestCase
             ->with('*/*/edit', ['page_id' => $this->pageId])
             ->willReturnSelf();
 
-        $this->assertSame($this->resultRedirectMock, $this->deleteController->executeInternal());
+        $this->assertSame($this->resultRedirectMock, $this->deleteController->execute());
     }
 }

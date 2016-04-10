@@ -2,7 +2,7 @@
 /**
  * Test for validation rules implemented by XSD schema for catalog attributes configuration
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Catalog\Test\Unit\Model\Attribute\Config;
@@ -16,6 +16,9 @@ class XsdTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
+        if (!function_exists('libxml_set_external_entity_loader')) {
+            $this->markTestSkipped('Skipped on HHVM. Will be fixed in MAGETWO-45033');
+        }
         $urnResolver = new \Magento\Framework\Config\Dom\UrnResolver();
         $this->_schemaFile = $urnResolver->getRealPath('urn:magento:module:Magento_Catalog:etc/catalog_attributes.xsd');
     }

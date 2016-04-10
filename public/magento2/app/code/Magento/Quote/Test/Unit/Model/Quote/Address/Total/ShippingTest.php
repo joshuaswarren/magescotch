@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Quote\Test\Unit\Model\Quote\Address\Total;
@@ -70,6 +70,7 @@ class ShippingTest extends \PHPUnit_Framework_TestCase
             'Magento\Quote\Model\Quote\Address\Total',
             [
                 'setShippingAmount',
+                'setBaseShippingAmount',
                 'setBaseTotalAmount',
                 'setTotalAmount',
                 'setShippingDescription',
@@ -199,9 +200,7 @@ class ShippingTest extends \PHPUnit_Framework_TestCase
         $this->cartItem->expects($this->atLeastOnce())
             ->method('getQty')
             ->willReturn(2);
-        $this->address->expects($this->once())
-            ->method('getFreeShipping')
-            ->willReturn(true);
+        $this->freeShippingAssertions();
         $this->cartItem->expects($this->once())
             ->method('setRowWeight')
             ->with(0);
@@ -229,9 +228,12 @@ class ShippingTest extends \PHPUnit_Framework_TestCase
         $this->priceCurrency->expects($this->once())
             ->method('convert')
             ->with(5, $this->store)
-            ->willReturn(5);
+            ->willReturn(10);
         $this->total->expects($this->once())
             ->method('setShippingAmount')
+            ->with(10);
+        $this->total->expects($this->once())
+            ->method('setBaseShippingAmount')
             ->with(5);
         $this->rate->expects($this->once())
             ->method('getCarrierTitle')
@@ -250,5 +252,19 @@ class ShippingTest extends \PHPUnit_Framework_TestCase
             ->with('Carrier title - Method title');
 
         $this->shippingModel->collect($this->quote, $this->shippingAssignment, $this->total);
+    }
+
+    protected function freeShippingAssertions()
+    {
+        $this->address->expects($this->at(0))
+            ->method('getFreeShipping')
+            ->willReturn(false);
+        $this->address->expects($this->at(1))
+            ->method('getFreeShipping')
+            ->willReturn(true);
+        $this->cartItem->expects($this->atLeastOnce())
+            ->method('getFreeShipping')
+            ->willReturn(true);
+
     }
 }

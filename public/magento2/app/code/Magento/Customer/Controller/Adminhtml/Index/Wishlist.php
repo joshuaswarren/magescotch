@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Customer\Controller\Adminhtml\Index;
@@ -12,7 +12,7 @@ class Wishlist extends \Magento\Customer\Controller\Adminhtml\Index
      *
      * @return \Magento\Framework\View\Result\Layout
      */
-    public function executeInternal()
+    public function execute()
     {
         $customerId = $this->initCurrentCustomer();
         $itemId = (int)$this->getRequest()->getParam('delete');

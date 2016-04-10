@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -13,13 +13,13 @@ class IndexTest extends \PHPUnit_Framework_TestCase
      */
     private $indexControllerMock;
 
-    public function setUp()
+    protected function setUp()
     {
         $this->indexControllerMock = $this->getControllerIndexMock(['getResultPageFactory']);
     }
 
     /**
-     * @covers \Magento\Marketplace\Controller\Adminhtml\Index\Index::executeInternal
+     * @covers \Magento\Marketplace\Controller\Adminhtml\Index\Index::execute
      */
     public function testExecute()
     {
@@ -50,7 +50,7 @@ class IndexTest extends \PHPUnit_Framework_TestCase
             ->method('getConfig')
             ->will($this->returnValue($configMock));
 
-        $this->indexControllerMock->executeInternal();
+        $this->indexControllerMock->execute();
     }
 
     /**

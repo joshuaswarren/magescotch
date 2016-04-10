@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -89,7 +89,7 @@ class NewActionTest extends \PHPUnit_Framework_TestCase
     /**
      * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
-    public function setUp()
+    protected function setUp()
     {
         $objectManagerHelper = new ObjectManagerHelper($this);
         $this->shipmentLoader = $this->getMockBuilder('Magento\Shipping\Controller\Adminhtml\Order\ShipmentLoader')
@@ -282,6 +282,6 @@ class NewActionTest extends \PHPUnit_Framework_TestCase
             ->with('menu')
             ->will($this->returnValue($menuBlock));
 
-        $this->assertNull($this->newAction->executeInternal());
+        $this->assertNull($this->newAction->execute());
     }
 }

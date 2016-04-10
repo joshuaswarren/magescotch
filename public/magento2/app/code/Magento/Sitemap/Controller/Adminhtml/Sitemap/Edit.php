@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Sitemap\Controller\Adminhtml\Sitemap;
@@ -31,7 +31,7 @@ class Edit extends \Magento\Sitemap\Controller\Adminhtml\Sitemap
      * @return void
      * @SuppressWarnings(PHPMD.NPathComplexity)
      */
-    public function executeInternal()
+    public function execute()
     {
         // 1. Get ID and create model
         $id = $this->getRequest()->getParam('sitemap_id');

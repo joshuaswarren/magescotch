@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Captcha\Model\Customer\Plugin;
@@ -57,7 +57,7 @@ class AjaxLogin
      * @SuppressWarnings(PHPMD.NPathComplexity)
      * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */
-    public function aroundExecuteInternal(
+    public function aroundExecute(
         \Magento\Customer\Controller\Ajax\Login $subject,
         \Closure $proceed
     ) {

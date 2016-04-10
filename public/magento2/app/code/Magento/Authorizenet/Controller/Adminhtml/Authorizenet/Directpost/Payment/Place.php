@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Authorizenet\Controller\Adminhtml\Authorizenet\Directpost\Payment;
@@ -51,7 +51,7 @@ class Place extends \Magento\Sales\Controller\Adminhtml\Order\Create
      * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      * @SuppressWarnings(PHPMD.UnusedLocalVariable)
      */
-    public function executeInternal()
+    public function execute()
     {
         $paymentParam = $this->getRequest()->getParam('payment');
         $controller = $this->getRequest()->getParam('controller');

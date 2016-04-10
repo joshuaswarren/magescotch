@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Shipping\Controller\Adminhtml\Order\Shipment;
@@ -10,6 +10,13 @@ use Magento\Backend\App\Action;
 
 class RemoveTrack extends \Magento\Backend\App\Action
 {
+    /**
+     * Authorization level of a basic admin session
+     *
+     * @see _isAllowed()
+     */
+    const ADMIN_RESOURCE = 'Magento_Sales::shipment';
+
     /**
      * @var \Magento\Shipping\Controller\Adminhtml\Order\ShipmentLoader
      */
@@ -28,19 +35,11 @@ class RemoveTrack extends \Magento\Backend\App\Action
     }
 
     /**
-     * @return bool
-     */
-    protected function _isAllowed()
-    {
-        return $this->_authorization->isAllowed('Magento_Sales::shipment');
-    }
-
-    /**
      * Remove tracking number from shipment
      *
      * @return void
      */
-    public function executeInternal()
+    public function execute()
     {
         $trackId = $this->getRequest()->getParam('track_id');
         /** @var \Magento\Sales\Model\Order\Shipment\Track $track */

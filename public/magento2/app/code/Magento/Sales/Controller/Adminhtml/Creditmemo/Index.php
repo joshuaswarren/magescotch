@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Sales\Controller\Adminhtml\Creditmemo;
@@ -12,8 +12,8 @@ class Index extends \Magento\Sales\Controller\Adminhtml\Creditmemo\AbstractCredi
      *
      * @return \Magento\Backend\Model\View\Result\Page
      */
-    public function executeInternal()
+    public function execute()
     {
-        return parent::executeInternal();
+        return parent::execute();
     }
 }

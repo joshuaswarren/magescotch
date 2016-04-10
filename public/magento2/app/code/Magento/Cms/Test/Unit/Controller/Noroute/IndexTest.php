@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Cms\Test\Unit\Controller\Noroute;
@@ -113,7 +113,7 @@ class IndexTest extends \PHPUnit_Framework_TestCase
         );
         $this->assertSame(
             $this->resultPageMock,
-            $this->_controller->executeInternal()
+            $this->_controller->execute()
         );
     }
 
@@ -146,7 +146,7 @@ class IndexTest extends \PHPUnit_Framework_TestCase
         );
         $this->assertSame(
             $this->forwardMock,
-            $this->_controller->executeInternal()
+            $this->_controller->execute()
         );
     }
 }

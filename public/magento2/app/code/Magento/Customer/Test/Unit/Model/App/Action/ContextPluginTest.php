@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -46,7 +46,7 @@ class ContextPluginTest extends \PHPUnit_Framework_TestCase
     /**
      * Set up
      */
-    public function setUp()
+    protected function setUp()
     {
         $this->customerSessionMock = $this->getMock(
             'Magento\Customer\Model\Session',
@@ -74,9 +74,9 @@ class ContextPluginTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test aroundExecute
+     * Test aroundDispatch
      */
-    public function testAroundExecute()
+    public function testAroundDispatch()
     {
         $this->customerSessionMock->expects($this->once())
             ->method('getCustomerGroupId')
@@ -96,7 +96,7 @@ class ContextPluginTest extends \PHPUnit_Framework_TestCase
             );
         $this->assertEquals(
             'ExpectedValue',
-            $this->plugin->aroundExecute($this->subjectMock, $this->closureMock, $this->requestMock)
+            $this->plugin->aroundDispatch($this->subjectMock, $this->closureMock, $this->requestMock)
         );
     }
 }

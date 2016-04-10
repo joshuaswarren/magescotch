@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Directory\Controller\Adminhtml\Json;
@@ -13,7 +13,7 @@ class CountryRegion extends \Magento\Backend\App\Action
      *
      * @return string
      */
-    public function executeInternal()
+    public function execute()
     {
         $arrRes = [];
 

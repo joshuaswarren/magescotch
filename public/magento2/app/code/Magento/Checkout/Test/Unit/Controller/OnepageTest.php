@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Checkout\Test\Unit\Controller;
@@ -100,6 +100,6 @@ class OnepageTest extends \PHPUnit_Framework_TestCase
             ->method('getActionName')
             ->willReturn('index');
 
-        $this->assertEquals($this->response, $this->controller->execute($this->request));
+        $this->assertEquals($this->response, $this->controller->dispatch($this->request));
     }
 }

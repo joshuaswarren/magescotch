@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Cms\Test\Unit\Controller\Adminhtml\Wysiwyg;
@@ -157,7 +157,7 @@ class DirectiveTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Magento\Cms\Controller\Adminhtml\Wysiwyg\Directive::executeInternal
+     * @covers \Magento\Cms\Controller\Adminhtml\Wysiwyg\Directive::execute
      */
     public function testExecute()
     {
@@ -188,12 +188,12 @@ class DirectiveTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame(
             $this->rawMock,
-            $this->wysiwygDirective->executeInternal()
+            $this->wysiwygDirective->execute()
         );
     }
 
     /**
-     * @covers \Magento\Cms\Controller\Adminhtml\Wysiwyg\Directive::executeInternal
+     * @covers \Magento\Cms\Controller\Adminhtml\Wysiwyg\Directive::execute
      */
     public function testExecuteException()
     {
@@ -236,7 +236,7 @@ class DirectiveTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame(
             $this->rawMock,
-            $this->wysiwygDirective->executeInternal()
+            $this->wysiwygDirective->execute()
         );
     }
 

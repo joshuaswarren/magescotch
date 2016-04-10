@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Newsletter\Controller\Subscriber;
@@ -111,7 +111,7 @@ class NewAction extends \Magento\Newsletter\Controller\Subscriber
      * @throws \Magento\Framework\Exception\LocalizedException
      * @return void
      */
-    public function executeInternal()
+    public function execute()
     {
         if ($this->getRequest()->isPost() && $this->getRequest()->getPost('email')) {
             $email = (string)$this->getRequest()->getPost('email');

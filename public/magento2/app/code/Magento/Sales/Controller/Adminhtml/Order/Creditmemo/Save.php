@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Sales\Controller\Adminhtml\Order\Creditmemo;
@@ -11,6 +11,13 @@ use Magento\Sales\Model\Order\Email\Sender\CreditmemoSender;
 
 class Save extends \Magento\Backend\App\Action
 {
+    /**
+     * Authorization level of a basic admin session
+     *
+     * @see _isAllowed()
+     */
+    const ADMIN_RESOURCE = 'Magento_Sales::sales_creditmemo';
+
     /**
      * @var \Magento\Sales\Controller\Adminhtml\Order\CreditmemoLoader
      */
@@ -45,14 +52,6 @@ class Save extends \Magento\Backend\App\Action
     }
 
     /**
-     * @return bool
-     */
-    protected function _isAllowed()
-    {
-        return $this->_authorization->isAllowed('Magento_Sales::sales_creditmemo');
-    }
-
-    /**
      * Save creditmemo
      * We can save only new creditmemo. Existing creditmemos are not editable
      *
@@ -61,7 +60,7 @@ class Save extends \Magento\Backend\App\Action
      * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      * @SuppressWarnings(PHPMD.NPathComplexity)
      */
-    public function executeInternal()
+    public function execute()
     {
         $resultRedirect = $this->resultRedirectFactory->create();
         $data = $this->getRequest()->getPost('creditmemo');

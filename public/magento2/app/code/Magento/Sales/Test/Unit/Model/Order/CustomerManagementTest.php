@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Sales\Test\Unit\Model\Order;
@@ -97,7 +97,7 @@ class CustomerManagementTest extends \PHPUnit_Framework_TestCase
 
     public function testCreateCreatesCustomerBasedonGuestOrder()
     {
-        $orderMock = $this->getMock('\Magento\Sales\Api\Data\OrderInterface');
+        $orderMock = $this->getMock('\Magento\Sales\Model\Order', [], [], '', false);
         $orderMock->expects($this->once())->method('getCustomerId')->will($this->returnValue(null));
         $orderMock->expects($this->any())->method('getBillingAddress')->will($this->returnValue('billing_address'));
 

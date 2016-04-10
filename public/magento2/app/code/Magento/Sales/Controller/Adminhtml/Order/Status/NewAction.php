@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Sales\Controller\Adminhtml\Order\Status;
@@ -36,7 +36,7 @@ class NewAction extends \Magento\Sales\Controller\Adminhtml\Order\Status
      *
      * @return \Magento\Backend\Model\View\Result\Page
      */
-    public function executeInternal()
+    public function execute()
     {
         $data = $this->_getSession()->getFormData(true);
         if ($data) {

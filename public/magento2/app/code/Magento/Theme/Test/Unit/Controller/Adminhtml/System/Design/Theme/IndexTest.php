@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Theme\Test\Unit\Controller\Adminhtml\System\Design\Theme;
@@ -40,6 +40,6 @@ class IndexTest extends \Magento\Theme\Test\Unit\Controller\Adminhtml\System\Des
             ->method('getLayout')
             ->will($this->returnValue($layout));
 
-        $this->_model->executeInternal();
+        $this->_model->execute();
     }
 }

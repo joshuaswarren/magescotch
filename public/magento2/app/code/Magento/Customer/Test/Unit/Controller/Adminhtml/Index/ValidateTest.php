@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -62,8 +62,11 @@ class ValidateTest extends \PHPUnit_Framework_TestCase
     /** @var \Magento\Customer\Controller\Adminhtml\Index\Validate */
     protected $controller;
 
-    public function setUp()
+    protected function setUp()
     {
+        if (!function_exists('libxml_set_external_entity_loader')) {
+            $this->markTestSkipped('Skipped on HHVM. Will be fixed in MAGETWO-45033');
+        }
         $this->customer = $this->getMockForAbstractClass(
             'Magento\Customer\Api\Data\CustomerInterface',
             [],
@@ -186,7 +189,7 @@ class ValidateTest extends \PHPUnit_Framework_TestCase
             ->method('validate')
             ->willReturn($validationResult);
 
-        $this->controller->executeInternal();
+        $this->controller->execute();
     }
 
     public function testExecuteWithoutAddresses()
@@ -225,7 +228,7 @@ class ValidateTest extends \PHPUnit_Framework_TestCase
             ->method('validate')
             ->willReturn($validationResult);
 
-        $this->controller->executeInternal();
+        $this->controller->execute();
     }
 
     public function testExecuteWithException()
@@ -271,6 +274,6 @@ class ValidateTest extends \PHPUnit_Framework_TestCase
             ->method('validate')
             ->willReturn($validationResult);
 
-        $this->controller->executeInternal();
+        $this->controller->execute();
     }
 }

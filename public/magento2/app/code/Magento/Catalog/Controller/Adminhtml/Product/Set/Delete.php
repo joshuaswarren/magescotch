@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Catalog\Controller\Adminhtml\Product\Set;
@@ -30,7 +30,7 @@ class Delete extends \Magento\Catalog\Controller\Adminhtml\Product\Set
     /**
      * @return \Magento\Backend\Model\View\Result\Redirect
      */
-    public function executeInternal()
+    public function execute()
     {
         $setId = $this->getRequest()->getParam('id');
         $resultRedirect = $this->resultRedirectFactory->create();

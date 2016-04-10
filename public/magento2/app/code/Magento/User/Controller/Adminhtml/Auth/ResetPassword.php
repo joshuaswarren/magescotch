@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\User\Controller\Adminhtml\Auth;
@@ -15,7 +15,7 @@ class ResetPassword extends \Magento\User\Controller\Adminhtml\Auth
      *
      * @return void
      */
-    public function executeInternal()
+    public function execute()
     {
         $passwordResetToken = (string)$this->getRequest()->getQuery('token');
         $userId = (int)$this->getRequest()->getQuery('id');

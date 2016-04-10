@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Theme\Test\Unit\Controller\Adminhtml\System\Design\Theme;
@@ -39,7 +39,7 @@ class UploadCssTest extends \Magento\Theme\Test\Unit\Controller\Adminhtml\System
             ->method('representJson')
             ->with('{"filename":"filename","content":"content"}');
 
-        $this->_model->executeInternal();
+        $this->_model->execute();
     }
 
     public function testExecuteWithLocalizedException()
@@ -67,7 +67,7 @@ class UploadCssTest extends \Magento\Theme\Test\Unit\Controller\Adminhtml\System
             ->with('Magento\Framework\Json\Helper\Data')
             ->willReturn($jsonData);
 
-        $this->_model->executeInternal();
+        $this->_model->execute();
     }
 
     public function testExecuteWithException()
@@ -103,6 +103,6 @@ class UploadCssTest extends \Magento\Theme\Test\Unit\Controller\Adminhtml\System
             ->with('Magento\Framework\Json\Helper\Data')
             ->willReturn($jsonData);
 
-        $this->_model->executeInternal();
+        $this->_model->execute();
     }
 }

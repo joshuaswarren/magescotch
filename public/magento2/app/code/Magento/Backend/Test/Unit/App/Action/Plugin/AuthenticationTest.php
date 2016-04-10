@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Backend\Test\Unit\App\Action\Plugin;
@@ -45,7 +45,7 @@ class AuthenticationTest extends \PHPUnit_Framework_TestCase
         $this->plugin = null;
     }
 
-    public function testAroundExecuteProlongStorage()
+    public function testAroundDispatchProlongStorage()
     {
         $subject = $this->getMock('Magento\Backend\Controller\Adminhtml\Index', [], [], '', false);
         $request = $this->getMock('\Magento\Framework\App\Request\Http', ['getActionName'], [], '', false);
@@ -82,11 +82,11 @@ class AuthenticationTest extends \PHPUnit_Framework_TestCase
             return $expectedResult;
         };
 
-        $this->assertEquals($expectedResult, $this->plugin->aroundExecute($subject, $proceed, $request));
+        $this->assertEquals($expectedResult, $this->plugin->aroundDispatch($subject, $proceed, $request));
     }
 
     /**
-     * Calls aroundExecute to access protected method _processNotLoggedInUser
+     * Calls aroundDispatch to access protected method _processNotLoggedInUser
      *
      * Data provider supplies different possibilities of request parameters and properties
      * @dataProvider processNotLoggedInUserDataProvider
@@ -103,7 +103,7 @@ class AuthenticationTest extends \PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        // Stubs to control the flow of execution in aroundExecute
+        // Stubs to control the flow of execution in aroundDispatch
         $this->auth->expects($this->any())->method('getAuthStorage')->will($this->returnValue($storage));
         $request->expects($this->once())->method('getActionName')->will($this->returnValue('non/open/action/name'));
         $this->auth->expects($this->any())->method('getUser')->willReturn(false);
@@ -146,7 +146,7 @@ class AuthenticationTest extends \PHPUnit_Framework_TestCase
         $proceed = function ($request) use ($expectedResult) {
             return $expectedResult;
         };
-        $this->assertEquals($expectedResult, $this->plugin->aroundExecute($subject, $proceed, $request));
+        $this->assertEquals($expectedResult, $this->plugin->aroundDispatch($subject, $proceed, $request));
     }
 
     public function processNotLoggedInUserDataProvider()

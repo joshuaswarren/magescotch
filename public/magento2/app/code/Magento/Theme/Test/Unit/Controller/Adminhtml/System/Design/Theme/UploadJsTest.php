@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Theme\Test\Unit\Controller\Adminhtml\System\Design\Theme;
@@ -28,7 +28,7 @@ class UploadJsTest extends \Magento\Theme\Test\Unit\Controller\Adminhtml\System\
     /** @var \Magento\Framework\View\Design\Theme\CustomizationInterface|\PHPUnit_Framework_MockObject_MockObject  */
     protected $themeCustomization;
 
-    public function setUp()
+    protected function setUp()
     {
         parent::setUp();
         $this->serviceModel = $this->getMock('Magento\Theme\Model\Uploader\Service', [], [], '', false);
@@ -99,7 +99,7 @@ class UploadJsTest extends \Magento\Theme\Test\Unit\Controller\Adminhtml\System\
             ->method('representJson')
             ->with('{"error":"true","message":"We cannot find a theme with id "' . $themeId . '"."}');
 
-        $this->_model->executeInternal();
+        $this->_model->execute();
     }
 
     public function testExecuteWithException()
@@ -149,7 +149,7 @@ class UploadJsTest extends \Magento\Theme\Test\Unit\Controller\Adminhtml\System\
             ->method('representJson')
             ->with('{"error":"true","message":"We can\'t upload the JS file right now."}');
 
-        $this->_model->executeInternal();
+        $this->_model->execute();
     }
 
     public function testExecute()
@@ -244,6 +244,6 @@ class UploadJsTest extends \Magento\Theme\Test\Unit\Controller\Adminhtml\System\
             ->method('representJson')
             ->with('{"error":false,"files":{"fileOne":{"name":"name"}}}');
 
-        $this->_model->executeInternal();
+        $this->_model->execute();
     }
 }

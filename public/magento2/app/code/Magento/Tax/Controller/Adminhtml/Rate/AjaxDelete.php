@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Tax\Controller\Adminhtml\Rate;
@@ -15,7 +15,7 @@ class AjaxDelete extends \Magento\Tax\Controller\Adminhtml\Rate
      *
      * @return \Magento\Framework\Controller\Result\Json
      */
-    public function executeInternal()
+    public function execute()
     {
         $rateId = (int)$this->getRequest()->getParam('tax_calculation_rate_id');
         try {

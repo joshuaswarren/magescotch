@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Sales\Controller\Adminhtml\Order\Creditmemo;
@@ -9,6 +9,13 @@ use Magento\Backend\App\Action;
 
 class View extends \Magento\Backend\App\Action
 {
+    /**
+     * Authorization level of a basic admin session
+     *
+     * @see _isAllowed()
+     */
+    const ADMIN_RESOURCE = 'Magento_Sales::sales_creditmemo';
+
     /**
      * @var \Magento\Sales\Controller\Adminhtml\Order\CreditmemoLoader
      */
@@ -43,19 +50,11 @@ class View extends \Magento\Backend\App\Action
     }
 
     /**
-     * @return bool
-     */
-    protected function _isAllowed()
-    {
-        return $this->_authorization->isAllowed('Magento_Sales::sales_creditmemo');
-    }
-
-    /**
      * Creditmemo information page
      *
      * @return \Magento\Backend\Model\View\Result\Page|\Magento\Backend\Model\View\Result\Forward
      */
-    public function executeInternal()
+    public function execute()
     {
         $this->creditmemoLoader->setOrderId($this->getRequest()->getParam('order_id'));
         $this->creditmemoLoader->setCreditmemoId($this->getRequest()->getParam('creditmemo_id'));

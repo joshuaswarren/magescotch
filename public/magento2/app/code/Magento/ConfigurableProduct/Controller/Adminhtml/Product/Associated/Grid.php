@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\ConfigurableProduct\Controller\Adminhtml\Product\Associated;
@@ -33,7 +33,7 @@ class Grid extends Action
      *
      * @return \Magento\Backend\Model\View\Result\Page
      */
-    public function executeInternal()
+    public function execute()
     {
         /** @var \Magento\Framework\View\Result\Layout $resultPage */
         $resultPage = $this->resultPageFactory->create();

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\ImportExport\Test\Unit\Controller\Adminhtml\History;
@@ -172,7 +172,7 @@ class DownloadTest extends \PHPUnit_Framework_TestCase
     {
         $this->reportHelper->expects($this->any())->method('importFileExists')->willReturn(true);
         $this->resultRaw->expects($this->once())->method('setContents');
-        $this->downloadController->executeInternal();
+        $this->downloadController->execute();
     }
 
     /**
@@ -182,6 +182,6 @@ class DownloadTest extends \PHPUnit_Framework_TestCase
     {
         $this->reportHelper->expects($this->any())->method('importFileExists')->willReturn(false);
         $this->resultRaw->expects($this->never())->method('setContents');
-        $this->downloadController->executeInternal();
+        $this->downloadController->execute();
     }
 }

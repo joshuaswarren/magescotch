@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Email\Test\Unit\Controller\Adminhtml\Email\Template;
@@ -95,7 +95,7 @@ class PreviewTest extends \PHPUnit_Framework_TestCase
         ]);
     }
 
-    public function testExecuteInternal()
+    public function testExecute()
     {
         $this->viewMock->expects($this->once())
             ->method('getPage')
@@ -110,6 +110,6 @@ class PreviewTest extends \PHPUnit_Framework_TestCase
             ->method('prepend')
             ->willReturnSelf();
 
-        $this->assertNull($this->object->executeInternal());
+        $this->assertNull($this->object->execute());
     }
 }

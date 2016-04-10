@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Widget\Controller\Adminhtml\Widget;
@@ -30,7 +30,7 @@ class BuildWidget extends \Magento\Backend\App\Action
      *
      * @return void
      */
-    public function executeInternal()
+    public function execute()
     {
         $type = $this->getRequest()->getPost('widget_type');
         $params = $this->getRequest()->getPost('parameters', []);

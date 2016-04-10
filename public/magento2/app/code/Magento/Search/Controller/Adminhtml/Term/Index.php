@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Search\Controller\Adminhtml\Term;
@@ -12,7 +12,7 @@ class Index extends TermController
     /**
      * @return \Magento\Backend\Model\View\Result\Page
      */
-    public function executeInternal()
+    public function execute()
     {
         $resultPage = $this->createPage();
         $resultPage->getConfig()->getTitle()->prepend(__('Search Terms'));

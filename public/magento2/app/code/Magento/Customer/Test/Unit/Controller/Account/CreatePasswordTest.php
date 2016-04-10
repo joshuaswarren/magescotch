@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Customer\Test\Unit\Controller\Account;
@@ -108,7 +108,7 @@ class CreatePasswordTest extends \PHPUnit_Framework_TestCase
             ->with('*/*/createpassword', [])
             ->willReturnSelf();
 
-        $this->assertEquals($redirectMock, $this->model->executeInternal());
+        $this->assertEquals($redirectMock, $this->model->execute());
     }
 
     public function testExecuteWithSession()
@@ -176,7 +176,7 @@ class CreatePasswordTest extends \PHPUnit_Framework_TestCase
             ->with($token)
             ->willReturnSelf();
 
-        $this->assertEquals($pageMock, $this->model->executeInternal());
+        $this->assertEquals($pageMock, $this->model->execute());
     }
 
     public function testExecuteWithException()
@@ -225,6 +225,6 @@ class CreatePasswordTest extends \PHPUnit_Framework_TestCase
             ->with('*/*/forgotpassword', [])
             ->willReturnSelf();
 
-        $this->assertEquals($redirectMock, $this->model->executeInternal());
+        $this->assertEquals($redirectMock, $this->model->execute());
     }
 }

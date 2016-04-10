@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Tax\Controller\Adminhtml\Rate;
@@ -17,7 +17,7 @@ class Edit extends \Magento\Tax\Controller\Adminhtml\Rate
      *
      * @return \Magento\Backend\Model\View\Result\Page|\Magento\Backend\Model\View\Result\Redirect
      */
-    public function executeInternal()
+    public function execute()
     {
         $rateId = (int)$this->getRequest()->getParam('rate');
         $this->_coreRegistry->register(RegistryConstants::CURRENT_TAX_RATE_ID, $rateId);

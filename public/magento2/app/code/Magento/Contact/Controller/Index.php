@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Contact\Controller;
@@ -82,11 +82,11 @@ abstract class Index extends \Magento\Framework\App\Action\Action
      * @return \Magento\Framework\App\ResponseInterface
      * @throws \Magento\Framework\Exception\NotFoundException
      */
-    public function execute(RequestInterface $request)
+    public function dispatch(RequestInterface $request)
     {
         if (!$this->scopeConfig->isSetFlag(self::XML_PATH_ENABLED, ScopeInterface::SCOPE_STORE)) {
             throw new NotFoundException(__('Page not found.'));
         }
-        return parent::execute($request);
+        return parent::dispatch($request);
     }
 }

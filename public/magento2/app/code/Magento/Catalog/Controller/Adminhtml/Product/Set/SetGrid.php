@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Catalog\Controller\Adminhtml\Product\Set;
@@ -30,7 +30,7 @@ class SetGrid extends \Magento\Catalog\Controller\Adminhtml\Product\Set
     /**
      * @return \Magento\Framework\View\Result\Layout
      */
-    public function executeInternal()
+    public function execute()
     {
         $this->_setTypeId();
         return $this->resultLayoutFactory->create();

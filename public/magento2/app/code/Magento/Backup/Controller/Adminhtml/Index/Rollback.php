@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Backup\Controller\Adminhtml\Index;
@@ -19,7 +19,7 @@ class Rollback extends \Magento\Backup\Controller\Adminhtml\Index
      * @SuppressWarnings(PHPMD.NPathComplexity)
      * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
-    public function executeInternal()
+    public function execute()
     {
         if (!$this->_objectManager->get('Magento\Backup\Helper\Data')->isRollbackAllowed()) {
             $this->_forward('denied');

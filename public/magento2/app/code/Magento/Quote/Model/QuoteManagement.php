@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -20,6 +20,9 @@ use Magento\Quote\Api\Data\PaymentInterface;
 use Magento\Sales\Api\Data\OrderInterfaceFactory as OrderFactory;
 use Magento\Sales\Api\OrderManagementInterface as OrderManagement;
 use Magento\Store\Model\StoreManagerInterface;
+use Magento\Quote\Model\Quote\Address;
+use Magento\Framework\App\ObjectManager;
+use Magento\Quote\Model\QuoteIdMaskFactory;
 
 /**
  * Class QuoteManagement
@@ -95,6 +98,11 @@ class QuoteManagement implements \Magento\Quote\Api\CartManagementInterface
     protected $customerModelFactory;
 
     /**
+     * @var \Magento\Quote\Model\Quote\AddressFactory
+     */
+    protected $quoteAddressFactory;
+
+    /**
      * @var \Magento\Framework\Api\DataObjectHelper
      */
     protected $dataObjectHelper;
@@ -125,6 +133,11 @@ class QuoteManagement implements \Magento\Quote\Api\CartManagementInterface
     protected $quoteFactory;
 
     /**
+     * @var QuoteIdMaskFactory
+     */
+    private $quoteIdMaskFactory;
+
+    /**
      * @param EventManager $eventManager
      * @param QuoteValidator $quoteValidator
      * @param OrderFactory $orderFactory
@@ -138,6 +151,7 @@ class QuoteManagement implements \Magento\Quote\Api\CartManagementInterface
      * @param \Magento\Quote\Api\CartRepositoryInterface $quoteRepository
      * @param \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository
      * @param \Magento\Customer\Model\CustomerFactory $customerModelFactory
+     * @param \Magento\Quote\Model\Quote\AddressFactory $quoteAddressFactory,
      * @param \Magento\Framework\Api\DataObjectHelper $dataObjectHelper
      * @param StoreManagerInterface $storeManager
      * @param \Magento\Checkout\Model\Session $checkoutSession
@@ -160,6 +174,7 @@ class QuoteManagement implements \Magento\Quote\Api\CartManagementInterface
         \Magento\Quote\Api\CartRepositoryInterface $quoteRepository,
         \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository,
         \Magento\Customer\Model\CustomerFactory $customerModelFactory,
+        \Magento\Quote\Model\Quote\AddressFactory $quoteAddressFactory,
         \Magento\Framework\Api\DataObjectHelper $dataObjectHelper,
         StoreManagerInterface $storeManager,
         \Magento\Checkout\Model\Session $checkoutSession,
@@ -180,6 +195,7 @@ class QuoteManagement implements \Magento\Quote\Api\CartManagementInterface
         $this->quoteRepository = $quoteRepository;
         $this->customerRepository = $customerRepository;
         $this->customerModelFactory = $customerModelFactory;
+        $this->quoteAddressFactory = $quoteAddressFactory;
         $this->dataObjectHelper = $dataObjectHelper;
         $this->storeManager = $storeManager;
         $this->checkoutSession = $checkoutSession;
@@ -195,6 +211,9 @@ class QuoteManagement implements \Magento\Quote\Api\CartManagementInterface
     {
         $storeId = $this->storeManager->getStore()->getStoreId();
         $quote = $this->createAnonymousCart($storeId);
+
+        $quote->setBillingAddress($this->quoteAddressFactory->create());
+        $quote->setShippingAddress($this->quoteAddressFactory->create());
 
         try {
             $this->quoteRepository->save($quote);
@@ -250,6 +269,12 @@ class QuoteManagement implements \Magento\Quote\Api\CartManagementInterface
 
         $quote->setCustomer($customer);
         $quote->setCustomerIsGuest(0);
+        $quoteIdMaskFactory = $this->getQuoteIdMaskFactory();
+        /** @var \Magento\Quote\Model\QuoteIdMask $quoteIdMask */
+        $quoteIdMask = $quoteIdMaskFactory->create()->load($cartId, 'quote_id');
+        if ($quoteIdMask->getId()) {
+            $quoteIdMask->delete();
+        }
         $this->quoteRepository->save($quote);
         return true;
 
@@ -329,7 +354,7 @@ class QuoteManagement implements \Magento\Quote\Api\CartManagementInterface
         $order = $this->submit($quote);
 
         if (null == $order) {
-            throw new LocalizedException(__('Cannot place order.'));
+            throw new LocalizedException(__('Unable to place order. Please try again later.'));
         }
 
         $this->checkoutSession->setLastQuoteId($quote->getId());
@@ -432,6 +457,7 @@ class QuoteManagement implements \Magento\Quote\Api\CartManagementInterface
             );
             $addresses[] = $shippingAddress;
             $order->setShippingAddress($shippingAddress);
+            $order->setShippingMethod($quote->getShippingAddress()->getShippingMethod());
         }
         $billingAddress = $this->quoteAddressToOrderAddress->convert(
             $quote->getBillingAddress(),
@@ -443,7 +469,7 @@ class QuoteManagement implements \Magento\Quote\Api\CartManagementInterface
         $addresses[] = $billingAddress;
         $order->setBillingAddress($billingAddress);
         $order->setAddresses($addresses);
-        $order->setPayments([$this->quotePaymentToOrderPayment->convert($quote->getPayment())]);
+        $order->setPayment($this->quotePaymentToOrderPayment->convert($quote->getPayment()));
         $order->setItems($this->resolveItems($quote));
         if ($quote->getCustomer()) {
             $order->setCustomerId($quote->getCustomer()->getId());
@@ -533,5 +559,17 @@ class QuoteManagement implements \Magento\Quote\Api\CartManagementInterface
         if ($shipping && !$shipping->getCustomerId() && !$hasDefaultBilling) {
             $shipping->setIsDefaultBilling(true);
         }
+    }
+
+    /**
+     * @return QuoteIdMaskFactory
+     * @deprecated
+     */
+    private function getQuoteIdMaskFactory()
+    {
+        if (!$this->quoteIdMaskFactory) {
+            $this->quoteIdMaskFactory = ObjectManager::getInstance()->get(QuoteIdMaskFactory::class);
+        }
+        return $this->quoteIdMaskFactory;
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Shipping\Test\Unit\Controller\Adminhtml\Order\Shipment;
@@ -152,6 +152,6 @@ class GetShippingItemsGridTest extends \PHPUnit_Framework_TestCase
             ->method('toHtml')
             ->will($this->returnValue($result));
 
-        $this->assertNotEmpty('result-html', $this->controller->executeInternal());
+        $this->assertNotEmpty('result-html', $this->controller->execute());
     }
 }

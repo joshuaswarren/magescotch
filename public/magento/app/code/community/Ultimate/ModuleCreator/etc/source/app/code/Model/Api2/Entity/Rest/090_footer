@@ -1,5 +1,0 @@
-            $this->_{{entity}} = ${{entity}};
-        }
-        return $this->_{{entity}};
-    }
-}

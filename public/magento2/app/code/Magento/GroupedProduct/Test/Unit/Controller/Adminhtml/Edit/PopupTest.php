@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\GroupedProduct\Test\Unit\Controller\Adminhtml\Edit;
@@ -118,7 +118,7 @@ class PopupTest extends \PHPUnit_Framework_TestCase
         $this->request->expects($this->at(3))->method('getParam')->with('set')->will($this->returnValue($setId));
         $this->registry->expects($this->once())->method('register')->with('current_product', $product);
 
-        $this->assertSame($this->resultLayoutMock, $this->action->executeInternal());
+        $this->assertSame($this->resultLayoutMock, $this->action->execute());
     }
 
     public function testPopupActionWithProductIdNoSetId()
@@ -155,6 +155,6 @@ class PopupTest extends \PHPUnit_Framework_TestCase
         $this->request->expects($this->at(3))->method('getParam')->with('set')->will($this->returnValue($setId));
         $this->registry->expects($this->once())->method('register')->with('current_product', $product);
 
-        $this->assertSame($this->resultLayoutMock, $this->action->executeInternal());
+        $this->assertSame($this->resultLayoutMock, $this->action->execute());
     }
 }

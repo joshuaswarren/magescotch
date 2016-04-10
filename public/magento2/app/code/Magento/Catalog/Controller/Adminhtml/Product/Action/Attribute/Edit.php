@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Catalog\Controller\Adminhtml\Product\Action\Attribute;
@@ -51,7 +51,7 @@ class Edit extends \Magento\Catalog\Controller\Adminhtml\Product\Action\Attribut
     /**
      * @return \Magento\Framework\Controller\ResultInterface
      */
-    public function executeInternal()
+    public function execute()
     {
         $collection = $this->filter->getCollection($this->collectionFactory->create());
         $this->attributeHelper->setProductIds($collection->getAllIds());

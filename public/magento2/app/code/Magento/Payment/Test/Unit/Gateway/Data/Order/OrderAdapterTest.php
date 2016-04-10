@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Payment\Test\Unit\Gateway\Data\Order;
@@ -29,8 +29,9 @@ class OrderAdapterTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->orderMock = $this->getMockBuilder('Magento\Sales\Api\Data\OrderInterface')
-            ->getMockForAbstractClass();
+        $this->orderMock = $this->getMockBuilder('Magento\Sales\Model\Order')
+            ->disableOriginalConstructor()
+            ->getMock();
 
         $this->addressAdapterFactoryMock =
             $this->getMockBuilder('Magento\Payment\Gateway\Data\Order\AddressAdapterFactory')

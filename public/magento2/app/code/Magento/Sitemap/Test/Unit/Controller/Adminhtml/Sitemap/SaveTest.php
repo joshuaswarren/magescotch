@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Sitemap\Test\Unit\Controller\Adminhtml\Sitemap;
@@ -100,7 +100,7 @@ class SaveTest extends \PHPUnit_Framework_TestCase
             ->with('adminhtml/*/')
             ->willReturnSelf();
 
-        $this->assertSame($this->resultRedirectMock, $this->saveController->executeInternal());
+        $this->assertSame($this->resultRedirectMock, $this->saveController->execute());
     }
 
     public function testTryToSaveInvalidDataShouldFailWithErrors()
@@ -166,6 +166,6 @@ class SaveTest extends \PHPUnit_Framework_TestCase
             ->with('adminhtml/*/edit', ['sitemap_id' => $siteMapId])
             ->willReturnSelf();
 
-        $this->assertSame($this->resultRedirectMock, $this->saveController->executeInternal());
+        $this->assertSame($this->resultRedirectMock, $this->saveController->execute());
     }
 }

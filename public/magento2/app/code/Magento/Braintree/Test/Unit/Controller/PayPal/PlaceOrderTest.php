@@ -1,239 +1,205 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
+namespace Magento\Braintree\Test\Unit\Controller\Paypal;
 
-namespace Magento\Braintree\Test\Unit\Controller\PayPal;
+use Magento\Quote\Model\Quote;
+use Magento\Checkout\Model\Session;
+use Magento\Framework\App\Action\Context;
+use Magento\Framework\App\RequestInterface;
+use Magento\Framework\Message\ManagerInterface;
+use Magento\Framework\Controller\ResultFactory;
+use Magento\Framework\Controller\ResultInterface;
+use Magento\Braintree\Controller\Paypal\PlaceOrder;
+use Magento\Braintree\Gateway\Config\PayPal\Config;
+use Magento\Braintree\Model\Paypal\Helper\OrderPlace;
 
-use Magento\Framework\TestFramework\Unit\Helper\ObjectManager as ObjectManagerHelper;
-
+/**
+ * Class PlaceOrderTest
+ *
+ * @see \Magento\Braintree\Controller\Paypal\PlaceOrder
+ *
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ */
 class PlaceOrderTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var \Magento\Braintree\Model\CheckoutFactory|\PHPUnit_Framework_MockObject_MockObject
+     * @var OrderPlace|\PHPUnit_Framework_MockObject_MockObject
      */
-    protected $checkoutFactoryMock;
+    private $orderPlaceMock;
 
     /**
-     * @var \Magento\Checkout\Model\Session|\PHPUnit_Framework_MockObject_MockObject
+     * @var Config|\PHPUnit_Framework_MockObject_MockObject
      */
-    protected $checkoutSessionMock;
+    private $configMock;
 
     /**
-     * @var \Magento\Framework\App\RequestInterface|\PHPUnit_Framework_MockObject_MockObject
+     * @var Session|\PHPUnit_Framework_MockObject_MockObject
      */
-    protected $requestMock;
+    private $checkoutSessionMock;
 
     /**
-     * @var \Magento\Framework\Controller\ResultFactory|\PHPUnit_Framework_MockObject_MockObject
+     * @var RequestInterface|\PHPUnit_Framework_MockObject_MockObject
      */
-    protected $resultFactoryMock;
+    private $requestMock;
 
     /**
-     * @var \Magento\Braintree\Model\Checkout|\PHPUnit_Framework_MockObject_MockObject
+     * @var ResultFactory|\PHPUnit_Framework_MockObject_MockObject
      */
-    protected $checkoutMock;
+    private $resultFactoryMock;
 
     /**
-     * @var \Magento\Framework\Message\ManagerInterface|\PHPUnit_Framework_MockObject_MockObject
+     * @var ManagerInterface|\PHPUnit_Framework_MockObject_MockObject
      */
-    protected $messageManager;
+    protected $messageManagerMock;
 
     /**
-     * @var ObjectManagerHelper
+     * @var PlaceOrder
      */
-    protected $objectManagerHelper;
+    private $placeOrder;
 
-    /**
-     * @var \Magento\Braintree\Controller\PayPal\PlaceOrder
-     */
-    protected $controller;
-
-    /**
-     * @var \Magento\Checkout\Api\AgreementsValidatorInterface |\PHPUnit_Framework_MockObject_MockObject
-     */
-    protected $validatorMock;
-
-    /**
-     * test setup
-     */
-    public function setUp()
+    protected function setUp()
     {
-        $this->checkoutSessionMock = $this->getMockBuilder('\Magento\Checkout\Model\Session')
-            ->disableOriginalConstructor()
-            ->setMethods(
-                [
-                    'clearHelperData',
-                    'getQuote',
-                    'setLastQuoteId',
-                    'setLastSuccessQuoteId',
-                    'setLastOrderId',
-                    'setLastRealOrderId',
-                ]
-            )
-            ->getMock();
-
-        $this->checkoutFactoryMock = $this->getMockBuilder('\Magento\Braintree\Model\CheckoutFactory')
-            ->disableOriginalConstructor()
-            ->setMethods(['create'])
-            ->getMock();
-
-        $this->messageManager = $this->getMock('\Magento\Framework\Message\ManagerInterface');
-
-        $this->checkoutMock = $this->getMockBuilder('\Magento\Braintree\Model\Checkout')
+        /** @var Context|\PHPUnit_Framework_MockObject_MockObject $contextMock */
+        $contextMock = $this->getMockBuilder(Context::class)
             ->disableOriginalConstructor()
             ->getMock();
-
-        $this->requestMock = $this->getMock('\Magento\Framework\App\Request\Http', [], [], '', '', false);
-
-        $this->resultFactoryMock = $this->getMockBuilder('\Magento\Framework\Controller\ResultFactory')
+        $this->requestMock = $this->getMockBuilder(RequestInterface::class)
+            ->setMethods(['getPostValue'])
+            ->getMockForAbstractClass();
+        $this->resultFactoryMock = $this->getMockBuilder(ResultFactory::class)
             ->disableOriginalConstructor()
             ->getMock();
-
-        $contextMock = $this->getMockBuilder('\Magento\Framework\App\Action\Context')
+        $this->checkoutSessionMock = $this->getMockBuilder(Session::class)
             ->disableOriginalConstructor()
             ->getMock();
-        $contextMock->expects($this->any())
-            ->method('getResultFactory')
-            ->willReturn($this->resultFactoryMock);
-        $contextMock->expects($this->any())
+        $this->configMock = $this->getMockBuilder(Config::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $this->orderPlaceMock = $this->getMockBuilder(OrderPlace::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $this->messageManagerMock = $this->getMockBuilder(ManagerInterface::class)
+            ->getMockForAbstractClass();
+
+        $contextMock->expects(self::once())
             ->method('getRequest')
             ->willReturn($this->requestMock);
-        $contextMock->expects($this->any())
+        $contextMock->expects(self::once())
+            ->method('getResultFactory')
+            ->willReturn($this->resultFactoryMock);
+        $contextMock->expects(self::once())
             ->method('getMessageManager')
-            ->willReturn($this->messageManager);
-        $this->objectManagerHelper = new ObjectManagerHelper($this);
-        $this->validatorMock = $this->getMock('Magento\Checkout\Api\AgreementsValidatorInterface');
-        $this->controller = $this->objectManagerHelper->getObject(
-            '\Magento\Braintree\Controller\PayPal\PlaceOrder',
-            [
-                'context' => $contextMock,
-                'checkoutSession' => $this->checkoutSessionMock,
-                'checkoutFactory' => $this->checkoutFactoryMock,
-                'agreementsValidator' => $this->validatorMock
-            ]
+            ->willReturn($this->messageManagerMock);
+
+        $this->placeOrder = new PlaceOrder(
+            $contextMock,
+            $this->configMock,
+            $this->checkoutSessionMock,
+            $this->orderPlaceMock
         );
-    }
-
-    protected function setupCart()
-    {
-        $quoteMock = $this->getMockBuilder('\Magento\Quote\Model\Quote')
-            ->disableOriginalConstructor()
-            ->setMethods(['hasItems', 'getHasError', 'getPayment', 'getId'])
-            ->getMock();
-        $quoteMock->expects($this->any())
-            ->method('hasItems')
-            ->willReturn(true);
-        $quoteMock->expects($this->any())
-            ->method('getHasError')
-            ->willReturn(false);
-
-        $this->checkoutSessionMock->expects($this->any())
-            ->method('getQuote')
-            ->willReturn($quoteMock);
-
-        $this->checkoutFactoryMock->expects($this->any())
-            ->method('create')
-            ->willReturn($this->checkoutMock);
-
-        $this->requestMock->expects($this->any())->method('getPost')->willReturn([]);
-        return $quoteMock;
     }
 
     public function testExecute()
     {
-        $quoteId = 123;
-        $orderId = 'orderId';
-        $orderIncrementId = 125;
+        $agreement = ['test-data'];
 
-        $quoteMock = $this->setupCart();
-        $this->validatorMock->expects($this->once())->method('isValid')->willReturn(true);
-        $this->checkoutMock->expects($this->once())
-            ->method('place')
-            ->with(null);
+        $quoteMock = $this->getQuoteMock();
+        $quoteMock->expects(self::once())
+            ->method('getItemsCount')
+            ->willReturn(1);
 
-        $this->checkoutSessionMock->expects($this->once())
-            ->method('clearHelperData');
-
-        $quoteMock->expects($this->once())
-            ->method('getId')
-            ->willReturn($quoteId);
-
-        $this->checkoutSessionMock->expects($this->once())
-            ->method('setLastQuoteId')
-            ->with($quoteId)
-            ->willReturnSelf();
-        $this->checkoutSessionMock->expects($this->once())
-            ->method('setLastSuccessQuoteId')
-            ->with($quoteId)
-            ->willReturnSelf();
-
-        $orderMock = $this->getMockBuilder('\Magento\Sales\Model\Order')
-            ->disableOriginalConstructor()
-            ->getMock();
-        $orderMock->expects($this->once())
-            ->method('getId')
-            ->willReturn($orderId);
-        $orderMock->expects($this->once())
-            ->method('getIncrementId')
-            ->willReturn($orderIncrementId);
-
-        $this->checkoutMock->expects($this->once())
-            ->method('getOrder')
-            ->willReturn($orderMock);
-
-        $this->checkoutSessionMock->expects($this->once())
-            ->method('setLastOrderId')
-            ->with($orderId)
-            ->willReturnSelf();
-        $this->checkoutSessionMock->expects($this->once())
-            ->method('setLastRealOrderId')
-            ->with($orderIncrementId)
-            ->willReturnSelf();
-
-        $resultRedirect = $this->getMockBuilder('\Magento\Framework\Controller\Result\Redirect')
-            ->disableOriginalConstructor()
-            ->getMock();
-        $resultRedirect->expects($this->once())
+        $resultMock = $this->getResultMock();
+        $resultMock->expects(self::once())
             ->method('setPath')
             ->with('checkout/onepage/success')
             ->willReturnSelf();
-        $this->resultFactoryMock->expects($this->once())
-            ->method('create')
-            ->with(\Magento\Framework\Controller\ResultFactory::TYPE_REDIRECT)
-            ->willReturn($resultRedirect);
 
-        $this->assertEquals($resultRedirect, $this->controller->executeInternal());
+        $this->resultFactoryMock->expects(self::once())
+            ->method('create')
+            ->with(ResultFactory::TYPE_REDIRECT)
+            ->willReturn($resultMock);
+
+        $this->requestMock->expects(self::once())
+            ->method('getPostValue')
+            ->with('agreement', [])
+            ->willReturn($agreement);
+
+        $this->checkoutSessionMock->expects(self::once())
+            ->method('getQuote')
+            ->willReturn($quoteMock);
+
+        $this->orderPlaceMock->expects(self::once())
+            ->method('execute')
+            ->with($quoteMock, [0]);
+
+        $this->messageManagerMock->expects(self::never())
+            ->method('addExceptionMessage');
+
+        self::assertEquals($this->placeOrder->execute(), $resultMock);
     }
 
     public function testExecuteException()
     {
-        $this->setupCart();
-        $this->validatorMock->expects($this->once())->method('isValid')->willReturn(true);
-        $exceptionMsg = new \Magento\Framework\Phrase('error');
-        $exception = new \Magento\Framework\Exception\LocalizedException($exceptionMsg);
-        $this->checkoutMock->expects($this->once())
-            ->method('place')
-            ->with(null)
-            ->willThrowException($exception);
+        $agreement = ['test-data'];
 
-        $this->messageManager->expects($this->once())
-            ->method('addExceptionMessage')
-            ->with($exception, $exceptionMsg);
+        $quote = $this->getQuoteMock();
+        $quote->expects(self::once())
+            ->method('getItemsCount')
+            ->willReturn(0);
 
-        $resultRedirect = $this->getMockBuilder('\Magento\Framework\Controller\Result\Redirect')
-            ->disableOriginalConstructor()
-            ->getMock();
-        $resultRedirect->expects($this->once())
+        $resultMock = $this->getResultMock();
+        $resultMock->expects(self::once())
             ->method('setPath')
             ->with('checkout/cart')
             ->willReturnSelf();
-        $this->resultFactoryMock->expects($this->once())
-            ->method('create')
-            ->with(\Magento\Framework\Controller\ResultFactory::TYPE_REDIRECT)
-            ->willReturn($resultRedirect);
 
-        $this->assertEquals($resultRedirect, $this->controller->executeInternal());
+        $this->resultFactoryMock->expects(self::once())
+            ->method('create')
+            ->with(ResultFactory::TYPE_REDIRECT)
+            ->willReturn($resultMock);
+
+        $this->requestMock->expects(self::once())
+            ->method('getPostValue')
+            ->with('agreement', [])
+            ->willReturn($agreement);
+
+        $this->checkoutSessionMock->expects(self::once())
+            ->method('getQuote')
+            ->willReturn($quote);
+
+        $this->orderPlaceMock->expects(self::never())
+            ->method('execute');
+
+        $this->messageManagerMock->expects(self::once())
+            ->method('addExceptionMessage')
+            ->with(
+                self::isInstanceOf('\InvalidArgumentException'),
+                'We can\'t initialize checkout.'
+            );
+
+        self::assertEquals($this->placeOrder->execute(), $resultMock);
+    }
+
+    /**
+     * @return ResultInterface|\PHPUnit_Framework_MockObject_MockObject
+     */
+    private function getResultMock()
+    {
+        return $this->getMockBuilder(ResultInterface::class)
+            ->setMethods(['setPath'])
+            ->getMockForAbstractClass();
+    }
+
+    /**
+     * @return Quote|\PHPUnit_Framework_MockObject_MockObject
+     */
+    private function getQuoteMock()
+    {
+        return $this->getMockBuilder(Quote::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 }

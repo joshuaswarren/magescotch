@@ -1,7 +1,0 @@
-        $this->addColumn(
-            '{{attributeCode}}',
-            array(
-                'header' => Mage::helper('{{namespace}}_{{module}}')->__('{{attributeLabel}}'),
-                'index'  => '{{attributeCode}}',{{attributeColumnOptions}}
-            )
-        );

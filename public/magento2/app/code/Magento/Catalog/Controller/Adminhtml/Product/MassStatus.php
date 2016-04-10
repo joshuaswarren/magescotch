@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Catalog\Controller\Adminhtml\Product;
@@ -75,7 +75,7 @@ class MassStatus extends \Magento\Catalog\Controller\Adminhtml\Product
      *
      * @return \Magento\Backend\Model\View\Result\Redirect
      */
-    public function executeInternal()
+    public function execute()
     {
         $collection = $this->filter->getCollection($this->collectionFactory->create());
         $productIds = $collection->getAllIds();

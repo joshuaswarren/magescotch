@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Framework\Session;
@@ -67,8 +67,11 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
         $filesystem = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
             'Magento\Framework\Filesystem'
         );
+        $path = ini_get('session.save_path') ?:
+            $filesystem->getDirectoryRead(DirectoryList::SESSION)->getAbsolutePath();
+
         $this->assertEquals(
-            $filesystem->getDirectoryRead(DirectoryList::SESSION)->getAbsolutePath(),
+            $path,
             $this->_model->getSavePath()
         );
         $this->assertEquals(
