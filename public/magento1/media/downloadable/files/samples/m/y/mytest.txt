@@ -1,6 +1,0 @@
-Cyber source test account details
-
-
-company : corratech2012
-user name : corratech2012
-pwd corratech123
