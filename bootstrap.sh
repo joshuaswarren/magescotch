@@ -9,5 +9,9 @@
 # crontab mycron
 # rm mycron
 
+chown vagrant:vagrant /home/vagrant/.composer/auth.json
+
 cp -r /opt/magento1 /var/www/public/
 cp -r /opt/magento2 /var/www/public/
+
+
