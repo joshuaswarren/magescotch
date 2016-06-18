@@ -3,3 +3,7 @@ public/magento/var/cache
 public/magento/var/session
 .vagrant
 .idea
+public/html_test.html
+public/magento1/
+public/magento2/
+public/php_test.php

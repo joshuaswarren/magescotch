@@ -1,4 +1,11 @@
 # MageScotch Box
+
+This is the PHP 7-based version of Magescotch. If you need PHP 5, please see [Magescotch5](https://github.com/joshuaswarren/magescotch5)
+
+This environment is based on the Vagrant base box Magemalt. To request new software to be added, please open an issue on the [Magemalt repository](https://github.com/joshuaswarren/magemalt).
+
+Some functionality (primarily Z-Ray) does not yet work under PHP 7 due to upstream compability issues. 
+
 ## Get Started
 - Download and Install [Vagrant][3]
 - Download and Install [VirtualBox][4]
