@@ -7,6 +7,9 @@
  end
 end
 
+require_relative 'vagrant/inline/config'
+require_relative 'vagrant/inline/nfs-plugin'
+
 # Define Vagrantfile configuration options
 VagrantApp::Config.option(:name, '')
   .option(:hostname, '') # Hostname
@@ -17,6 +20,12 @@ VagrantApp::Config.option(:name, '')
   .option(:gid, Process.egid) # Group ID for mapping
 
 Vagrant.configure("2") do |config|
+
+
+  # Prepare configuration and setup shell scripts for it
+  current_file = Pathname.new(__FILE__)
+  box_config = VagrantApp::Config.new
+
 
     config.vm.box = "creatuity/MageScotchBox"
     config.vm.network "private_network", ip: "192.168.33.10"
