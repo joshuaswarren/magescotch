@@ -4,11 +4,10 @@ This is the PHP 7-based version of Magescotch. If you need PHP 5, please see [Ma
 
 This environment is based on the Vagrant base box Magemalt. To request new software to be added, please open an issue on the [Magemalt repository](https://github.com/joshuaswarren/magemalt).
 
-Some functionality (primarily Z-Ray) does not yet work under PHP 7 due to upstream compability issues. 
-
 ## Get Started
 - Download and Install [Vagrant][3]
 - Download and Install [VirtualBox][4]
+- Install the Vagrant plugins required by running: vagrant plugin install vagrant-hostmanager vagrant-auto_network vagrant-nfs_guest
 - Clone the MageScotch Box [GitHub Repository](https://github.com/joshuaswarren/magescotch)
 - Run `vagrant up`
 - Access Magento 1 at [http://192.168.33.10/magento/](http://192.168.33.10/magento/)
