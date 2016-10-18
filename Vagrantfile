@@ -38,13 +38,7 @@ Vagrant.configure("2") do |config|
     config.vm.provision :shell, path: "bootstrap.sh"
     config.vm.hostname = "magescotch"
     config.vm.synced_folder ".", "/vagrant", disabled: true
-# config.vm.synced_folder "./", "/var/www", type:"nfs", mount_options:["nolock,vers=3,udp,noatime,actimeo=1"] 
-    config.vm.synced_folder "./webroot/", "/var/www", type:"nfs_guest", create:true, 
-		linux__nfs_options: %w(rw no_subtree_check all_squash insecure async),
-    		map_uid: box_config.get(:uid).to_s,
-    		map_gid: box_config.get(:gid).to_s,
-    		owner: box_config.get(:user),
-    		group: box_config.get(:group) 
+    config.vm.synced_folder "./", "/var/www", type:"nfs", mount_options:["nolock,vers=3,udp,noatime,actimeo=1"] 
 
   host = RbConfig::CONFIG['host_os']
 
