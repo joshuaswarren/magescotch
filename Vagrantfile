@@ -1,34 +1,17 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-%w(vagrant-hostmanager vagrant-auto_network vagrant-nfs_guest).each do |plugin|
+%w(vagrant-hostmanager vagrant-auto_network).each do |plugin|
  unless Vagrant.has_plugin?(plugin)
    raise 'In order to use this box, you must install plugin: ' + plugin
  end
 end
 
-require_relative 'vagrant/inline/config'
-require_relative 'vagrant/inline/nfs-plugin'
-
-# Define Vagrantfile configuration options
-VagrantApp::Config.option(:name, '')
-  .option(:hostname, '') # Hostname
-  .option(:domains, []) # Domain list
-  .option(:user, 'vagrant') # User name for share
-  .option(:group, 'vagrant') # Group name for share
-  .option(:uid, Process.euid) # User ID for mapping
-  .option(:gid, Process.egid) # Group ID for mapping
-
 Vagrant.configure("2") do |config|
 
 
-  # Prepare configuration and setup shell scripts for it
-  current_file = Pathname.new(__FILE__)
-  box_config = VagrantApp::Config.new
-
-
     config.vm.box = "creatuity/MageScotchBox"
-    config.vm.box_version = ">= 2.0.3"
+    config.vm.box_version = ">= 2.0.7"
     config.vm.network "private_network", ip: "192.168.33.10"
     config.vm.provision "fix-no-tty", type: "shell" do |s|
     	s.privileged = false
@@ -56,7 +39,7 @@ Vagrant.configure("2") do |config|
 
   mem = mem / 1024 / 4
     config.vm.provider "virtualbox" do |v|
-  	v.cpus = 1
+  	v.cpus = 2
         v.customize ["modifyvm", :id, "--memory", mem]
     end
 
