@@ -7,30 +7,52 @@ This environment is based on the Vagrant base box Magemalt. To request new softw
 ## Get Started
 - Download and Install [Vagrant][3]
 - Download and Install [VirtualBox][4]
-- Install the Vagrant plugins required by running: vagrant plugin install vagrant-hostmanager vagrant-auto_network vagrant-nfs_guest
+- Install the Vagrant plugins required by running: vagrant plugin install vagrant-hostmanager vagrant-auto_network
 - Clone the MageScotch Box [GitHub Repository](https://github.com/joshuaswarren/magescotch)
 - Run `vagrant up`
-- Access Magento 1 at [http://192.168.33.10/magento/](http://192.168.33.10/magento/)
+- Access Magento 1 at [http://192.168.33.10/magento1/](http://192.168.33.10/magento1/)
 - Access Magento 2 at [http://192.168.33.10/magento2/](http://192.168.33.10/magento2/)
-- Access your own project at [http://192.168.33.10/dev/](http://192.168.33.10/dev/)
-- Use your favorite IDE to edit the files in public/magento, public/magento2 and public/dev
+- Use your favorite IDE to edit the files in public/magento1, public/magento2 and public/dev
 - Access Mailcatcher at [http://192.168.33.10:1080/](http://192.168.33.10:1080/)
 
 ## Credentials
-### Databases
+### Databases / MySQL
 
 Username: dev
 Password: dev
 Databases: magento, magento2, dev
 
 ### Admin accounts
-- Magento 1: http://192.168.33.10/magento/admin_dev/ username: admin password: 64-solution-DISH-into-64
+- Magento 1: http://192.168.33.10/magento1/admin_dev/ username: admin password: 64-solution-DISH-into-64
 - Magento 2: http://192.168.33.10/magento2/admin_dev/ username: admin password: 64-solution-DISH-into-64
+
+## Common Issues
+### Magento 1 sites don't load
+
+Magento 1 is not currently compatible with PHP 7. 
+
+If the error is a 500 error and in the Magento exception log you see this error: " PHP Fatal error: Uncaught Error: Function name must be a string...", your project isn't compatible with PHP 7.
+
+If that's the case, run 'vagrant ssh' to connect to MageScotch and cd to the directory your project is installed in and run the following commands: 
+
+#### For Magento 1.9.3 and newer
+
+modman init
+modman clone https://github.com/Inchoo/Inchoo_PHP7
+magerun cache:flush
+magerun sys:setup:run
+
+#### For Magento 1.9.2.4 and older
+
+modman init
+modman clone https://github.com/Inchoo/Inchoo_PHP7 -b '1.9.2.4'
+magerun cache:flush
+magerun sys:setup:run
 
 ## Features
 ### System Stuff
-- Ubuntu 14.04 LTS (Trusty Tahr)
-- PHP 5.6
+- Ubuntu 1.04 LTS 
+- PHP 7.0 
 - Ruby 2.2.x
 - Vim
 - Git
@@ -45,9 +67,8 @@ Databases: magento, magento2, dev
 - Z-Ray
 
 ### Magento Stuff
-- Magento 1 ([http://192.168.33.10/magento/](http://192.168.33.10/magento/)) - files in public/magento
+- Magento 1 ([http://192.168.33.10/magento1/](http://192.168.33.10/magento/)) - files in public/magento1
 - Magento 2 ([http://192.168.33.10/magento2/](http://192.168.33.10/magento2/)) - files in public/magento2
-- Project directory - [http://192.168.33.10/dev/](http://192.168.33.10/dev/) and public/dev
 
 ### Database Stuff
 - MySQL
