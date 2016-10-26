@@ -15,7 +15,48 @@ This environment is based on the Vagrant base box Magemalt. To request new softw
 - Use your favorite IDE to edit the files in public/magento1, public/magento2 and public/dev
 - Access Mailcatcher at [http://192.168.33.10:1080/](http://192.168.33.10:1080/)
 
+
+
+## Common Tasks
+
+### Add a new project to MageScotch
+
+In a command prompt on your local machine:
+
+`cd <MageScotch Directory>/public/`
+
+`git clone <your project> myproject`
+
+`cd myproject`
+
+`cp <wherever you have an SQL dump of your project's database) ./dump.sql`
+
+`vagrant ssh`  (this command connects you to the MageScotch box via SSH)
+
+`mysql -u dev -p`
+
+`(password is dev)`
+
+`CREATE DATABASE myproject;`
+
+`GRANT ALL on myproject.* TO 'dev'@'localhost';`(CTRL-D to exit)
+
+`cd /var/www/public/myproject/`
+
+`mysql -u dev -p myproject < dump.sql`
+
+`exit`
+
+Your project should now appear when you visit http://192.168.33.10/myproject/
+
+If your project doesn't appear, try clearing any caches, etc. 
+
+You can make changes by editing the files in <MageScotch Directory>/public/myproject/ - any changes made there should take effect immediately. 
+
+
+
 ## Credentials
+
 ### Databases / MySQL
 
 Username: dev
