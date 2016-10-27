@@ -21,7 +21,6 @@ Vagrant.configure("2") do |config|
     config.vm.provision :shell, path: "bootstrap.sh"
     config.vm.hostname = "magescotch"
     config.vm.synced_folder ".", "/vagrant", disabled: true
-    config.vm.synced_folder "./", "/var/www", type:"nfs", mount_options:["nolock,vers=3,udp,noatime,actimeo=1"] 
 
   host = RbConfig::CONFIG['host_os']
 
@@ -29,12 +28,15 @@ Vagrant.configure("2") do |config|
   if host =~ /darwin/
     # sysctl returns Bytes and we need to convert to MB
     mem = `sysctl -n hw.memsize`.to_i / 1024
+    config.vm.synced_folder "./", "/var/www", type:"nfs", mount_options:["nolock,vers=3,udp,noatime,actimeo=1"] 
   elsif host =~ /linux/
     # meminfo shows KB and we need to convert to MB
-    mem = `grep 'MemTotal' /proc/meminfo | sed -e 's/MemTotal://' -e 's/ kB//'`.to_i 
+    mem = `grep 'MemTotal' /proc/meminfo | sed -e 's/MemTotal://' -e 's/ kB//'`.to_i
+    config.vm.synced_folder "./", "/var/www", type:"nfs", mount_options:["nolock,vers=3,udp,noatime,actimeo=1"]  
   elsif host =~ /mswin|mingw|cygwin/
     # Windows code via https://github.com/rdsubhas/vagrant-faster
     mem = `wmic computersystem Get TotalPhysicalMemory`.split[1].to_i / 1024
+    config.vm.synced_folder "./", "/var/www"
   end
 
   mem = mem / 1024 / 4
