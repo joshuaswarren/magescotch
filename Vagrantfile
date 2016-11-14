@@ -1,17 +1,11 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-%w(vagrant-hostmanager vagrant-auto_network).each do |plugin|
- unless Vagrant.has_plugin?(plugin)
-   raise 'In order to use this box, you must install plugin: ' + plugin
- end
-end
-
 Vagrant.configure("2") do |config|
 
 
     config.vm.box = "creatuity/MageScotchBox"
-    config.vm.box_version = ">= 2.0.8"
+    config.vm.box_version = ">= 2.0.10"
     config.vm.network "private_network", ip: "192.168.33.10"
     config.vm.provision "fix-no-tty", type: "shell" do |s|
     	s.privileged = false
