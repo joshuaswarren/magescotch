@@ -43,9 +43,4 @@ Vagrant.configure("2") do |config|
 
     config.ssh.forward_agent = true
 
-  config.hostmanager.enabled = true
-  config.hostmanager.manage_host = true
-  config.hostmanager.ignore_private_ip = false
-  config.hostmanager.include_offline = true
-
 end
