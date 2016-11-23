@@ -5,7 +5,7 @@ Vagrant.configure("2") do |config|
 
 
     config.vm.box = "creatuity/MageScotchBox"
-    config.vm.box_version = ">= 2.0.10"
+    config.vm.box_version = ">= 2.0.14"
     config.vm.network "private_network", ip: "192.168.33.10"
     config.vm.provision "fix-no-tty", type: "shell" do |s|
     	s.privileged = false
@@ -30,7 +30,7 @@ Vagrant.configure("2") do |config|
   elsif host =~ /mswin|mingw|cygwin/
     # Windows code via https://github.com/rdsubhas/vagrant-faster
     mem = `wmic computersystem Get TotalPhysicalMemory`.split[1].to_i / 1024
-    config.vm.synced_folder "./", "/var/www"
+    config.vm.synced_folder "./", "/var/www", type:"smb"
   end
 
   mem = mem / 1024 / 4
