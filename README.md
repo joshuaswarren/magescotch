@@ -5,8 +5,8 @@ This is the PHP 7-based version of Magescotch. If you need PHP 5, please see [Ma
 This environment is based on the Vagrant base box Magemalt. To request new software to be added, please open an issue on the [Magemalt repository](https://github.com/joshuaswarren/magemalt).
 
 ## Get Started
-- Download and Install [Vagrant][3]
-- Download and Install [VirtualBox][4]
+- Download and Install [Vagrant][3] - please make sure you are running the latest version of Vagrant. 1.8.7 or newer. 
+- Download and Install [VirtualBox][4] - please make sure you are running the latest version of VirtualBox. 5.1.0 or newer.
 - Install the Vagrant plugins required by running: vagrant plugin install vagrant-hostmanager vagrant-auto_network
 - Clone the MageScotch Box [GitHub Repository](https://github.com/joshuaswarren/magescotch)
 - Run `vagrant up`
