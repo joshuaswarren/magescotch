@@ -19,4 +19,4 @@ chmod -R a+rw .modman
 magerun cache:flush
 magerun sys:setup:run
 
-
+cp /home/vagrant/magemalt_version.txt /var/www/public/magemalt_provisioned_version.txt
