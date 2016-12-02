@@ -1,8 +1,9 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-Vagrant.configure("2") do |config|
+Vagrant.require_version ">= 1.8.7"
 
+Vagrant.configure("2") do |config|
 
     config.vm.box = "creatuity/MageScotchBox"
     config.vm.box_version = ">= 2.0.14"

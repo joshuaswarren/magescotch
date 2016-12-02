@@ -8,30 +8,7 @@
 
     <!-- Meta -->
     <meta charset="utf-8">
-    <!--
-       d888888o.       ,o888888o.        ,o888888o. 8888888 8888888888 ,o888888o.    8 8888        8
-     .`8888:' `88.    8888     `88.   . 8888     `88.     8 8888      8888     `88.  8 8888        8
-     8.`8888.   Y8 ,8 8888       `8. ,8 8888       `8b    8 8888   ,8 8888       `8. 8 8888        8
-     `8.`8888.     88 8888           88 8888        `8b   8 8888   88 8888           8 8888        8
-      `8.`8888.    88 8888           88 8888         88   8 8888   88 8888           8 8888        8
-       `8.`8888.   88 8888           88 8888         88   8 8888   88 8888           8 8888        8
-        `8.`8888.  88 8888           88 8888        ,8P   8 8888   88 8888           8 8888888888888
-    8b   `8.`8888. `8 8888       .8' `8 8888       ,8P    8 8888   `8 8888       .8' 8 8888        8
-    `8b.  ;8.`8888    8888     ,88'   ` 8888     ,88'     8 8888      8888     ,88'  8 8888        8
-     `Y8888P ,88P'     `8888888P'        `8888888P'       8 8888       `8888888P'    8 8888        8
-
-    8 888888888o       ,o888888o.  `8.`8888.      ,8'
-    8 8888    `88.  . 8888     `88. `8.`8888.    ,8'
-    8 8888     `88 ,8 8888       `8b `8.`8888.  ,8'
-    8 8888     ,88 88 8888        `8b `8.`8888.,8'
-    8 8888.   ,88' 88 8888         88  `8.`88888'
-    8 8888888888   88 8888         88  .88.`8888.
-    8 8888    `88. 88 8888        ,8P .8'`8.`8888.
-    8 8888      88 `8 8888       ,8P .8'  `8.`8888.
-    8 8888    ,88'  ` 8888     ,88' .8'    `8.`8888.
-    8 888888888P       `8888888P'  .8'      `8.`8888.
-    -->
-    <title>Scotch Box ♥ A Vagrant LAMP Stack for Beginners That Just Works</title>
+    <title>MageScotch ♥ A Vagrant Magento 2 Stack for Beginners That Just Works</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="yes" name="apple-mobile-web-app-capable">
@@ -150,22 +127,22 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/">Scotch Box</a>
+                <a class="navbar-brand" href="/">MageScotch</a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav pull-right">
-                    <li><a href="http://box.scotch.io">Docs</a></li>
-                    <li><a href="http://github.com/scotch-io/scotch-box">Star on GitHub</a></li>
-                    <li><a href="http://scotch.io">Scotch.io</a></li>
-                    <li><a href="https://twitter.com/scotch_io">@scotch_io</a></li>
-                    <li><a href="https://twitter.com/nickforthought">@nickforthought</a></li>
+                    <li><a href="https://github.com/joshuaswarren/magescotch/wiki">Docs</a></li>
+                    <li><a href="https://github.com/joshuaswarren/magescotch">Star on GitHub</a></li>
+                    <li><a href="https://github.com/joshuaswarren/magemalt">MageMalt</a></li>
+                    <li><a href="https://twitter.com/MageScotch">@MageScotch</a></li>
+                    <li><a href="https://twitter.com/JoshuaSwarren">@JoshuaSWarren</a></li>
                 </ul>
             </div>
         </div>
     </div>
 
     <section id="topper" style="background-image: url('data:image/svg+xml;base64,<?php echo base64_encode('<svg xmlns="http://www.w3.org/2000/svg" version="1.1"><defs id="defs4"><filter color-interpolation-filters="sRGB" id="filter3115"><feTurbulence type="fractalNoise" numOctaves="1" baseFrequency="0.9" id="feTurbulence3117"/><feColorMatrix result="result5" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 6 -4.15 " id="feColorMatrix3119"/><feComposite in2="result5" operator="in" in="SourceGraphic" result="result6" id="feComposite3121"/><feMorphology in="result6" operator="dilate" radius="20" result="result3" id="feMorphology3123"/></filter></defs><rect width="100%" height="100%" x="0" y="0" id="rect2985" fill="#000000"/><rect width="100%" height="100%" x="0" y="0" id="rect2985" style="fill:#0785FF;filter:url(#filter3115)"/></svg>'); ?>');">
-        <h1>Welcome to<br>Scotch Box 2.0 <i class="fa fa-heart"></i></h1>
+        <h1>Welcome to<br>MageScotch <i class="fa fa-heart"></i></h1>
     </section>
 
     <article>
@@ -177,14 +154,40 @@
                     <table class="table table-responsive table-striped table-hover">
                         <tr>
                             <td>OS</td>
-                            <td>Ubuntu 14.04 LTS (Trusty Tahr) </td>
+                            <td><?php
+                                $contents = file_get_contents("/etc/lsb-release");
+                                $pieces = explode('"', $contents);
+                                $release = $pieces[1];
+                                $release = trim($release, '"');
+                                echo $release;
+                                ?></td>
                         </tr>
                         <tr>
                             <td>PHP Version</td>
                             <td><?php echo phpversion(); ?></td>
                         </tr>
                         <tr>
-                            <td>Ruby 2.2.x</td>
+                            <td>Ruby</td>
+                            <td><?php echo exec("ruby --version");?></td>
+                        </tr>
+                        <tr>
+                            <td>MailCatcher</td>
+                            <td><a href="http://192.168.33.10:1080/">MailCatcher GUI</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://github.com/joshuaswarren/magemalt">MageMalt</a> (Base Box) Version Provisioned On</td>
+                            <td><?php passthru("cat /var/www/public/magemalt_provisioned_version.txt");?></td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://github.com/joshuaswarren/magemalt">MageMalt</a> (Base Box) Version Running</td>
+                            <td><?php passthru("cat /home/vagrant/magemalt_version.txt");?></td>
+                        </tr>
+                        <tr>
+                            <td>Elasticsearch</td>
+                            <td><i class="fa fa-check"></i></td>
+                        </tr>
+                        <tr>
+                            <td>RabbitMQ</td>
                             <td><i class="fa fa-check"></i></td>
                         </tr>
                         <tr>
@@ -193,7 +196,7 @@
                         </tr>
                         <tr>
                             <td>Git</td>
-                            <td><i class="fa fa-check"></i></td>
+                            <td><?php echo exec("git --version");?></td>
                         </tr>
                         <tr>
                             <td>cURL</td>
@@ -205,23 +208,71 @@
                         </tr>
                         <tr>
                             <td>Composer</td>
-                            <td><i class="fa fa-check"></i></td>
+                            <td><?php passthru("/usr/local/bin/composer --version");?></td>
                         </tr>
                         <tr>
                             <td>Beanstalkd</td>
-                            <td><i class="fa fa-check"></i></td>
+                            <td><?php passthru("/usr/bin/beanstalkd --version");?></td>
                         </tr>
                         <tr>
                             <td>Node</td>
-                            <td><i class="fa fa-check"></i></td>
+                            <td><?php echo exec("nodejs --version");?></td>
                         </tr>
                         <tr>
                             <td>NPM</td>
-                            <td><i class="fa fa-check"></i></td>
+                            <td><?php echo exec("npm --version");?></td>
                         </tr>
                     </table>
                 </div>
             </div>
+
+            <div class="row content">
+            <div class="col-md-6 col-md-offset-3 wrap">
+                <h2>Magento Stuff</h2>
+                <table class="table table-responsive table-striped table-hover">
+                    <tr>
+                        <td>Magento 2 Codebase</td>
+                        <td>/opt/magento2/</td>
+                    </tr>
+                    <tr>
+                        <td>Magento 2 Codebase Version</td>
+                        <td><?php passthru("/opt/magento2/bin/magento --version"); ?></td>
+                    </tr>
+                    <tr>
+                        <td>Magento 2 Demo Site</td>
+                        <td><a href="/magento2">/var/www/html/magento2 | http://192.168.33.10/magento2/</a></td>
+                    </tr>
+                    <tr>
+                        <td>Magento 2 Demo Site Version</td>
+                        <td><?php passthru("/var/www/html/magento2/bin/magento --version"); ?></td>
+                    </tr>
+                    <tr>
+                        <td>Magerun 2 Version</td>
+                        <td><?php passthru("magerun2 --version"); ?></td>
+                    </tr>
+                    <tr>
+                        <td>Magento 1 Codebase</td>
+                        <td>/opt/magento1</td>
+                    </tr>
+                    <tr>
+                        <td>Magento 1 Codebase Version</td>
+                        <td><?php passthru('head -n1 /opt/magento1/RELEASE_NOTES.txt');?></td>
+                    </tr>
+                    <tr>
+                        <td>Magento 1 Demo Site</td>
+                        <td><a href="/magento1">/var/www/html/magento1 | http://192.168.33.10/magento1</a></td>
+                    </tr>
+                    <tr>
+                        <td>Magento 1 Demo Site Version</td>
+                        <td><?php passthru('head -n1 /var/www/html/magento1/RELEASE_NOTES.txt');?></td>
+                    </tr>
+                    <tr>
+                        <td>Magerun Version</td>
+                        <td><?php passthru("magerun --version"); ?></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
 
             <div class="row content">
                 <div class="col-md-6 col-md-offset-3 wrap">
@@ -232,7 +283,7 @@
                         if (extension_loaded('mysql') or extension_loaded('mysqli')) :
                             $mysql_exists = TRUE;
                         endif;
-                        $mysqli = @new mysqli('localhost', 'root', 'root');
+                        $mysqli = @new mysqli('localhost', 'dev', 'dev');
                         $mysql_running = TRUE;
                         if (mysqli_connect_errno()) {
                             $mysql_running = FALSE;
@@ -252,7 +303,7 @@
                         </tr>
                         <tr>
                             <td>MySQL Version</td>
-                            <td><?php echo ($mysql_running ? $mysql_version : 'N/A'); ?></td>
+                            <td><?php echo ($mysql_running ? exec('mysql --version') : 'N/A'); ?></td>
                         </tr>
 
 
@@ -386,15 +437,15 @@
                         </tr>
                         <tr>
                             <td>Username</td>
-                            <td>root</td>
+                            <td>dev</td>
                         </tr>
                         <tr>
                             <td>Password</td>
-                            <td>root</td>
+                            <td>dev</td>
                         </tr>
                         <tr>
                             <td>Database</td>
-                            <td>scotchbox</td>
+                            <td>dev</td>
                         </tr>
                     </table>
                 </div>
@@ -473,7 +524,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <a href="http://box.scotch.io">Scotch Box</a> by <a href="http://scotch.io">scotch.io</a>.
+                    <a href="https://github.com/joshuaswarren/magescotch">MageScotch</a> by <a href="https://twitter.com/joshuaswarren">@JoshuaSWarren</a>.
                 </div>
             </div>
         </div>
