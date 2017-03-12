@@ -15,7 +15,7 @@ Vagrant.configure("2") do |config|
 
     config.vm.provision "file", source: "~/.ssh", destination: ".ssh"
     config.vm.provision :shell, path: "bootstrap.sh"
-    config.vm.provision :shell, path: "local-bootrap.sh"
+    config.vm.provision :shell, path: "local-bootstrap.sh"
     config.vm.hostname = "magescotch"
     config.vm.synced_folder ".", "/vagrant", disabled: true
 

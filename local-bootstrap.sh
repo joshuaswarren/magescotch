@@ -11,7 +11,9 @@ echo "Running local bootstrap file."
 # git config --global user.name "Your Name"
 # git config --global user.email "your_email@example.com"
 
+# If you have access to Magento Enterprise and would like to setup a Magento Enterprise instance, uncomment the following line
 
+# composer create-project --repository-url=https://repo.magento.com/ magento/project-enterprise-edition /var/www/public/m2ee/
 
 
 echo "Completed local bootstrap file."
