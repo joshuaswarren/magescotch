@@ -1,23 +1,45 @@
 # MageScotch Box
 
-This is the PHP 7-based version of Magescotch. If you need PHP 5, please see [Magescotch5](https://github.com/joshuaswarren/magescotch5)
+This is the PHP 7-based version of Magescotch. 
 
 This environment is based on the Vagrant base box Magemalt. To request new software to be added, please open an issue on the [Magemalt repository](https://github.com/joshuaswarren/magemalt).
+
+Magescotch is designed to allow you to experiment with Magento (both Magento 1 and Magento 2). While sample installations of M1 and M2 are setup for you, the main purpose of the environment is to give you a place to work on your own projects.
+
+Magescotch is built for general purpose use, but began with conferences and training sessions in mind. Because of how dodgy conference wifi can be, we include any tool we think you might need in the Magescotch base box. When in doubt, poke around /usr/local/src/ for lots of preloaded goodies. The Composer cache is also prewarmed with a number of Magento-related libraries. This makes Magescotch also especially useful on planes, trains and other situations with little-to-no bandwidth available. 
+
 
 ## Get Started
 - Download and Install [Vagrant][3] - please make sure you are running the latest version of Vagrant. 1.8.7 or newer. 
 - Download and Install [VirtualBox][4] - please make sure you are running the latest version of VirtualBox. 5.1.0 or newer.
 - Install the Vagrant plugins required by running: vagrant plugin install vagrant-hostmanager vagrant-auto_network
 - Clone the MageScotch Box [GitHub Repository](https://github.com/joshuaswarren/magescotch)
+- Edit local-bootstrap.sh and replace the sample name and email address with your information
 - Run `vagrant up`
 - Access Magento 1 at [http://192.168.33.10/magento1/](http://192.168.33.10/magento1/)
 - Access Magento 2 at [http://192.168.33.10/magento2/](http://192.168.33.10/magento2/)
 - Use your favorite IDE to edit the files in public/magento1, public/magento2 and public/dev
 - Access Mailcatcher at [http://192.168.33.10:1080/](http://192.168.33.10:1080/)
-
+- Access phpmyadmin at [http://192.168.33.10/phpmyadmin/](http://192.168.33.10/phpmyadmin/)
+- Access adminer at [http://192.168.33.10/adminer/](http://192.168.33.10/adminer/)
 
 
 ## Common Tasks
+
+### Add SSH keys to SSH agent so the Vagrant box can use them via SSH agent forwarding
+
+This only works on Mac and Linux host machines, but on those OS's, on your local machine, run:
+
+ssh-add <path to the private key you want to use in the Vagrant box>
+
+Make sure that your ~/.ssh/config file on your local machine includes these lines:
+
+Host                    *
+ForwardAgent          yes 
+
+Troubleshoot issues by making sure SSH is aware of your key, by running:
+
+ssh-add -l
 
 ### Add a new project to MageScotch
 

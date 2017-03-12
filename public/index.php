@@ -222,6 +222,14 @@
                             <td>NPM</td>
                             <td><?php echo exec("npm --version");?></td>
                         </tr>
+                        <tr>
+                            <td>Varnish</td>
+			    <td>4.1.1+</td>
+                        </tr>
+                        <tr>
+                            <td>Apache</td>
+			    <td>Apache/2.4.18+ with PHP-FPM</td>
+                        </tr>
                     </table>
                 </div>
             </div>
@@ -231,12 +239,12 @@
                 <h2>Magento Stuff</h2>
                 <table class="table table-responsive table-striped table-hover">
                     <tr>
-                        <td>Magento 2 Codebase</td>
-                        <td>/opt/magento2/</td>
+                        <td>Magento 2 Codebase (Develop Branch)</td>
+                        <td>/opt/magento2-github-develop/</td>
                     </tr>
                     <tr>
                         <td>Magento 2 Codebase Version</td>
-                        <td><?php passthru("/opt/magento2/bin/magento --version"); ?></td>
+                        <td><?php passthru("/opt/magento2-github-develop/bin/magento --version"); ?></td>
                     </tr>
                     <tr>
                         <td>Magento 2 Demo Site</td>
@@ -294,7 +302,7 @@
                         $mysqli->close();
                         ?>
                         <tr>
-                            <td>MySQL is installed</td>
+                            <td>MySQL (Percona) is installed</td>
                             <td><i class="fa fa-<?php echo ($mysql_exists ? 'check' : 'times'); ?>"></i></td>
                         </tr>
                         <tr>

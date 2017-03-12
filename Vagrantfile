@@ -6,14 +6,16 @@ Vagrant.require_version ">= 1.8.7"
 Vagrant.configure("2") do |config|
 
     config.vm.box = "creatuity/MageScotchBox"
-    config.vm.box_version = ">= 2.0.14"
+    config.vm.box_version = ">= 2.1.1"
     config.vm.network "private_network", ip: "192.168.33.10"
     config.vm.provision "fix-no-tty", type: "shell" do |s|
     	s.privileged = false
     	s.inline = "sudo sed -i '/tty/!s/mesg n/tty -s \\&\\& mesg n/' /root/.profile"
     end
 
+    config.vm.provision "file", source: "~/.ssh", destination: ".ssh"
     config.vm.provision :shell, path: "bootstrap.sh"
+    config.vm.provision :shell, path: "local-bootrap.sh"
     config.vm.hostname = "magescotch"
     config.vm.synced_folder ".", "/vagrant", disabled: true
 
@@ -40,8 +42,9 @@ Vagrant.configure("2") do |config|
         v.customize ["modifyvm", :id, "--memory", mem]
     end
 
-
-
     config.ssh.forward_agent = true
+
+
+    config.vm.provision "file", source: "~/.gitconfig", destination: ".gitconfig"
 
 end
