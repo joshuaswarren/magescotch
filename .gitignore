@@ -1,3 +1,4 @@
+.DS_Store
 public/magento/var/
 public/magento/var/cache
 public/magento/var/session
@@ -10,3 +11,5 @@ public/php_test.php
 public/benchmark.tmp
 public/magemalt_provisioned_version.txt
 local-bootstrap.sh
+public/m2ee
+public/magento-demo
