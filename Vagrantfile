@@ -25,7 +25,7 @@ Vagrant.configure("2") do |config|
   if host =~ /darwin/
     # sysctl returns Bytes and we need to convert to MB
     mem = `sysctl -n hw.memsize`.to_i / 1024
-    config.vm.synced_folder "./", "/var/www", type:"nfs", mount_options:["nolock,vers=3,udp,noatime,actimeo=1"] 
+    config.vm.synced_folder "./", "/var/www", type:"nfs", mount_options:["nolock,vers=3,tcp,noatime,fsc,rw,actimeo=1"]
   elsif host =~ /linux/
     # meminfo shows KB and we need to convert to MB
     mem = `grep 'MemTotal' /proc/meminfo | sed -e 's/MemTotal://' -e 's/ kB//'`.to_i
