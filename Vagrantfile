@@ -1,12 +1,12 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-Vagrant.require_version ">= 1.8.7"
+Vagrant.require_version ">= 2.0.0"
 
 Vagrant.configure("2") do |config|
 
     config.vm.box = "creatuity/MageScotchBox"
-    config.vm.box_version = ">= 2.1.1"
+    config.vm.box_version = ">= 2.1.5"
     config.vm.network "private_network", ip: "192.168.33.10"
     config.vm.provision "fix-no-tty", type: "shell" do |s|
     	s.privileged = false
