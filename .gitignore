@@ -13,3 +13,4 @@ public/magemalt_provisioned_version.txt
 local-bootstrap.sh
 public/m2ee
 public/magento-demo
+public/*
