@@ -12,6 +12,7 @@ Magescotch is built for general purpose use, but began with conferences and trai
 ## Get Started
 - Download and Install [Vagrant][3] - please make sure you are running the latest version of Vagrant. 1.8.7 or newer. 
 - Download and Install [VirtualBox][4] - please make sure you are running the latest version of VirtualBox. 5.1.0 or newer.
+- Ensure that your host machine as NFSd/NFS server installed and running. 
 - Install the Vagrant plugins required by running: vagrant plugin install vagrant-hostmanager vagrant-auto_network
 - Clone the MageScotch Box [GitHub Repository](https://github.com/joshuaswarren/magescotch)
 - Edit local-bootstrap.sh and replace the sample name and email address with your information
