@@ -27,6 +27,13 @@ Magescotch is built for general purpose use, but began with conferences and trai
 
 ## Common Tasks
 
+### Create an admin account
+
+You can create a new admin account using a command like this: 
+`bin/magento admin:user:create --admin-user='admin2' --admin-password='!admin123!' --admin-email='info@domain.com' --admin-firstname='John' --admin-lastname='Doe'`
+
+Replace the username and password with something more secure and the email address with your own email address.
+
 ### Add SSH keys to SSH agent so the Vagrant box can use them via SSH agent forwarding
 
 This only works on Mac and Linux host machines, but on those OS's, on your local machine, run:
