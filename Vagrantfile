@@ -34,7 +34,7 @@ Vagrant.configure("2") do |config|
   elsif host =~ /mswin|mingw|cygwin/
     # Windows code via https://github.com/rdsubhas/vagrant-faster
     mem = `wmic computersystem Get TotalPhysicalMemory`.split[1].to_i / 1024
-    config.vm.synced_folder "./", "/var/www", type:"smb"
+    config.vm.synced_folder "./", "/var/www", type:"smb", mount_options: ["vers=3.02","mfsymlinks"]
   end
 
   mem = mem / 1024 / 4
